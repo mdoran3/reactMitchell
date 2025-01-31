@@ -6,25 +6,38 @@
 }
 
 .audio-player {
-  flex: 1; 
-  padding: 20px; 
-  padding-bottom: 60px; 
-  bottom: 60px;
-  width: 100%;
-}
-
-/* .audio-player {
   position: fixed;
-  bottom: 60px;
+  bottom: 80px; /* Adjust based on footer height */
   left: 0;
-  width: 100%;
-  background-color: #f0f0f0;
-  padding: 10px 0;
+  right: 0; /* Ensure it spans the full width */
+  width: 100%; /* Ensures it spans the full width of the viewport */
+  height: 100px; /* Ensure there's enough height for both button and waveform */
+  background-color: #000000;
+  padding: 10px 20px;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
-  justify-content: center; 
-} */
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 15px; /* Adds space between the button and the waveform */
+}
+
+.audio-player .waveform {
+  flex-grow: 1; /* Ensures waveform takes up available space */
+  height: 80px; /* Ensures waveform height is clear */
+  margin-top: 10px; /* Adjusts space between waveform and button */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #096f6d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
 
 :root {
   --background-color: #000000;
@@ -67,14 +80,90 @@ body {
 }
 
 .footer {
-  width: 100%; /* Full width */
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  background-color: var(--background-color); /* Dynamic based on theme */
-  color: var(--text-color); /* Dynamic based on theme */
-  padding: 10px 20px; /* Add spacing inside the footer */
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  z-index: 1000; /* Make sure it stays above other content */
-  box-sizing: border-box; /* Ensure padding is included in width */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Adjust as needed */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Slightly lower than the audio player */
 }
+
+.button-container {
+  display: flex;
+  align-items: center;  /* Align items vertically */
+  justify-content: center;
+  min-width: 80px; /* Reduce width */
+  margin-right: 10px; /* Reduce space between button and waveform */
+}
+
+.play-button, .pause-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle, #e0e0e0, #a0a0a0); /* Brushed metal effect */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Elevated 3D look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  position: relative;
+}
+
+.play-button i, .pause-button i {
+  color: #333;
+  font-size: 24px;
+}
+
+.play-button:hover, .pause-button:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0% {
+    box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
+  }
+}
+
+@keyframes blink-orange {
+  0% {
+    box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
+  }
+}
+
+/* Initial blinking state for the play and pause buttons */
+.play-button.blinking {
+  animation: blink 1s infinite;
+}
+
+.pause-button.blinking {
+  animation: blink-orange 1s infinite;
+}
+
+/* Glowing state when active (constant glow) */
+.play-button.active {
+  box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
+}
+
+.pause-button.active {
+  box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
+}
+
