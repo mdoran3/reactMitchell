@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
-const audioFile = '/audio/TheEulogy.wav';
+const audioFile = "https://pub-917443ca83a94694bc49ac75707aa2a0.r2.dev/The%20Eulogy.wav";
 
 const AudioPlayer = () => { // Remove the audioUrl prop
   const waveformRef = useRef(null);
