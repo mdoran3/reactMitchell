@@ -1,45 +1,89 @@
-/* Header.css */
-.header {
-  position: sticky; /* Sticks to the top of the page */
-  top: 0;
-  width: 100%; /* Full width */
-  display: flex;
-  justify-content: space-between; /* Space out the three sections */
-  align-items: center; /* Align items vertically */
-  background-color: var(--background-color); /* Dynamic based on theme */
-  color: var(--text-color); /* Dynamic based on theme */
-  padding: 10px 20px; /* Add spacing inside the header */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  z-index: 1000; /* Make sure it stays above other content */
-  box-sizing: border-box; /* Ensure padding is included in width */
+/* Define Custom Gradients */
+:root {
+  --header-gradient-light: white;  /* Light mode is solid white */
+  --footer-gradient-light: white;  /* Light mode is solid white */
+  --header-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
+  --footer-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
+  /*--footer-gradient-dark: linear-gradient(135deg, #000, #555, #2C5F2D, #008F8C);*/ /* OLD Dark mode gradient */
 }
 
+/* Slower Animated Gradient */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Header Styles */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header-gradient-dark);
+  background-size: 300% 300%;
+  animation: gradientMove 15s ease-in-out infinite;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Footer Styles */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  background: var(--footer-gradient-dark);
+  color: white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Header & Footer */
+.light-mode .header {
+  background: var(--header-gradient-light);
+  color: black;
+  animation: none; /* Remove animation in light mode */
+}
+
+.light-mode .footer {
+  background: var(--footer-gradient-light);
+  color: black;
+}
+
+/* Social Links */
 .social-links a {
-  margin-right: 15px; /* Space between social links */
-  color: inherit; /* Inherit color from theme */
-  text-decoration: none; /* Remove underline */
+  margin-right: 15px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .social-links a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
+/* Header Content */
 .header-content {
-  text-align: center; /* Center align the name and profession */
-  flex-grow: 1; /* Allow content to grow and take available space */
+  text-align: center;
+  flex-grow: 1;
 }
 
 .header-content h1 {
-  font-size: 1.5rem; /* Adjust font size for name */
+  font-size: 1.5rem;
   margin: 0;
 }
 
 .header-content p {
-  font-size: 1rem; /* Smaller font for profession */
+  font-size: 1rem;
   margin: 0;
 }
 
-/* Toggle Switch Styles */
+/* Toggle Switch */
 .toggle-switch {
   display: flex;
   align-items: center;
@@ -58,6 +102,7 @@
   height: 0;
 }
 
+/* Dark Mode Toggle */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -83,7 +128,7 @@
 }
 
 input:checked + .slider {
-  background-color: #1db954;
+  background-color: #555;
 }
 
 input:checked + .slider:before {
@@ -101,13 +146,13 @@ input:checked + .slider:before {
 }
 
 .slider .sun {
-  margin-top: 2px;
+  margin-top: 3px;
   left: 6px;
   opacity: 1;
 }
 
 .slider .moon {
-  margin-top: 2px;
+  margin-top: 3px;
   right: 6px;
   opacity: 0;
 }
@@ -123,27 +168,27 @@ input:checked + .slider .moon {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center align items */
-    padding: 10px; /* Adjust padding */
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
   }
 
   .social-links {
-    width: 100%; /* Full width on small screens */
-    text-align: center; /* Center align text */
-    margin-top: 10px; /* Add space between stacked items */
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
 
   .social-links {
-    order: 2; /* Move social links to the bottom */
+    order: 2;
   }
 
   .header-content {
-    order: 1; /* Move header content to the top */
+    order: 1;
   }
 
   .toggle-switch {
-    margin-top: 10px; /* Add space above toggle switch */
-    order: 3; /* Move toggle switch to the bottom */
+    margin-top: 10px;
+    order: 3;
   }
 }

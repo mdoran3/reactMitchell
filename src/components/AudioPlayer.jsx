@@ -1,60 +1,66 @@
 import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
+
 const audioFile = "https://pub-917443ca83a94694bc49ac75707aa2a0.r2.dev/The%20Eulogy.wav";
 
-const AudioPlayer = () => { // Remove the audioUrl prop
+const AudioPlayer = () => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // Initialize WaveSurfer
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
-      waveColor: '#4a4a4a',
-      progressColor: '#1db954',
-      cursorColor: '#1db954',
-      barWidth: 3,
+      waveColor: '#555',
+      progressColor: '#096f6d',
+      cursorColor: '#2f8430',
+      barWidth: 6,
       barRadius: 3,
       responsive: true,
       height: 100,
       normalize: true,
     });
 
-    // Load the imported audio file
     wavesurferRef.current.load(audioFile);
 
-    // Play/pause event listener
     wavesurferRef.current.on('play', () => setIsPlaying(true));
     wavesurferRef.current.on('pause', () => setIsPlaying(false));
 
-    // Cleanup on unmount
     return () => {
       wavesurferRef.current.destroy();
     };
-  }, []); // Remove audioUrl from dependencies
+  }, []);
 
   const handlePlayPause = () => {
     wavesurferRef.current.playPause();
   };
 
   return (
-    <div style={{ width: '100%', backgroundColor: '#f0f0f0', padding: '10px 0' }}>
-      <div ref={waveformRef} style={{ width: '100%' }} />
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: '#000000',
+      padding: '10px',
+      gap: '15px' // Space between button and waveform
+    }}>
+      {/* Play/Pause Button */}
       <button
         onClick={handlePlayPause}
         style={{
-          marginTop: '10px',
           padding: '10px 20px',
-          backgroundColor: '#1db954',
+          backgroundColor: '#096f6d',
           color: '#fff',
           border: 'none',
           borderRadius: '5px',
           cursor: 'pointer',
+          flexShrink: 0 // Prevents button from shrinking
         }}
       >
         {isPlaying ? 'Pause' : 'Play'}
       </button>
+
+      {/* Waveform */}
+      <div ref={waveformRef} style={{ flexGrow: 1, width: '100%' }} />
     </div>
   );
 };

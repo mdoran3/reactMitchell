@@ -5,9 +5,30 @@
   padding-bottom: 60px; /* Add padding equal to footer height */
 }
 
+.audio-player {
+  flex: 1; 
+  padding: 20px; 
+  padding-bottom: 60px; 
+  bottom: 60px;
+  width: 100%;
+}
+
+/* .audio-player {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: center; 
+} */
+
 :root {
-  --background-color: #ffffff;
-  --text-color: #333333;
+  --background-color: #000000;
+  --text-color: #a5a5a5;
 }
 
 html, body {
@@ -21,11 +42,18 @@ html, body {
 body {
   background-color: var(--background-color); /* Set background color */
   color: var(--text-color); /* Set text color */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
 }
 
 #root {
   width: 100%; /* Ensure the root div spans the full width */
   min-height: 100vh; /* Ensure it spans the full height of the viewport */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .light-mode {
@@ -36,47 +64,6 @@ body {
 .dark-mode {
   --background-color: #121212;
   --text-color: #f1f1f1;
-}
-
-
-
-
-
-
-
-
-
-
-/* App.css */
-:root {
-  --background-color: #ffffff;
-  --text-color: #333333;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-}
-
-#root {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1; /* Takes up remaining space */
-  padding: 20px; /* Add some padding */
 }
 
 .footer {
@@ -90,14 +77,4 @@ body {
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   z-index: 1000; /* Make sure it stays above other content */
   box-sizing: border-box; /* Ensure padding is included in width */
-}
-
-.light-mode {
-  --background-color: #ffffff;
-  --text-color: #333333;
-}
-
-.dark-mode {
-  --background-color: #121212;
-  --text-color: #f1f1f1;
 }

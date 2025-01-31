@@ -1,20 +1,21 @@
 /* Footer.css */
 .footer {
-    position: sticky; /* Stick to the bottom */
-    bottom: 0;
-    width: 100%; /* Full width */
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    background-color: var(--background-color); /* Dynamic based on theme */
-    color: var(--text-color); /* Dynamic based on theme */
-    padding: 10px 20px; /* Add spacing inside the footer */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    z-index: 1000; /* Make sure it stays above other content */
-    box-sizing: border-box; /* Ensure padding is included in width */
-  }
-  
-  .footer h6 {
-    margin: 0;
-    font-size: 1rem; /* Adjust font size */
-  }
+  background-color: #222;
+  color: white;
+  text-align: center; /* Centers inline elements like <p> */
+  padding: 1rem 0;
+  width: 100%; /* Ensures the footer takes the full width */
+  position: relative; /* Allows the footer to sit at the bottom without sticking */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  width: 100%; /* Ensure footer content takes full width */
+}
+
+.footer-content p {
+  margin-bottom: 10px; /* Adds spacing between <p> and links */
+}

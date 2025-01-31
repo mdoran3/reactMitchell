@@ -1,0 +1,18 @@
+/* Define Custom Colors */
+:root {
+    --body-bg-light: #ffffff;  /* White background in light mode */
+    --body-bg-dark: #1e1e1e;   /* Dark gray background in dark mode */
+  }
+  
+  /* Apply Background Colors */
+  body {
+    background-color: var(--body-bg-light);
+    color: black;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  /* Dark Mode Body */
+  .dark-mode body {
+    background-color: var(--body-bg-dark);
+    color: white;
+  }
