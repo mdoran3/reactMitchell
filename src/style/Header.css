@@ -1,0 +1,149 @@
+/* Header.css */
+.header {
+  position: sticky; /* Sticks to the top of the page */
+  top: 0;
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: space-between; /* Space out the three sections */
+  align-items: center; /* Align items vertically */
+  background-color: var(--background-color); /* Dynamic based on theme */
+  color: var(--text-color); /* Dynamic based on theme */
+  padding: 10px 20px; /* Add spacing inside the header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Make sure it stays above other content */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.social-links a {
+  margin-right: 15px; /* Space between social links */
+  color: inherit; /* Inherit color from theme */
+  text-decoration: none; /* Remove underline */
+}
+
+.social-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.header-content {
+  text-align: center; /* Center align the name and profession */
+  flex-grow: 1; /* Allow content to grow and take available space */
+}
+
+.header-content h1 {
+  font-size: 1.5rem; /* Adjust font size for name */
+  margin: 0;
+}
+
+.header-content p {
+  font-size: 1rem; /* Smaller font for profession */
+  margin: 0;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(123, 117, 117);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #1db954;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Sun and Moon Symbols */
+.slider .sun,
+.slider .moon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  transition: opacity 0.4s;
+}
+
+.slider .sun {
+  margin-top: 2px;
+  left: 6px;
+  opacity: 1;
+}
+
+.slider .moon {
+  margin-top: 2px;
+  right: 6px;
+  opacity: 0;
+}
+
+input:checked + .slider .sun {
+  opacity: 0;
+}
+
+input:checked + .slider .moon {
+  opacity: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .social-links {
+    width: 100%; /* Full width on small screens */
+    text-align: center; /* Center align text */
+    margin-top: 10px; /* Add space between stacked items */
+  }
+
+  .social-links {
+    order: 2; /* Move social links to the bottom */
+  }
+
+  .header-content {
+    order: 1; /* Move header content to the top */
+  }
+
+  .toggle-switch {
+    margin-top: 10px; /* Add space above toggle switch */
+    order: 3; /* Move toggle switch to the bottom */
+  }
+}

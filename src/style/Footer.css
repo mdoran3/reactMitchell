@@ -1,0 +1,20 @@
+/* Footer.css */
+.footer {
+    position: sticky; /* Stick to the bottom */
+    bottom: 0;
+    width: 100%; /* Full width */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    background-color: var(--background-color); /* Dynamic based on theme */
+    color: var(--text-color); /* Dynamic based on theme */
+    padding: 10px 20px; /* Add spacing inside the footer */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Make sure it stays above other content */
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+  
+  .footer h6 {
+    margin: 0;
+    font-size: 1rem; /* Adjust font size */
+  }
