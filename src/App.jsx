@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,8 +12,14 @@ const App = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
+  useEffect(() => {
+    // Apply the dark or light mode class to the body
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.body.classList.toggle("light-mode", !isDarkMode);
+  }, [isDarkMode]);
+
   return (
-    <div className={isDarkMode ? "dark-mode" : "light-mode"}>
+    <div>
       <Helmet>
         <title>Mitchell D. | Software Engineer</title>
         {/* Set favicon */}
@@ -25,7 +31,7 @@ const App = () => {
         <p>This is the main content of the page.</p>
       </main>
       <div className="audio-player">
-        <AudioPlayer />
+      <AudioPlayer isDarkMode={isDarkMode} />
       </div>
       <Footer />
     </div>
