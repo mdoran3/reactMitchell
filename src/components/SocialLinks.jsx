@@ -1,4 +1,5 @@
 import React from "react";
+import "../style/SocialLinks.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const SocialLinks = () => (

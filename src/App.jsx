@@ -3,10 +3,11 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AudioPlayer from "./components/AudioPlayer";
+import Body from "./components/Body"; // Import the Body component for digital rain effect
 import { Helmet } from "react-helmet";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default is dark mode
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -26,12 +27,9 @@ const App = () => {
         <link rel="icon" type="image/x-icon" href="/turqbits.ico" />
       </Helmet>
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="main-content">
-        {/* Your main content goes here */}
-        <p>This is the main content of the page.</p>
-      </main>
+      <Body isDarkMode={isDarkMode} /> {/* Pass dark mode status to Body */}
       <div className="audio-player">
-      <AudioPlayer isDarkMode={isDarkMode} />
+        <AudioPlayer isDarkMode={isDarkMode} />
       </div>
       <Footer />
     </div>
