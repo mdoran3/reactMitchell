@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/Body.css";
 
-const Body = ({ isDarkMode }) => { // Accept isDarkMode as a prop
+const Body = ({ isDarkMode }) => {
   const [raindrops, setRaindrops] = useState([]);
 
   // Generate raindrops
@@ -24,7 +24,8 @@ const Body = ({ isDarkMode }) => { // Accept isDarkMode as a prop
   }, []);
 
   return (
-    <div className={`digital-rain ${isDarkMode ? "dark-mode" : "light-mode"}`}> {/* Adjust class for theme */}
+    <div className={`digital-rain ${isDarkMode ? "dark-mode" : "light-mode"}`}>
+      {/* Raindrops */}
       {raindrops.map((drop, index) => (
         <span
           key={index}
@@ -37,6 +38,26 @@ const Body = ({ isDarkMode }) => { // Accept isDarkMode as a prop
           {Math.random() > 0.5 ? "1" : "0"}
         </span>
       ))}
+
+      {/* YouTube iframe */}
+      <div style={{
+        position: 'absolute', 
+        top: '45%', 
+        left: '50%', 
+        transform: 'translate(-50%, -50%)',
+        zIndex: 1
+      }}>
+        <iframe 
+          width="960" 
+          height="540" 
+          src="https://www.youtube.com/embed/EeuXGKk8gkM?autoplay=1"
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerPolicy="strict-origin-when-cross-origin" 
+          allowFullScreen
+        />
+      </div>
     </div>
   );
 };
