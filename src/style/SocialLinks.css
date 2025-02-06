@@ -18,7 +18,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   box-shadow: 0 0 80px rgba(9, 111, 109, 1), 0 0 200px rgba(9, 111, 109, 0.9), 0 0 250px rgba(9, 111, 109, 0.6); /* Stronger neon glow effect */
-  filter: blur(8px); /* Increased blur for more diffusion */
+  filter: blur(4px); /* Increased blur for more diffusion */
   border-radius: 5x;
 }
 
@@ -44,7 +44,7 @@
 
 .social-links a:hover {
   transform: scale(1.3) rotate(7deg); /* Increased scale for stronger magnification */
-  box-shadow: 0 0 150px rgba(9, 111, 109, 1), 0 0 250px rgba(9, 111, 109, 1), 0 0 350px rgba(9, 111, 109, 0.9); /* Even larger glow effect */
+  box-shadow: 0 0 50px rgba(9, 111, 109, 1), 0 0 100px rgba(9, 111, 109, 1), 0 0 150px rgba(9, 111, 109, 0.9); /* Even larger glow effect */
 }
 
 /* Smooth Neon Glow Movement Animation - Following the Perimeter */
@@ -69,13 +69,13 @@
 /* Glowing Border Animation - Smooth Glow Effect */
 @keyframes glowing-border {
   0% {
-    box-shadow: 0 0 90px rgba(9, 111, 109, 1), 0 0 200px rgba(9, 111, 109, 1), 0 0 250px rgba(9, 111, 109, 0.8);
+    box-shadow: 0 0 1px rgba(9, 111, 109, 1), 0 0 2px rgba(9, 111, 109, 0.8);
   }
   50% {
-    box-shadow: 0 0 150px rgba(9, 111, 109, 1), 0 0 300px rgba(9, 111, 109, 1), 0 0 350px rgba(9, 111, 109, 0.9); /* Brightest */
+    box-shadow: 0 0 2px rgba(9, 111, 109, 1), 0 0 3px rgba(9, 111, 109, 0.9);
   }
   100% {
-    box-shadow: 0 0 90px rgba(9, 111, 109, 1), 0 0 200px rgba(9, 111, 109, 1), 0 0 250px rgba(9, 111, 109, 0.8); /* Fade back to initial */
+    box-shadow: 0 0 1px rgba(9, 111, 109, 1), 0 0 2px rgba(9, 111, 109, 0.8);
   }
 }
 

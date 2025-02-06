@@ -2,9 +2,15 @@
 :root {
   --header-gradient-light: white;  /* Light mode is solid white */
   --footer-gradient-light: white;  /* Light mode is solid white */
-  --header-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
+  --header-gradient-dark: linear-gradient(135deg, #000 0%, 
+  #000 60%,  /* Keep black longer */
+  #222 70%,  /* Reduce gray influence */
+  #555 85%,  /* Push gray further right */
+  #193819 90%, 
+  #096f6d 97%
+);
+  /*--header-gradient-dark: linear-gradient(135deg, #000 0%,   #111 50%, #555 70%, #193819 88%, #096f6d 96%);*/
   --footer-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
-  /*--footer-gradient-dark: linear-gradient(135deg, #000, #555, #2C5F2D, #008F8C);*/ /* OLD Dark mode gradient */
 }
 
 /* Slower Animated Gradient */
@@ -23,7 +29,9 @@
   justify-content: space-between;
   align-items: center;
   background: var(--header-gradient-dark);
-  background-size: 300% 300%;
+  /*background-size: 300% 300%;8*/
+  background-size: 200% 200%;  /* Adjust to fit all colors at start */
+  background-position: 50% 50%;
   animation: gradientMove 15s ease-in-out infinite;
   color: white;
   padding: 10px 20px;
