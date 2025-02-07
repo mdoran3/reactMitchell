@@ -9,7 +9,7 @@
   #193819 90%, 
   #096f6d 97%
 );
-  --footer-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
+  --footer-gradient-dark: linear-gradient(135deg, #000, #555, #193819); /* #096f6d8*/
 }
 
 /* Slower Animated Gradient */
