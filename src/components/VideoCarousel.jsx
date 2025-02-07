@@ -27,7 +27,7 @@ const VideoCarousel = () => {
 
       {/* YouTube Video */}
       <iframe
-        key={videos[currentIndex].src} // Ensures iframe reloads on video change
+        key={videos[currentIndex].src} // no control over the key
         className="video-iframe"
         src={`${videos[currentIndex].src}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&cc_load_policy=0`} 
         title={videos[currentIndex].title}
