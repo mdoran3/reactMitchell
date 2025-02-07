@@ -9,7 +9,6 @@
   #193819 90%, 
   #096f6d 97%
 );
-  /*--header-gradient-dark: linear-gradient(135deg, #000 0%,   #111 50%, #555 70%, #193819 88%, #096f6d 96%);*/
   --footer-gradient-dark: linear-gradient(135deg, #000, #555, #193819, #096f6d);
 }
 

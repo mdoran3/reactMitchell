@@ -13,7 +13,7 @@ const VideoCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 3800); // Change video every 3.9 seconds
+    }, 3800); // change video every 3.8 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -27,7 +27,7 @@ const VideoCarousel = () => {
 
       {/* YouTube Video */}
       <iframe
-        key={videos[currentIndex].src} // no control over the key
+        key={videos[currentIndex].src} 
         className="video-iframe"
         src={`${videos[currentIndex].src}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&cc_load_policy=0`} 
         title={videos[currentIndex].title}
