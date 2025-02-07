@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "../style/Body.css";
+import "../style/Body.css"; // Your existing CSS file
+import VideoCarousel from "./VideoCarousel"; // Import VideoCarousel component
+import { characters } from "../utils/languagechars"; 
 
 const Body = ({ isDarkMode }) => {
   const [raindrops, setRaindrops] = useState([]);
 
-  // Generate raindrops
+  // Function to generate raindrops
   const generateRaindrops = () => {
-    const numDrops = 25; // Number of raindrops
+    const numDrops = 50; // Number of raindrops
     const drops = [];
     for (let i = 0; i < numDrops; i++) {
-      const left = Math.random() * 100; // Random position
+      const left = Math.random() * 100; // Random position across the width
       const delay = Math.random() * 10; // Random animation delay
-      drops.push({ left, delay });
+      const character = characters[Math.floor(Math.random() * characters.length)];
+      drops.push({ left, delay, character });
     }
     setRaindrops(drops);
   };
@@ -32,31 +35,16 @@ const Body = ({ isDarkMode }) => {
           style={{
             left: `${drop.left}%`,
             animationDelay: `${drop.delay}s`,
-            animationDuration: `${Math.random() * 3 + 2}s`, // Randomize speed
+            animationDuration: `${Math.random() * 6 + 4}s`, // Randomize speed
           }}
         >
-          {Math.random() > 0.5 ? "1" : "0"}
+          {drop.character}
         </span>
       ))}
 
-      {/* YouTube iframe */}
-      <div style={{
-        position: 'absolute', 
-        top: '45%', 
-        left: '50%', 
-        transform: 'translate(-50%, -50%)',
-        zIndex: 1
-      }}>
-        <iframe 
-          width="960" 
-          height="540" 
-          src="https://www.youtube.com/embed/EeuXGKk8gkM?autoplay=1"
-          title="YouTube video player" 
-          frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          referrerPolicy="strict-origin-when-cross-origin" 
-          allowFullScreen
-        />
+      {/* Video Carousel */}
+      <div className="video-carousel-container">
+        <VideoCarousel />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 #App.css
 .main-content {
-  flex: 1; /* Takes up remaining space */
-  padding: 20px; /* Add some padding */
-  padding-bottom: 60px; /* Add padding equal to footer height */
+  flex: 1; 
+  padding: 20px; 
+  padding-bottom: 60px; 
 }
 
 :root {
@@ -11,16 +11,16 @@
 }
 
 html, body {
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  width: 100%; /* Ensure full width */
-  height: 100%; /* Ensure full height */
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+  height: 100%; 
   font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: var(--background-color); /* Set background color */
-  color: var(--text-color); /* Set text color */
+  background-color: var(--background-color); 
+  color: var(--text-color);
   background-color: var(--background-color);
   color: var(--text-color);
   display: flex;
@@ -28,8 +28,8 @@ body {
 }
 
 #root {
-  width: 100%; /* Ensure the root div spans the full width */
-  min-height: 100vh; /* Ensure it spans the full height of the viewport */
+  width: 100%; 
+  min-height: 100vh; 
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,11 +49,11 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px; /* Adjust as needed */
+  height: 60px; 
   background-color: var(--background-color);
   color: var(--text-color);
   text-align: center;
   padding: 10px;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 999; /* Slightly lower than the audio player */
+  z-index: 999; 
 }
