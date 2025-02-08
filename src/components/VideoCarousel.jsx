@@ -8,7 +8,9 @@ const videos = [
   // { title: "Razor Vocoder", src: "https://www.youtube.com/embed/sOiD5vdeM7c" },
   // { title: "Archimede's Screw Animation", src: "https://www.youtube.com/embed/UwP7jclzsvw" },
   // { title : "Ableton Live Session", src: "https://www.youtube.com/embed/8aWJzuGFc3c" }
-     { title: "Landing Page", src: "https://www.youtube.com/embed/1vHkBb9rY4Q" },
+  // { title: "Landing Page", src: "https://www.youtube.com/embed/1vHkBb9rY4Q" }
+  { title: "Sylenth", src: "https://www.youtube.com/embed/1hBAVQUhGJ8" }
+  //{ title: "Sylenth", src: "https://5d8c9cc64e390e9643fac3a8419fe476.r2.cloudflarestorage.com/video" }
 ];
 
 const VideoCarousel = () => {
@@ -17,13 +19,13 @@ const VideoCarousel = () => {
   /**********************************************************************
   * Uncomment the following useEffect to enable automatic video switching
   **********************************************************************/
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
-  //   }, 3800); // change video every 3.8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    }, 13000); // change video every 13 seconds
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="video-carousel-container">
