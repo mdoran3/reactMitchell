@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
 
 const videos = [
-  { title: "Psyche Popup Tool Selector", src: "https://www.youtube.com/embed/EeuXGKk8gkM" },
-  { title: "Razor Vocoder", src: "https://www.youtube.com/embed/sOiD5vdeM7c" },
-  { title: "Archimede's Screw Animation", src: "https://www.youtube.com/embed/UwP7jclzsvw" },
-  { title : "Ableton Live Session", src: "https://www.youtube.com/embed/8aWJzuGFc3c" }
+  /***********************************
+  * Add your YouTube video URLs here 
+  **********************************/
+  // { title: "Psyche Popup Tool Selector", src: "https://www.youtube.com/embed/EeuXGKk8gkM" },
+  // { title: "Razor Vocoder", src: "https://www.youtube.com/embed/sOiD5vdeM7c" },
+  // { title: "Archimede's Screw Animation", src: "https://www.youtube.com/embed/UwP7jclzsvw" },
+  // { title : "Ableton Live Session", src: "https://www.youtube.com/embed/8aWJzuGFc3c" }
+     { title: "Landing Page", src: "https://www.youtube.com/embed/1vHkBb9rY4Q" },
 ];
 
 const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 3800); // change video every 3.8 seconds
+  /**********************************************************************
+  * Uncomment the following useEffect to enable automatic video switching
+  **********************************************************************/
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  //   }, 3800); // change video every 3.8 seconds
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="video-carousel-container">
