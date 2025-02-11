@@ -46,7 +46,7 @@
   margin-bottom: 110px; /* add space above audioPlayer */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
   opacity: 0.8; /* Adjust transparency (0 = fully transparent, 1 = fully visible) */
-  filter: brightness(0.7); /* Adjust brightness to make it more visible */
+  filter: brightness(0.8); /* Adjust brightness to make it more visible */
   transition: opacity 0.3s ease-in-out; /* Smooth transition */
 }
 
