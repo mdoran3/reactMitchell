@@ -8,8 +8,8 @@ const videos = [
   // { title: "Razor Vocoder", src: "https://www.youtube.com/embed/sOiD5vdeM7c" },
   // { title: "Archimede's Screw Animation", src: "https://www.youtube.com/embed/UwP7jclzsvw" },
   // { title : "Ableton Live Session", src: "https://www.youtube.com/embed/8aWJzuGFc3c" }
-  // { title: "Landing Page", src: "https://www.youtube.com/embed/1vHkBb9rY4Q" }
-  { title: "Sylenth", src: "https://www.youtube.com/embed/1hBAVQUhGJ8" }
+  { title: "Landing Page", src: "https://www.youtube.com/embed/1vHkBb9rY4Q" }
+  //{ title: "Sylenth", src: "https://www.youtube.com/embed/1hBAVQUhGJ8" }
   //{ title: "Sylenth", src: "https://5d8c9cc64e390e9643fac3a8419fe476.r2.cloudflarestorage.com/video" }
 ];
 
