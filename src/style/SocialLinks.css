@@ -2,9 +2,9 @@
   position: relative;
   display: inline-block;
   padding: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for both transform and glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
   border-radius: 50%;
-  overflow: hidden; /* Ensures the strips stay inside the rounded button */
+  overflow: hidden;
 }
 
 /* Neon Strips following the perimeter of the button */
@@ -14,11 +14,11 @@
   position: absolute;
   width: 8px;
   height: 30px;
-  background-color: rgba(9, 111, 109, 1); /* Neon glow color */
+  background-color: rgba(9, 111, 109, 1);
   opacity: 0;
   transition: opacity 0.3s ease;
   box-shadow: 0 0 80px rgba(9, 111, 109, 1), 0 0 200px rgba(9, 111, 109, 0.9), 0 0 250px rgba(9, 111, 109, 0.6); /* Stronger neon glow effect */
-  filter: blur(4px); /* Increased blur for more diffusion */
+  filter: blur(4px);
   border-radius: 5x;
 }
 
@@ -43,26 +43,26 @@
 }
 
 .social-links a:hover {
-  transform: scale(1.3) rotate(7deg); /* Increased scale for stronger magnification */
+  transform: scale(1.3) rotate(7deg);
   box-shadow: 0 0 50px rgba(9, 111, 109, 1), 0 0 100px rgba(9, 111, 109, 1), 0 0 150px rgba(9, 111, 109, 0.9); /* Even larger glow effect */
 }
 
 /* Smooth Neon Glow Movement Animation - Following the Perimeter */
 @keyframes neon-move {
   0% {
-    transform: translate(0, 0); /* Start at the initial position */
+    transform: translate(0, 0); 
   }
   25% {
-    transform: translate(100%, 0); /* Move to the top-right */
+    transform: translate(100%, 0); 
   }
   50% {
-    transform: translate(100%, 100%); /* Move to the bottom-right */
+    transform: translate(100%, 100%);
   }
   75% {
-    transform: translate(0, 100%); /* Move to the bottom-left */
+    transform: translate(0, 100%);
   }
   100% {
-    transform: translate(0, 0); /* Return to the start position */
+    transform: translate(0, 0); 
   }
 }
 

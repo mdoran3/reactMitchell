@@ -1,11 +1,11 @@
 /* Define Custom Gradients */
 :root {
-  --header-gradient-light: white;  /* Light mode is solid white */
-  --footer-gradient-light: white;  /* Light mode is solid white */
+  --header-gradient-light: white;  
+  --footer-gradient-light: white; 
   --header-gradient-dark: linear-gradient(135deg, #000 0%, 
-  #000 60%,  /* Keep black longer */
-  #222 70%,  /* Reduce gray influence */
-  #555 85%,  /* Push gray further right */
+  #000 60%,
+  #222 70%,  
+  #555 85%,  
   #193819 90%, 
   #096f6d 97%
 );
@@ -28,8 +28,7 @@
   justify-content: space-between;
   align-items: center;
   background: var(--header-gradient-dark);
-  /*background-size: 300% 300%;8*/
-  background-size: 200% 200%;  /* Adjust to fit all colors at start */
+  background-size: 200% 200%;  
   background-position: 50% 50%;
   animation: gradientMove 15s ease-in-out infinite;
   color: white;
@@ -55,7 +54,7 @@
 .light-mode .header {
   background: var(--header-gradient-light);
   color: black;
-  animation: none; /* Remove animation in light mode */
+  animation: none; 
 }
 
 .light-mode .footer {

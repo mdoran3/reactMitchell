@@ -7,7 +7,7 @@ const Body = ({ isDarkMode }) => {
   const [raindrops, setRaindrops] = useState([]);
 
   const generateRaindrops = () => {
-    const numDrops = 50; 
+    const numDrops = 0; 
     const drops = [];
     for (let i = 0; i < numDrops; i++) {
       const left = Math.random() * 100; 

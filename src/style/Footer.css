@@ -2,20 +2,20 @@
 .footer {
   background-color: #222;
   color: white;
-  text-align: center; /* Centers inline elements like <p> */
+  text-align: center; 
   padding: 1rem 0;
-  width: 100%; /* Ensures the footer takes the full width */
-  position: relative; /* Allows the footer to sit at the bottom without sticking */
+  width: 100%; 
+  position: relative; 
 }
 
 .footer-content {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  width: 100%; /* Ensure footer content takes full width */
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  width: 100%; 
 }
 
 .footer-content p {
-  margin-bottom: 10px; /* Adds spacing between <p> and links */
+  margin-bottom: 10px; 
 }
