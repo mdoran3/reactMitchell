@@ -38,7 +38,7 @@ const VideoCarousel = () => {
       <iframe
         key={videos[currentIndex].src} 
         className="video-iframe"
-        src={`${videos[currentIndex].src}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&cc_load_policy=0`} 
+        src={`${videos[currentIndex].src}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&cc_load_policy=0&loop=1&playlist=${videos[currentIndex].src.split('/embed/')[1]}`} 
         title={videos[currentIndex].title}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
