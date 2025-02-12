@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import "../style/AudioPlayer.css";
 
-const audioFile =
-  "https://pub-917443ca83a94694bc49ac75707aa2a0.r2.dev/The%20Eulogy.wav";
+const audioFile = "https://music.mitchelld.net/The%20Eulogy.wav";
+  //"https://pub-917443ca83a94694bc49ac75707aa2a0.r2.dev/The%20Eulogy.wav";
 
 const AudioPlayer = ({ isDarkMode }) => {
   const waveformRef = useRef(null);
