@@ -11,30 +11,45 @@ const AudioPlayer = ({ isDarkMode }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    wavesurferRef.current = WaveSurfer.create({
-      container: waveformRef.current,
-      waveColor: "#555",
-      progressColor: "#096f6d",
-      cursorColor: "#096f6d",
-      cursorWidth: 5,
-      barWidth: 20,
-      barRadius: 100,
-      responsive: true,
-      height: 70,
-      normalize: true,
-    });
+    if (waveformRef.current) {
+      wavesurferRef.current = WaveSurfer.create({
+        container: waveformRef.current,
+        waveColor: "#555",
+        progressColor: "#096f6d",
+        cursorColor: "#096f6d",
+        cursorWidth: 5,
+        barWidth: 20,
+        barRadius: 100,
+        responsive: true,
+        height: 70,
+        normalize: true,
+      });
 
-    wavesurferRef.current.load(audioFile);
+      // Load the audio file
+      wavesurferRef.current.load(audioFile);
 
-    wavesurferRef.current.on("play", () => setIsPlaying(true));
-    wavesurferRef.current.on("pause", () => setIsPlaying(false));
+      // Listen for play and pause events
+      wavesurferRef.current.on("play", () => {
+        console.log("Audio is playing");
+        setIsPlaying(true);
+      });
+      wavesurferRef.current.on("pause", () => {
+        console.log("Audio is paused");
+        setIsPlaying(false);
+      });
 
-    return () => {
-      wavesurferRef.current.destroy();
-    };
+      // Cleanup the WaveSurfer instance on unmount
+      return () => {
+        if (wavesurferRef.current) {
+          wavesurferRef.current.destroy();
+        }
+      };
+    }
   }, []);
 
+  // Handle play/pause button click
   const handlePlayPause = () => {
+    console.log("Play/Pause button clicked");
     wavesurferRef.current.playPause();
   };
 
@@ -55,7 +70,7 @@ const AudioPlayer = ({ isDarkMode }) => {
           </button>
         )}
 
-        {/* Pause Button (shown when playing, with blinking effect) */}
+        {/* Pause Button (shown when playing) */}
         {isPlaying && (
           <button onClick={handlePlayPause} className="pause-button">
             <i className="fas fa-pause" />
@@ -64,7 +79,7 @@ const AudioPlayer = ({ isDarkMode }) => {
       </div>
 
       {/* Waveform */}
-      <div ref={waveformRef} className="waveform" />
+      <div ref={waveformRef} className="waveform"></div>
     </div>
   );
 };
