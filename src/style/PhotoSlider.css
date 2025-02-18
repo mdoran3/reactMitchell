@@ -1,0 +1,126 @@
+.photo-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  width: 100%;
+  height: 800px; 
+  margin-top: 0; 
+}
+
+.photo-slider-container {
+  position: relative;
+  top: 10px; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.photo-slider {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: perspective(800px) translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 25%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.7) 25%, transparent 90%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.8) 25%, transparent 90%);
+}
+
+  /* Light Mode Styles */
+.light-mode .slider-image {
+    transition: none; 
+    background: none; 
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+.photo-slider:hover {
+  transform: perspective(800px) translateZ(20px) scale(1.05); 
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+@keyframes popIn {
+  0% {
+    transform: perspective(800px) translateZ(-50px); 
+  }
+  100% {
+    transform: perspective(800px) translateZ(0);
+    opacity: 1;
+  }
+}
+
+.photo-slider {
+  animation: popIn 0.5s ease-out;
+}
+
+.slider-image.fade {
+  opacity: 0;
+}
+
+.slider-image.active {
+  opacity: 1;
+  transform: scale(1); 
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #096f6d;
+  opacity: 0.2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10; 
+}
+
+.light-mode .slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #096f6d;
+    opacity: 0.6;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10; 
+  }
+
+.light-mode .slider-button:hover {
+  background-color: #096f6d;
+  opacity: 1;
+}
+
+.slider-button.left {
+  left: 10px;
+}
+
+.slider-button.right {
+  right: 10px;
+}
+
+.slider-button:hover {
+  background-color: #096f6d;
+  opacity: 0.8;
+}

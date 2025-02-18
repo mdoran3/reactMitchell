@@ -1,108 +1,56 @@
 .audio-player {
-    position: fixed;
-    bottom: 80px; 
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100px; 
-    background-color: #000000;
-    padding: 10px 20px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    box-sizing: border-box;
-    gap: 15px; 
-  }
-  
-  .audio-player .waveform {
-    flex-grow: 1; 
-    height: 80px; 
-    margin-top: 10px; 
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #096f6d;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex-shrink: 0; 
-  }
+  position: fixed;
+  bottom: 80px; 
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px; 
+  background-color: #000000;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 15px; 
+  border-top: 1px solid rgba(9, 111, 109, 0.5);
+}
 
-  .button-container {
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    min-width: 80px; 
-    margin-right: 10px;
-  }
-  
-  .play-button, .pause-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background: radial-gradient(circle, #e0e0e0, #a0a0a0); 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-    position: relative;
-  }
-  
-  .play-button i, .pause-button i {
-    color: #333;
-    font-size: 24px;
-  }
-  
-  .play-button:hover, .pause-button:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); 
-  }
-  
-  /* Blinking animation */
-  @keyframes blink {
-    0% {
-      box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
-    }
-    50% {
-      box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0);
-    }
-    100% {
-      box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
-    }
-  }
-  
-  @keyframes blink-orange {
-    0% {
-      box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
-    }
-    50% {
-      box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
-    }
-    100% {
-      box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
-    }
-  }
-  
-  /* Initial blinking state for the play and pause buttons */
-  .play-button.blinking {
-    animation: blink 1s infinite;
-  }
-  
-  .pause-button.blinking {
-    animation: blink-orange 1s infinite;
-  }
-  
-  /* Glowing state when active (constant glow) */
-  .play-button.active {
-    box-shadow: 0 0 4px 4px rgba(0, 255, 0, 0.6);
-  }
-  
-  .pause-button.active {
-    box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
-  }
+.audio-player .waveform {
+  flex-grow: 1;
+  height: 70px;  /* Ensure the waveform has height */
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  min-width: 80px; 
+  margin-right: 10px;
+}
+
+.play-button, .pause-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle, #e0e0e0, #a0a0a0);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  position: relative;
+}
+
+.play-button i, .pause-button i {
+  color: #333;
+  font-size: 24px;
+}
+
+.play-button:hover, .pause-button:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+}
