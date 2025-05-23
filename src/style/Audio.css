@@ -1,0 +1,11 @@
+.audio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Or 100vh if you want full viewport */
+  text-align: center;
+}
+
+.audio-content {
+  max-width: 600px;
+}
