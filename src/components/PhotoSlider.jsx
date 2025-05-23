@@ -64,13 +64,13 @@ export default function PhotoSlider({ images }) {
           onClick={prevSlide}
           className="slider-button left"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={36} />
         </button>
         <button
           onClick={nextSlide}
           className="slider-button right"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={36} />
         </button>
       </div>
     </div>
