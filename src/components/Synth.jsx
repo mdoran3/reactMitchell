@@ -35,18 +35,24 @@ const Synth = ({ onClose }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        paddingTop: "6vh",   
+        paddingBottom: "6vh", 
+        boxSizing: "border-box",
       }}
     >
-      <div style={{ position: "relative", maxWidth: "90vw", width: "100%" }}>
+      <div style={{ position: "relative", textAlign: "center" }}>
         {/* Synth Image */}
         <img
           src={synthImage}
           alt="Synthesizer"
           style={{
-            width: "100%",
-            maxHeight: "80vh",
+            maxWidth: "80vw",
+            maxHeight: "70vh",
+            height: "auto",
             borderRadius: "1rem",
             boxShadow: "0 0 30px #0ff",
+            display: "block",
+            margin: "0 auto",
           }}
         />
 
@@ -57,7 +63,7 @@ const Synth = ({ onClose }) => {
             top: "10%",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "80%", // Make this smaller than 100% to stay within image
+            width: "80%", 
             backgroundColor: "rgba(0, 0, 0, 0.6)",
             color: "#00FF00",
             fontFamily: "'Courier New', Courier, monospace",
