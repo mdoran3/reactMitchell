@@ -23,9 +23,6 @@
   position: sticky;
   top: 0;
   width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
   background: var(--header-gradient-dark);
   background-size: 200% 200%;
   background-position: 50% 50%;
@@ -36,17 +33,45 @@
   z-index: 1000;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(9, 111, 109, 0.5);
-  position: relative; 
+  position: relative;
 }
 
-.header-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+/* Desktop layout */
+@media (min-width: 769px) {
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: max-content;
+    pointer-events: none;
+  }
+}
+
+.header-content {
   text-align: center;
-  z-index: 10;
-  width: max-content; 
-  pointer-events: none; 
+  justify-self: center;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+}
+
+.header-content h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+.header-content p {
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
 }
 
 /* Footer Styles */
@@ -73,22 +98,6 @@
   color: black;
 }
 
-/* Header Content */
-.header-content {
-  text-align: center;
-  justify-self: center;
-}
-
-.header-content h1 {
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-.header-content p {
-  font-size: 1rem;
-  margin: 0;
-}
-
 /* Tab Bar */
 .tab-bar {
   display: flex;
@@ -99,7 +108,7 @@
 
 .tab-bar button {
   background: transparent;
-  color: white; /* text stays white */
+  color: white;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -112,7 +121,6 @@
 .tab-bar button:hover,
 .tab-bar button.active {
   background: rgba(9, 111, 109, 0.15);
-  /* text color stays white, no color change */
   transform: scale(1.1);
   box-shadow:
     0 0 8px rgba(9, 111, 109, 0.8),
@@ -121,7 +129,6 @@
   animation: wave-animation 4s ease-in-out infinite;
 }
 
-/* Use your existing wave-animation keyframes */
 @keyframes wave-animation {
   0% {
     box-shadow: 0 0 8px rgba(9, 111, 109, 0.8), 0 0 20px rgba(9, 111, 109, 0.6), 0 0 30px rgba(9, 111, 109, 0.4);
@@ -135,13 +142,13 @@
 }
 
 .light-mode .tab-bar button {
-  color: #096f6d; 
+  color: #096f6d;
 }
 
 .light-mode .tab-bar button:hover,
 .light-mode .tab-bar button.active {
   background: rgba(9, 111, 109, 0.15);
-  color: #096f6d; 
+  color: #096f6d;
   box-shadow:
     0 0 6px rgba(9, 111, 109, 0.8),
     0 0 15px rgba(9, 111, 109, 0.6);
@@ -149,7 +156,13 @@
   transform: scale(1.1);
 }
 
-/* Header Right Section */
+/* Header Sections */
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -248,30 +261,50 @@ input:checked + .slider .moon {
   opacity: 1;
 }
 
-/* Responsive Styles */
+.mobile-toggle-switch {
+  display: none;
+}
+
+/* Responsive Fixes */
 @media (max-width: 768px) {
   .header {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
     text-align: center;
+    pointer-events: auto;
+    z-index: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-right {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 8px;
   }
 
   .tab-bar {
     justify-content: center;
-    margin-bottom: 10px;
+    width: 100%;
+    flex-wrap: wrap;
   }
 
-  .header-content {
-    margin: 10px 0;
-  }
-
-  .header-right {
-    flex-direction: column;
+  .header-content h1,
+  .header-content p {
+    justify-content: center;
     align-items: center;
-    margin-top: 10px;
-  }
-
-  .social-links {
-    margin-bottom: 10px;
+    text-align: center;
+    margin: 4px 0;
   }
 }
