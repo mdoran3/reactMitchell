@@ -318,11 +318,11 @@ input:checked + .slider .moon {
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
-  width: auto;      
-  max-width: none;      
+  width: auto;
+  max-width: none;
   object-fit: cover;
   border-radius: 12px;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 02.0s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background: none;
   -webkit-mask-image: none;
   mask-image: none;
