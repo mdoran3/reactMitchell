@@ -8,6 +8,8 @@
 :root {
   --background-color: #000000;
   --text-color: #a5a5a5;
+  --header-height: 80px; /* Adjust to match your Header's height */
+  --audio-height: 90px; 
 }
 
 html, body {

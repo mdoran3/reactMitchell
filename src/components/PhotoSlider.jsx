@@ -14,7 +14,7 @@ export default function PhotoSlider({ images }) {
     "Đèo Hải Vân",
     "Hà Nội",
     "鰂魚涌",
-    "渋谷区",
+    "渋谷",
     "Monument Valley",
     "မန္တလေး",
     "John Ford Point",
@@ -38,47 +38,77 @@ export default function PhotoSlider({ images }) {
   useEffect(() => {
     const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, []);
 
   return (
-    <div style={{ position: "relative", width: "600px", margin: "auto" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "calc(100vh - 160px)", // Adjust to your header + audio player
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
+      }}
+    >
       <img
         src={images[currentIndex]}
         alt={locations[currentIndex]}
-        style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+        style={{
+          maxHeight: "100%",
+          height: "100%",
+          width: "auto",
+          borderRadius: "8px",
+          objectFit: "contain",
+        }}
       />
+
       <button
         onClick={prevSlide}
-        style={{ position: "absolute", top: "50%", left: 0, transform: "translateY(-50%)" }}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+          zIndex: 2,
+        }}
       >
         <ChevronLeft size={36} />
       </button>
+
       <button
         onClick={nextSlide}
-        style={{ position: "absolute", top: "50%", right: 0, transform: "translateY(-50%)" }}
+        style={{
+          position: "absolute",
+          top: "50%",
+          right: 0,
+          transform: "translateY(-50%)",
+          zIndex: 2,
+        }}
       >
         <ChevronRight size={36} />
       </button>
 
-      {/* Typewriter Location Text */}
+      {/* Typewriter on top of image */}
       <div
         style={{
           position: "absolute",
-          bottom: "10px",
-          right: "10px",
+          top: "20px",
+          right: "20px",
           color: "white",
-          fontSize: "1.5rem",
+          fontSize: "1.75rem",
           fontWeight: "bold",
-          textShadow: "1px 1px 4px rgba(0,0,0,0.9)",
-          backgroundColor: "rgba(0,0,0,0.3)",
-          padding: "4px 10px",
-          borderRadius: "6px",
-          minWidth: "120px",
-          textAlign: "right",
+          textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          padding: "6px 12px",
+          borderRadius: "8px",
+          zIndex: 1001, 
+          pointerEvents: "none", 
         }}
       >
         <Typewriter
-          key={currentIndex} // to re-trigger typing on slide change
+          key={currentIndex}
           words={[locations[currentIndex]]}
           loop={1}
           cursor
