@@ -1,77 +1,122 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../style/PhotoSlider.css";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function PhotoSlider({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(0); // Track the previous image for fade effect
+
+  const locations = [
+    "Fjaðrárgljúfur",
+    "กรุงเทพฯ",
+    "Salto Angel",
+    "Geirangerfjord",
+    "ရန်ကုန်",
+    "Đèo Hải Vân",
+    "Hà Nội",
+    "鰂魚涌",
+    "渋谷",
+    "Monument Valley",
+    "မန္တလေး",
+    "John Ford Point",
+    "Preikestolen",
+    "ရွှေတိဂုံစေတီတော်",
+    "Salto El Sapo",
+    "ဗိုလ်ချုပ်အောင်ဆန်းဈေး",
+    "Lăng Chủ tịch Hồ Chí Minh",
+    "Đường mòn Hồ Chí Minh",
+    "Háifoss"
+  ];
 
   const nextSlide = () => {
-    setPrevIndex(currentIndex); // Update the previous image index
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevSlide = () => {
-    setPrevIndex(currentIndex); // Update the previous image index
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const photos = images || [
-    "/assets/images/iceland.png",
-    "/assets/images/angelfall.png", 
-    "/assets/images/fjord.png",
-    "/assets/images/grandCentral.png",
-    "/assets/images/haivanpass.JPG",
-    "/assets/images/hanoi.JPG",
-    "/assets/images/hongKong.png",
-    "/assets/images/indonesia.png",
-    "/assets/images/japan.png",
-    "/assets/images/MV11.jpg",
-    "/assets/images/myanmar.png",
-    "/assets/images/navajo.png",
-    "/assets/images/norway.png",
-    "/assets/images/pagoda.png",
-    "/assets/images/sappo.png",
-    "/assets/images/thailand.png",
-    "/assets/images/train.png",
-    "/assets/images/trolltunga.png",
-    "/assets/images/vietnam.JPG",
-    "/assets/images/vietnam.png",
-    "/assets/images/waterfall.jpg"
-  ];
+  }, []);
 
   return (
-    <div className="photo-slider-wrapper">
-      <div className="photo-slider">
-        <img
-          src={photos[prevIndex]}
-          alt="Previous Slide"
-          className="slider-image fade"
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "calc(100vh - 160px)", // Adjust to your header + audio player
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
+      }}
+    >
+      <img
+        src={images[currentIndex]}
+        alt={locations[currentIndex]}
+        style={{
+          maxHeight: "100%",
+          height: "100%",
+          width: "auto",
+          borderRadius: "8px",
+          objectFit: "contain",
+        }}
+      />
+
+      <button
+        onClick={prevSlide}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+          zIndex: 2,
+        }}
+      >
+        <ChevronLeft size={36} />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        style={{
+          position: "absolute",
+          top: "50%",
+          right: 0,
+          transform: "translateY(-50%)",
+          zIndex: 2,
+        }}
+      >
+        <ChevronRight size={36} />
+      </button>
+
+      {/* Typewriter on top of image */}
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          color: "white",
+          fontSize: "1.75rem",
+          fontWeight: "bold",
+          textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          padding: "6px 12px",
+          borderRadius: "8px",
+          zIndex: 1001, 
+          pointerEvents: "none", 
+        }}
+      >
+        <Typewriter
           key={currentIndex}
+          words={[locations[currentIndex]]}
+          loop={1}
+          cursor
+          cursorStyle="|"
+          typeSpeed={70}
+          deleteSpeed={50}
+          delaySpeed={1500}
         />
-        <img
-          src={photos[currentIndex]}
-          alt="Current Slide"
-          className="slider-image active"
-          key={currentIndex} 
-        />
-        <button
-          onClick={prevSlide}
-          className="slider-button left"
-        >
-          <ChevronLeft size={36} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="slider-button right"
-        >
-          <ChevronRight size={36} />
-        </button>
       </div>
     </div>
   );

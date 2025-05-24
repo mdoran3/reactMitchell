@@ -1,0 +1,44 @@
+.synth-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.synth-image {
+  max-width: 90vw;
+  max-height: 70vh;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px #0ff;
+  object-fit: contain;
+}
+
+.typing-overlay {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 5px #000;
+  padding: 0 1rem;
+  z-index: 10000;
+}
+
+.cursor {
+  animation: blink 1s step-start infinite;
+  color: #00FF00;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

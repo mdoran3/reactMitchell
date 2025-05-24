@@ -3,17 +3,24 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AudioPlayer from "./components/AudioPlayer";
-import Body from "./components/Body";       // Travel tab
-import Projects from "./components/Projects"; // New
-import Audio from "./components/Audio";       // New
+import Body from "./components/Body";
+import Projects from "./components/Projects";
+import Audio from "./components/Audio";
+import Synth from "./components/Synth";
 import { Helmet } from "react-helmet";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true); // Default is dark mode
-  const [currentTab, setCurrentTab] = useState("travel"); // Default tab
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [currentTab, setCurrentTab] = useState("travel");
+  const [showSynthPopup, setShowSynthPopup] = useState(false);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
+  };
+
+  const handleTabChange = (tab) => {
+    setCurrentTab(tab);
+    setShowSynthPopup(true);
   };
 
   useEffect(() => {
@@ -21,16 +28,16 @@ const App = () => {
     document.body.classList.toggle("light-mode", !isDarkMode);
   }, [isDarkMode]);
 
+  useEffect(() => {
+     setShowSynthPopup(true); // <--- Trigger popup on load
+  }, []);
+
   const renderTabContent = () => {
     switch (currentTab) {
-      case "travel":
-        return <Body isDarkMode={isDarkMode} />;
-      case "projects":
-        return <Projects />;
-      case "music":
-        return <Audio />;
-      default:
-        return <Body isDarkMode={isDarkMode} />;
+      case "travel": return <Body isDarkMode={isDarkMode} />;
+      case "projects": return <Projects />;
+      case "music": return <Audio />;
+      default: return <Body isDarkMode={isDarkMode} />;
     }
   };
 
@@ -45,10 +52,14 @@ const App = () => {
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
         currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
+        setCurrentTab={handleTabChange}
       />
 
       {renderTabContent()}
+
+      {showSynthPopup && (
+        <Synth onClose={() => setShowSynthPopup(false)} />
+      )}
 
       <div className="audio-player">
         <AudioPlayer isDarkMode={isDarkMode} />
