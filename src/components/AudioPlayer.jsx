@@ -78,7 +78,7 @@ const AudioPlayer = ({ isDarkMode }) => {
         )}
       </div>
 
-      {!isWaveformReady && <div>Loading waveform...</div>}
+      {!isWaveformReady && <div></div>}
       <div ref={waveformRef} className="waveform" />
     </div>
   );
