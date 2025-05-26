@@ -142,8 +142,7 @@
   box-shadow:
     0 0 6px rgba(9, 111, 109, 0.6),
     0 0 15px rgba(9, 111, 109, 0.5);
-  animation: none; /* Optional: no animation in light mode */
-}
+  animation: none; 
 
 /* Header Right Section */
 .header-right {
@@ -277,39 +276,31 @@ input:checked + .slider .moon {
 /* ------------------ */
 
 .photo-slider-container {
-  position: relative; 
-  padding-top: 0;
-  padding-bottom: 0;
-
+  height: 100%;
+  max-height: none;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 2;
-  width: 100%;
-  max-width: 1000px;
-  height: 100%; 
-  margin: 0 auto; 
 }
 .photo-slider-wrapper {
+  height: calc(100vh - var(--header-height) - var(--audio-height));
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 120px);
-  margin: 0;
-  padding: 0;
 }
 
 .photo-slider {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transform: none;
   transition: none;
+  aspect-ratio: 4 / 3; 
+  max-width: 100%;
 }
 
 .slider-image {
@@ -320,7 +311,7 @@ input:checked + .slider .moon {
   height: 100%;
   width: auto;
   max-width: none;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   transition: opacity 02.0s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background: none;
