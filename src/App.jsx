@@ -1,85 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import "./App.css";
-// import Header from "./components/Header";
-// import Footer from "./components/Footer";
-// import AudioPlayer from "./components/AudioPlayer";
-// import Body from "./components/Body";
-// import Projects from "./components/Projects";
-// import Audio from "./components/Audio";
-// import Synth from "./components/Synth";
-// import { Helmet } from "react-helmet";
-
-// const App = () => {
-//   const [isDarkMode, setIsDarkMode] = useState(true);
-//   const [currentTab, setCurrentTab] = useState("travel");
-//   const [showSynthPopup, setShowSynthPopup] = useState(false);
-//   const [hasShownPopup, setHasShownPopup] = useState(false);
-
-//   const toggleDarkMode = () => {
-//     setIsDarkMode((prevMode) => !prevMode);
-//   };
-
-//   const handleTabChange = (tab) => {
-//     setCurrentTab(tab);
-//     setShowSynthPopup(true); // Show popup every time tab is changed
-//   };
-
-//   useEffect(() => {
-//     document.body.classList.toggle("dark-mode", isDarkMode);
-//     document.body.classList.toggle("light-mode", !isDarkMode);
-//   }, [isDarkMode]);
-
-//   useEffect(() => {
-//     if (!hasShownPopup) {
-//       setShowSynthPopup(true);
-//       setHasShownPopup(true);
-//     }
-//   }, [hasShownPopup]);
-
-//   const renderTabContent = () => {
-//     switch (currentTab) {
-//       case "travel":
-//         return <Body isDarkMode={isDarkMode} />;
-//       case "projects":
-//         return <Projects />;
-//       case "music":
-//         return <Audio />;
-//       default:
-//         return <Body isDarkMode={isDarkMode} />;
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Helmet>
-//         <title>Mitchell D. | Software Engineer</title>
-//         <link rel="icon" type="image/x-icon" href="/turqbits.ico" />
-//       </Helmet>
-
-//       <Header
-//         isDarkMode={isDarkMode}
-//         toggleDarkMode={toggleDarkMode}
-//         currentTab={currentTab}
-//         setCurrentTab={handleTabChange}
-//       />
-
-//       {renderTabContent()}
-
-//       {showSynthPopup && (
-//         <Synth
-//           key={currentTab} // Forces re-mount for correct image/text
-//           onClose={() => setShowSynthPopup(false)}
-//           currentTab={currentTab}
-//         />
-//       )}
-
-//       <Footer isDarkMode={isDarkMode} />
-//     </div>
-//   );
-// };
-
-// export default App;
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -111,14 +29,14 @@ const App = () => {
     document.body.classList.toggle("light-mode", !isDarkMode);
   }, [isDarkMode]);
 
-  // ✅ Fallback timeout to ensure intro exits
+  
   useEffect(() => {
     if (showIntro) {
       const introTimeout = setTimeout(() => {
         setShowIntro(false);
         setCurrentTab("travel");
         setShowSynthPopup(true);
-      }, 5000); // Enough time for typewriter to finish
+      }, 5000); 
       return () => clearTimeout(introTimeout);
     }
   }, [showIntro]);
