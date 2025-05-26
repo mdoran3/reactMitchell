@@ -29,7 +29,6 @@ const App = () => {
     document.body.classList.toggle("light-mode", !isDarkMode);
   }, [isDarkMode]);
 
-  
   useEffect(() => {
     if (showIntro) {
       const introTimeout = setTimeout(() => {
