@@ -1,4 +1,10 @@
 #App.css
+
+:root {
+  --header-height: 80px; /* whatever your header is */
+  --audio-height: 100px; /* height of your audio player */
+}
+
 .main-content {
   flex: 1; 
   padding: 20px; 
