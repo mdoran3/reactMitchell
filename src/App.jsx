@@ -36,7 +36,7 @@ const App = () => {
         setShowIntro(false);
         setCurrentTab("travel");
         setShowSynthPopup(true);
-      }, 5000); 
+      }, 6000); 
       return () => clearTimeout(introTimeout);
     }
   }, [showIntro]);
