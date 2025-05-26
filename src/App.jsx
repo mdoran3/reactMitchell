@@ -90,7 +90,7 @@ const App = () => {
           }}
         >
           <Typewriter
-            words={["Welcome to the land of Earth, code, and audio."]}
+            words={["Welcome to the page of Earth, code, and audio."]}
             typeSpeed={100}
             cursor
           />
