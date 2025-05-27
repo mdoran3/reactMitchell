@@ -96,7 +96,7 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isWaveformReady, setIsWaveformReady] = useState(false);
 
-  // Initialize WaveSurfer once
+  // Initialize WaveSurfer only once on mount
   useEffect(() => {
     if (!waveformRef.current || wavesurferRef.current) return;
 
@@ -128,7 +128,7 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
     };
   }, []);
 
-  // Load new song when currentSong changes
+  // Load new song when `currentSong` changes
   useEffect(() => {
     if (wavesurferRef.current && currentSong) {
       setIsWaveformReady(false);
