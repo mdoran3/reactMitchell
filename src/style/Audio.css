@@ -9,3 +9,19 @@
 .audio-content {
   max-width: 600px;
 }
+
+.audio-button {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  background-color: #096f6d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.audio-button:hover {
+  background-color: #0bb3b1;
+}

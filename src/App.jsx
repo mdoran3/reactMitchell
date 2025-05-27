@@ -14,6 +14,7 @@ const App = () => {
   const [currentTab, setCurrentTab] = useState(null);
   const [showSynthPopup, setShowSynthPopup] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
+  const [currentSong, setCurrentSong] = useState(null); 
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -35,7 +36,7 @@ const App = () => {
         setShowIntro(false);
         setCurrentTab("travel");
         setShowSynthPopup(true);
-      }, 6000); 
+      }, 6000);
       return () => clearTimeout(introTimeout);
     }
   }, [showIntro]);
@@ -47,7 +48,12 @@ const App = () => {
       case "projects":
         return <Projects />;
       case "music":
-        return <Audio />;
+        return (
+          <Audio
+            isDarkMode={isDarkMode}
+            setCurrentSong={setCurrentSong} // Pass this down to Audio
+          />
+        );
       default:
         return null;
     }
@@ -108,7 +114,10 @@ const App = () => {
         />
       )}
 
-      <Footer isDarkMode={isDarkMode} />
+      <Footer
+        isDarkMode={isDarkMode}
+        currentSong={currentSong} // Pass currentSong to Footer
+      />
     </div>
   );
 };
