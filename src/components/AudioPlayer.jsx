@@ -94,13 +94,12 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isWaveformReady, setIsWaveformReady] = useState(false);
 
   // Initialize WaveSurfer only once on mount
   useEffect(() => {
-    if (!waveformRef.current || wavesurferRef.current) return;
+    if (!waveformRef.current) return;
 
-    wavesurferRef.current = WaveSurfer.create({
+    const waveSurfer = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: "#555",
       progressColor: "#096f6d",
@@ -113,25 +112,19 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
       normalize: true,
     });
 
-    wavesurferRef.current.on("ready", () => {
-      setIsWaveformReady(true);
-    });
+    wavesurferRef.current = waveSurfer;
 
-    wavesurferRef.current.on("play", () => setIsPlaying(true));
-    wavesurferRef.current.on("pause", () => setIsPlaying(false));
+    waveSurfer.on("play", () => setIsPlaying(true));
+    waveSurfer.on("pause", () => setIsPlaying(false));
 
     return () => {
-      if (wavesurferRef.current) {
-        wavesurferRef.current.destroy();
-        wavesurferRef.current = null;
-      }
+      waveSurfer.destroy();
     };
   }, []);
 
-  // Load new song when `currentSong` changes
+  // Load song when currentSong changes
   useEffect(() => {
     if (wavesurferRef.current && currentSong) {
-      setIsWaveformReady(false);
       wavesurferRef.current.load(currentSong);
     }
   }, [currentSong]);
@@ -162,7 +155,11 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
         )}
       </div>
 
-      <div ref={waveformRef} className="waveform" />
+      <div
+        ref={waveformRef}
+        className="waveform"
+        key={currentSong} // ensures re-render when currentSong changes
+      />
     </div>
   );
 };
