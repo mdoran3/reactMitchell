@@ -3,9 +3,9 @@ import OrigamiFlower from "./OrigamiFlower";
 import AudioPlayer from "./AudioPlayer";
 import '../style/Footer.css';
 
-const Footer = ({ isDarkMode }) => (
+const Footer = ({ isDarkMode, currentSong }) => (
   <footer className="footer">
-    <AudioPlayer isDarkMode={isDarkMode} />
+    <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} /> 
     <div className="footer-content">
       <div className="footer-left">
         <OrigamiFlower width={100} height={100} />
