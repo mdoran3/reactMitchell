@@ -1,6 +1,6 @@
 .audio-player {
   position: fixed;
-  bottom: 80px; 
+  bottom: 111px; 
   left: 0;
   right: 0;
   width: 100%;
@@ -19,7 +19,7 @@
 
 .audio-player .waveform {
   flex-grow: 1;
-  height: 70px;  /* Ensure the waveform has height */
+  height: 70px;
   margin-top: 10px;
 }
 
@@ -46,6 +46,7 @@
   position: relative;
 }
 
+/* Icon style */
 .play-button i, .pause-button i {
   color: #333;
   font-size: 24px;
@@ -53,4 +54,28 @@
 
 .play-button:hover, .pause-button:hover {
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Blinking green ring around play button */
+.play-button.blinking-ring {
+  animation: blink-ring 1s infinite;
+  border: 3px solid limegreen;
+}
+
+@keyframes blink-ring {
+  0% {
+    box-shadow: 0 0 0px limegreen;
+  }
+  50% {
+    box-shadow: 0 0 12px 4px limegreen;
+  }
+  100% {
+    box-shadow: 0 0 0px limegreen;
+  }
+}
+
+/* Solid green ring around pause button */
+.pause-button.solid-ring {
+  box-shadow: 0 0 10px 3px limegreen;
+  border: 3px solid limegreen;
 }
