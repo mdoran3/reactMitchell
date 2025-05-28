@@ -1,11 +1,56 @@
+// import React from "react";
+// import OrigamiFlower from "./OrigamiFlower";
+// import AudioPlayer from "./AudioPlayer";
+// import '../style/Footer.css';
+
+// const Footer = ({ isDarkMode, currentSong }) => (
+//   <footer className="footer">
+//     <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} /> 
+//     <div className="footer-content">
+//       <div className="footer-left">
+//         <OrigamiFlower width={100} height={100} />
+//       </div>
+//       <div className="footer-center">
+//         <p>&copy; {new Date().getFullYear()} mitchelld.net | All rights reserved</p>
+//       </div>
+//     </div>
+//   </footer>
+// );
+
+// export default Footer;
+
+// import React from "react";
+// import OrigamiFlower from "./OrigamiFlower";
+// import AudioPlayer from "./AudioPlayer";
+// import "../style/Footer.css";
+
+// const Footer = ({ isDarkMode, currentSong }) => (
+//   <>
+//     <footer className="footer">
+//       <div className="footer-content">
+//         <div className="footer-left">
+//           <OrigamiFlower width={100} height={100} />
+//         </div>
+//         <div className="footer-center">
+//           <p>&copy; {new Date().getFullYear()} mitchelld.net | All rights reserved</p>
+//         </div>
+//       </div>
+//     </footer>
+//     <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
+//   </>
+// );
+
+// export default Footer;
+
 import React from "react";
 import OrigamiFlower from "./OrigamiFlower";
 import AudioPlayer from "./AudioPlayer";
-import '../style/Footer.css';
+import "../style/Footer.css";
 
 const Footer = ({ isDarkMode, currentSong }) => (
   <footer className="footer">
-    <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} /> 
+    <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
+
     <div className="footer-content">
       <div className="footer-left">
         <OrigamiFlower width={100} height={100} />

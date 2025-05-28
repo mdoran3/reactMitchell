@@ -2,17 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Or 100vh if you want full viewport */
+  height: 80vh; 
   text-align: center;
 }
 
 .audio-content {
   max-width: 600px;
+  padding-bottom: 100px;
 }
 
 .audio-button {
   padding: 0.5rem 1rem;
-  margin: 0.25rem 0;
+  margin: .5rem 0;
   background-color: #096f6d;
   color: white;
   border: none;
@@ -20,6 +21,8 @@
   cursor: pointer;
   font-family: monospace;
   font-size: 1rem;
+  gap: 20rem;
+  padding: 1.5rem;;
 }
 
 .audio-button:hover {
