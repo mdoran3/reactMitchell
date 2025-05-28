@@ -126,6 +126,10 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
   useEffect(() => {
     if (wavesurferRef.current && currentSong) {
       wavesurferRef.current.load(currentSong);
+
+      wavesurferRef.current.on("ready", () => {
+        wavesurferRef.current.drawBuffer();
+      });
     }
   }, [currentSong]);
 

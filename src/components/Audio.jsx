@@ -40,11 +40,11 @@ import "../style/Audio.css";
 const Audio = ({ setCurrentSong, isDarkMode }) => {
   const songs = [
     {
-      name: "The Eulogy",
+      name: "The Eulogy (original mix)",
       url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
     },
     {
-      name: "I Want You",
+      name: "I Want You - Savage Garden (remix)",
       url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/I%20Want%20Your%20-%20Savage%20Garden%20(remix).wav",
     },
   ];
