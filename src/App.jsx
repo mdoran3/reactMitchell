@@ -14,7 +14,10 @@ const App = () => {
   const [currentTab, setCurrentTab] = useState(null);
   const [showSynthPopup, setShowSynthPopup] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
-  const [currentSong, setCurrentSong] = useState(null); 
+  const [currentSong, setCurrentSong] = useState({
+    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
+    name: "The Eulogy (original mix)",
+  });
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
