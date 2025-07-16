@@ -15,8 +15,8 @@ const App = () => {
   const [showSynthPopup, setShowSynthPopup] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [currentSong, setCurrentSong] = useState({
-    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
-    name: "The Eulogy (original mix)",
+      url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
+      name: "As Saigon Vanishes (original mix)",
   });
 
   const toggleDarkMode = () => {
@@ -63,7 +63,12 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div style={{ 
+      minHeight: "100vh", 
+      backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+      display: "flex",
+      flexDirection: "column"
+    }}>
       <Helmet>
         <title>Mitchell D. | Software Engineer</title>
         <link rel="icon" type="image/x-icon" href="/turqbits.ico" />
@@ -107,7 +112,15 @@ const App = () => {
       )}
 
       {/* Main content */}
-      {!showIntro && renderTabContent()}
+      {!showIntro && (
+        <div style={{ 
+          flex: 1, 
+          backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+          paddingBottom: "160px" // Add padding for footer + audio player space
+        }}>
+          {renderTabContent()}
+        </div>
+      )}
 
       {showSynthPopup && currentTab && (
         <Synth

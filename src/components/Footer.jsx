@@ -48,18 +48,19 @@ import AudioPlayer from "./AudioPlayer";
 import "../style/Footer.css";
 
 const Footer = ({ isDarkMode, currentSong }) => (
-  <footer className="footer">
+  <>
     <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
-
-    <div className="footer-content">
-      <div className="footer-left">
-        <OrigamiFlower width={100} height={100} />
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-left">
+          <OrigamiFlower width={60} height={60} />
+        </div>
+        <div className="footer-center">
+          <p>&copy; {new Date().getFullYear()} mitchelld.net | All rights reserved</p>
+        </div>
       </div>
-      <div className="footer-center">
-        <p>&copy; {new Date().getFullYear()} mitchelld.net | All rights reserved</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  </>
 );
 
 export default Footer;

@@ -46,23 +46,34 @@ export default function PhotoSlider({ images }) {
         position: "relative",
         width: "100%",
         height: "calc(100vh - 160px)", // Adjust to your header + audio player
+        overflow: "hidden",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        overflow: "hidden",
       }}
     >
-      <img
-        src={images[currentIndex]}
-        alt={locations[currentIndex]}
+      {/* Fixed size image frame */}
+      <div
         style={{
-          maxHeight: "100%",
-          height: "100%",
-          width: "auto",
+          position: "relative",
+          width: "90%", // Fixed width as percentage of container
+          aspectRatio: "16/9", // Fixed aspect ratio
+          maxHeight: "80%", // Ensure it doesn't exceed container height
+          overflow: "hidden",
           borderRadius: "8px",
-          objectFit: "contain",
         }}
-      />
+      >
+        <img
+          src={images[currentIndex]}
+          alt={locations[currentIndex]}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
 
       <button
         onClick={prevSlide}

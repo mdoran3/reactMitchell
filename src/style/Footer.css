@@ -6,18 +6,25 @@
   flex-direction: column;
   align-items: stretch;
   border-top: 1px solid rgba(9, 111, 109, 0.5);
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  bottom: 100px;
+  height: 80px;
+  z-index: 998;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
+  padding: 20px 20px 20px 20px;
   min-height: 80px;
   font-size: 0.9rem;
   background-color: #000;
-  border-top: 1px solid rgba(9, 111, 109, 0.5);
+  border-top: none;
   box-sizing: border-box;
+  margin: 0;
 }
 
 .footer-left,
@@ -28,6 +35,7 @@
 
 .footer-left {
   justify-content: flex-start;
+  margin-left: 20px;
 }
 
 .footer-center {
