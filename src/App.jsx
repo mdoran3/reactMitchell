@@ -12,7 +12,6 @@ import { Helmet } from "react-helmet";
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [currentTab, setCurrentTab] = useState(null);
-  const [showSynthPopup, setShowSynthPopup] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [currentSong, setCurrentSong] = useState({
       url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
@@ -25,7 +24,6 @@ const App = () => {
 
   const handleTabChange = (tab) => {
     setCurrentTab(tab);
-    setShowSynthPopup(true);
   };
 
   useEffect(() => {
@@ -38,7 +36,6 @@ const App = () => {
       const introTimeout = setTimeout(() => {
         setShowIntro(false);
         setCurrentTab("travel");
-        setShowSynthPopup(true);
       }, 6000);
       return () => clearTimeout(introTimeout);
     }
@@ -108,14 +105,6 @@ const App = () => {
 
       {/* Main content */}
       {!showIntro && renderTabContent()}
-
-      {showSynthPopup && currentTab && (
-        <Synth
-          key={currentTab}
-          currentTab={currentTab}
-          onClose={() => setShowSynthPopup(false)}
-        />
-      )}
 
       <Footer 
         isDarkMode={isDarkMode} 
