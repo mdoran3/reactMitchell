@@ -9,12 +9,14 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const animationRef = useRef(null);
 
   useEffect(() => {
     if (!currentSong?.url || !waveformRef.current) {
+      setIsLoading(false); // Reset loading state when no song
       return;
     }
 
@@ -38,6 +40,10 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
     // Reset global state
     window.audioIsPlaying = false;
     window.audioFrequencyData = null;
+    window.currentSongName = currentSong?.name || null;
+
+    // Set loading state
+    setIsLoading(true);
 
     // Wait longer for container to be fully sized
     const timer = setTimeout(() => {
@@ -70,6 +76,7 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
 
       waveSurfer.on("ready", async () => {
         console.log("WaveSurfer ready!");
+        setIsLoading(false); // Hide loading indicator when waveform is ready
         
         // Create reusable audio analysis setup function
         const setupAudioAnalysis = async (audioElement) => {
@@ -239,6 +246,7 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
 
       waveSurfer.on("error", (err) => {
         console.error("WaveSurfer error:", err);
+        setIsLoading(false); // Hide loading indicator on error
       });
 
       waveSurfer.on("play", () => {
@@ -316,6 +324,7 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
 
     return () => {
       clearTimeout(timer);
+      setIsLoading(false); // Reset loading state on cleanup
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
         animationRef.current = null;
@@ -383,7 +392,15 @@ const AudioPlayer = ({ isDarkMode, currentSong }) => {
       </div>
 
       {/* Waveform */}
-      <div ref={waveformRef} className="waveform" />
+      <div className="waveform-container">
+        <div ref={waveformRef} className="waveform" />
+        {isLoading && (
+          <div className={`loading-overlay ${isDarkMode ? 'dark' : 'light'}`}>
+            <div className="loading-spinner"></div>
+            <span className="loading-text">Loading waveform...</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

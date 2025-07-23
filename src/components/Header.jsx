@@ -1,5 +1,6 @@
 import React from "react";
 import SocialLinks from "./SocialLinks";
+import SoundWave from "./SoundWave";
 import "../style/Header.css";
 
 const Header = ({ isDarkMode, toggleDarkMode, currentTab, setCurrentTab }) => (

@@ -5,24 +5,31 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "AI-Powered Web Application",
-      description: "Full-stack application with machine learning integration"
+      title: "NASA Psyche Mission: Core Informant",
+      description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
     },
     {
       id: 2,
-      title: "React Audio Visualizer",
-      description: "Real-time audio analysis and frequency visualization system"
+      title: "Lava Lakes of the World (coming soon)",
+      description: "A vanilla JavaScript project that provides information about the current lava lakes around the world."
     },
     {
       id: 3,
-      title: "Cloud Infrastructure Automation",
-      description: "DevOps pipeline with automated deployment and monitoring"
+      title: "Dynamic Jeopardy (coming soon)",
+      description: "A Dynamic Jeopardy web application built in Vue that allows for a customized amount of players and categories, with a live scoreboard and remote API integration."
     }
   ];
 
   const handleGoClick = (projectId) => {
     console.log(`Navigate to project ${projectId}`);
-    // Add navigation logic here
+    
+    if (projectId === 1) {
+      // Navigate to NASA Psyche Mission project
+      window.open('https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/m-type-asteroid-sampling-simulator-asu-d/', '_blank');
+    } else {
+      // Add navigation logic for other projects here
+      console.log(`Project ${projectId} navigation not yet implemented`);
+    }
   };
 
   return (
