@@ -2,6 +2,7 @@ import React from "react";
 import "../style/SocialLinks.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import OrigamiFlower from "./OrigamiFlower";
+import SoundWave from "./SoundWave";
 
 const SocialLinks = () => (
   <div className="social-links">
@@ -17,6 +18,7 @@ const SocialLinks = () => (
     >
       <FaLinkedin />
     </a>
+    <SoundWave />
   </div>
 );
 
