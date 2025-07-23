@@ -15,8 +15,8 @@ const App = () => {
   const [showSynthPopup, setShowSynthPopup] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [currentSong, setCurrentSong] = useState({
-    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
-    name: "The Eulogy (original mix)",
+      url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
+      name: "As Saigon Vanishes (original mix)",
   });
 
   const toggleDarkMode = () => {
@@ -117,9 +117,9 @@ const App = () => {
         />
       )}
 
-      <Footer
-        isDarkMode={isDarkMode}
-        currentSong={currentSong} // Pass currentSong to Footer
+      <Footer 
+        isDarkMode={isDarkMode} 
+        currentSong={currentSong} 
       />
     </div>
   );

@@ -2,10 +2,81 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Or 100vh if you want full viewport */
+  min-height: 80vh;
+  padding: 20px;
   text-align: center;
 }
 
 .projects-content {
+  max-width: 800px;
+  width: 100%;
+}
+
+.projects-content h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: #096f6d;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   max-width: 600px;
+  padding: 20px 30px;
+  background-color: rgba(9, 111, 109, 0.1);
+  border: 1px solid rgba(9, 111, 109, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.project-item:hover {
+  background-color: rgba(9, 111, 109, 0.2);
+  border-color: rgba(9, 111, 109, 0.5);
+  transform: translateY(-2px);
+}
+
+.project-info {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.project-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  color: #096f6d;
+}
+
+.project-info p {
+  margin: 0;
+  color: #a5a5a5;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.go-button {
+  background-color: #096f6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  min-width: 60px;
+}
+
+.go-button:hover {
+  background-color: #0a8b87;
+  transform: scale(1.05);
 }

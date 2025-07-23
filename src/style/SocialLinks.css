@@ -1,8 +1,8 @@
-/* .social-links {
+.social-links {
   display: flex;
   align-items: center;
   gap: 16px;
-} */
+}
 
 .social-links a {
   position: relative;

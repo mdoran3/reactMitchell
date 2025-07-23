@@ -1,0 +1,31 @@
+.sound-wave-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  height: 40px;
+  width: 68px;
+}
+
+.sound-wave-canvas {
+  display: block;
+  width: 60px;
+  height: 30px;
+}
+
+/* Animation for the container */
+.sound-wave-container {
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  }
+}

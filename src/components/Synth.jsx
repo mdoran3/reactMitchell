@@ -112,7 +112,7 @@
 
 // export default Synth;
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as Tone from "tone";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
@@ -124,6 +124,8 @@ import travelImage from "../assets/images/world.png"; // Replace with real trave
 import audioImage from "../assets/images/audio.png";   // Replace with real music image
 
 const Synth = ({ onClose, currentTab }) => {
+  const [shownTabs, setShownTabs] = useState([]);
+
   useEffect(() => {
     const synth = new Tone.Synth().toDestination();
 
@@ -136,6 +138,25 @@ const Synth = ({ onClose, currentTab }) => {
 
     //playTune();
   }, []);
+
+  // Check if current tab should be shown (only once per tab)
+  useEffect(() => {
+    if (currentTab) {
+      if (shownTabs.includes(currentTab)) {
+        // This tab has already been shown, close the popup immediately
+        onClose();
+        return;
+      } else {
+        // This tab hasn't been shown yet, add it to the array
+        setShownTabs(prev => [...prev, currentTab]);
+      }
+    }
+  }, [currentTab, onClose]);
+
+  // If this tab has already been shown, don't render
+  if (currentTab && shownTabs.includes(currentTab)) {
+    return null;
+  }
 
   // Dynamic content based on current tab
   const getContent = (tab) => {
@@ -157,7 +178,7 @@ const Synth = ({ onClose, currentTab }) => {
         };
       default:
         return {
-          text: ["Welcome to Mitchell D.'s world of Earth, code, and audio."],
+          text: ["Welcome to Mitchell D.'s portfolio."],
         };
     }
   };
