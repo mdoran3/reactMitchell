@@ -63,12 +63,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ 
-      minHeight: "100vh", 
-      backgroundColor: isDarkMode ? "#000000" : "#ffffff",
-      display: "flex",
-      flexDirection: "column"
-    }}>
+    <div>
       <Helmet>
         <title>Mitchell D. | Software Engineer</title>
         <link rel="icon" type="image/x-icon" href="/turqbits.ico" />
@@ -112,15 +107,7 @@ const App = () => {
       )}
 
       {/* Main content */}
-      {!showIntro && (
-        <div style={{ 
-          flex: 1, 
-          backgroundColor: isDarkMode ? "#000000" : "#ffffff",
-          paddingBottom: "160px" // Add padding for footer + audio player space
-        }}>
-          {renderTabContent()}
-        </div>
-      )}
+      {!showIntro && renderTabContent()}
 
       {showSynthPopup && currentTab && (
         <Synth
@@ -130,9 +117,9 @@ const App = () => {
         />
       )}
 
-      <Footer
-        isDarkMode={isDarkMode}
-        currentSong={currentSong} // Pass currentSong to Footer
+      <Footer 
+        isDarkMode={isDarkMode} 
+        currentSong={currentSong} 
       />
     </div>
   );
