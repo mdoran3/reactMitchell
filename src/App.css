@@ -24,15 +24,17 @@ html, body {
   width: 100%; 
   height: 100%; 
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
 }
 
 body {
   background-color: var(--background-color); 
   color: var(--text-color);
-  background-color: var(--background-color);
-  color: var(--text-color);
   display: flex;
   flex-direction: column;
+  padding-bottom: 180px; /* Space for footer (~80px) + audio player (~100px) */
+  box-sizing: border-box;
 }
 
 #root {

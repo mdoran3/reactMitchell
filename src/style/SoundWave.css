@@ -2,30 +2,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  border-radius: 4px;
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  height: 40px;
-  width: 68px;
+  padding: 0;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 .sound-wave-canvas {
   display: block;
-  width: 60px;
-  height: 30px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  transform: scale(1.5); /* Scale up the visual size without affecting layout */
 }
 
-/* Animation for the container */
-.sound-wave-container {
-  animation: pulse 2s ease-in-out infinite alternate;
+.sound-wave-canvas:hover {
+  opacity: 1;
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+/* Responsive sizing */
+@media (max-width: 768px) {
+  .sound-wave-container {
+    min-width: 24px;
+    min-height: 24px;
   }
-  100% {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  .sound-wave-canvas {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .sound-wave-container {
+    min-width: 72px;
+    min-height: 72px;
+  }
+  .sound-wave-canvas {
+    transform: scale(0.6);
   }
 }
