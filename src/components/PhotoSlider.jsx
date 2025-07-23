@@ -45,22 +45,24 @@ export default function PhotoSlider({ images }) {
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh - 160px)", // Adjust to your header + audio player
-        overflow: "hidden",
+        height: "calc(100vh - 160px)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        overflow: "hidden",
+        padding: "0 20px", // Add horizontal padding only
       }}
     >
-      {/* Fixed size image frame */}
+      {/* Responsive container that maintains aspect ratio */}
       <div
         style={{
           position: "relative",
-          width: "90%", // Fixed width as percentage of container
-          aspectRatio: "16/9", // Fixed aspect ratio
-          maxHeight: "80%", // Ensure it doesn't exceed container height
+          width: "min(90vw, 1000px)", // Responsive width with max limit
+          height: "min(70vh, 600px)",  // Responsive height with max limit
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           overflow: "hidden",
-          borderRadius: "8px",
         }}
       >
         <img
@@ -69,65 +71,77 @@ export default function PhotoSlider({ images }) {
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
-            display: "block",
+            borderRadius: "8px",
+            objectFit: "cover", // Use cover to fill container consistently
           }}
         />
-      </div>
 
-      <button
-        onClick={prevSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: 0,
-          transform: "translateY(-50%)",
-          zIndex: 2,
-        }}
-      >
-        <ChevronLeft size={36} />
-      </button>
+        <button
+          onClick={prevSlide}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "10px",
+            transform: "translateY(-50%)",
+            zIndex: 2,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            border: "none",
+            borderRadius: "50%",
+            padding: "10px",
+            cursor: "pointer",
+          }}
+        >
+          <ChevronLeft size={36} />
+        </button>
 
-      <button
-        onClick={nextSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: 0,
-          transform: "translateY(-50%)",
-          zIndex: 2,
-        }}
-      >
-        <ChevronRight size={36} />
-      </button>
+        <button
+          onClick={nextSlide}
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "10px",
+            transform: "translateY(-50%)",
+            zIndex: 2,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            border: "none",
+            borderRadius: "50%",
+            padding: "10px",
+            cursor: "pointer",
+          }}
+        >
+          <ChevronRight size={36} />
+        </button>
 
-      {/* Typewriter on top of image */}
-      <div
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          color: "white",
-          fontSize: "1.75rem",
-          fontWeight: "bold",
-          textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          padding: "6px 12px",
-          borderRadius: "8px",
-          zIndex: 1001, 
-          pointerEvents: "none", 
-        }}
-      >
-        <Typewriter
-          key={currentIndex}
-          words={[locations[currentIndex]]}
-          loop={1}
-          cursor
-          cursorStyle="|"
-          typeSpeed={70}
-          deleteSpeed={50}
-          delaySpeed={1500}
-        />
+        {/* Typewriter on top of image */}
+        <div
+          style={{
+            position: "absolute",
+            top: "20px",
+            right: "20px",
+            color: "white",
+            fontSize: "1.75rem",
+            fontWeight: "bold",
+            textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
+            backgroundColor: "rgba(0,0,0,0.4)",
+            padding: "6px 12px",
+            borderRadius: "8px",
+            zIndex: 1001, 
+            pointerEvents: "none", 
+          }}
+        >
+          <Typewriter
+            key={currentIndex}
+            words={[locations[currentIndex]]}
+            loop={1}
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
+        </div>
       </div>
     </div>
   );
