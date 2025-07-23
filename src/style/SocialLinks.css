@@ -106,3 +106,10 @@
     box-shadow: 0 0 60px rgba(9, 111, 109, 0.8), 0 0 120px rgba(9, 111, 109, 1), 0 0 150px rgba(9, 111, 109, 0.9);
   }
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .social-links {
+    justify-content: center;
+  }
+}

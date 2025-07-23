@@ -4,15 +4,36 @@
   left: 0;
   right: 0;
   width: 100vw;
+  height: 180px; /* Fixed height to ensure both components are visible */
   margin: 0;
   padding: 0;
-  background-color: #000;
-  color: #fff;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: stretch;
   z-index: 999;
   box-sizing: border-box;
+}
+
+/* Dark mode styles (default) */
+.footer.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+.footer.dark-mode .footer-content {
+  background-color: #000;
+  border-top: 1px solid rgba(9, 111, 109, 0.5);
+}
+
+/* Light mode styles */
+.footer.light-mode {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.footer.light-mode .footer-content {
+  background-color: #f8f8f8;
+  border-top: 1px solid rgba(9, 111, 109, 0.3);
 }
 
 .footer-content {
@@ -22,8 +43,6 @@
   padding: 10px 20px;
   min-height: 80px;
   font-size: 0.9rem;
-  background-color: #000;
-  border-top: 1px solid rgba(9, 111, 109, 0.5);
   box-sizing: border-box;
   width: 100%;
   margin: 0;

@@ -31,7 +31,7 @@
   background-position: 50% 50%;
   animation: gradientMove 15s ease-in-out infinite;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   box-sizing: border-box;
@@ -47,6 +47,17 @@
   z-index: 10;
   width: max-content; 
   pointer-events: none; 
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sound-wave-header {
+  display: flex;
+  align-items: center;
 }
 
 /* Footer Styles */
@@ -264,6 +275,10 @@ input:checked + .slider .moon {
     position: static; 
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .header-left {
+    justify-content: center;
   }
 
   .header-center {

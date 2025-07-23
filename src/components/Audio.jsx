@@ -29,7 +29,7 @@ const Audio = ({ setCurrentSong, isDarkMode }) => {
     <div className={`audio-container ${isDarkMode ? "dark" : "light"}`}>
       <div className="audio-content">
         <h2>Audio</h2>
-        <p>This section showcases my music production and sound design work.</p>
+        <p>My audio production and sound design work</p>
 
         <ul>
           {songs.map((song, index) => (
