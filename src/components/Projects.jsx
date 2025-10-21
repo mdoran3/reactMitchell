@@ -4,6 +4,12 @@ import "../style/Projects.css";
 const Projects = () => {
   const projects = [
     {
+      id: 4,
+      title: "Analyze This",
+      description: `Analyze This is a comprehensive React + Vite web application for musicians, producers, and music enthusiasts to analyze songs with professional-grade tools. Get instant musical insights including key detection, BPM analysis, MIDI generation, and more — all processed locally in your browser.\n\nPowered by Essentia.js and enhanced with cloud storage, user authentication, and interactive MIDI previews.`,
+      link: "https://analyzethis.io"
+    },
+    {
       id: 1,
       title: "NASA Psyche Mission: Core Informant",
       description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
@@ -26,6 +32,8 @@ const Projects = () => {
     if (projectId === 1) {
       // Navigate to NASA Psyche Mission project
       window.open('https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/m-type-asteroid-sampling-simulator-asu-d/', '_blank');
+    } else if (projectId === 4) {
+      window.open('https://analyzethis.io', '_blank');
     } else {
       // Add navigation logic for other projects here
       console.log(`Project ${projectId} navigation not yet implemented`);
@@ -46,6 +54,7 @@ const Projects = () => {
               <button 
                 className="go-button"
                 onClick={() => handleGoClick(project.id)}
+                disabled={!project.link && project.id !== 1}
               >
                 Go
               </button>
