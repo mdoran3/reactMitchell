@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AudioPlayer from "./components/AudioPlayer";
+import Draggable from "react-draggable";
 import Body from "./components/Body";
 import Projects from "./components/Projects";
 import Audio from "./components/Audio";
@@ -14,8 +15,8 @@ const App = () => {
   const [currentTab, setCurrentTab] = useState(null);
   const [showIntro, setShowIntro] = useState(true);
   const [currentSong, setCurrentSong] = useState({
-      url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
-      name: "As Saigon Vanishes (original mix)",
+    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
+    name: "As Saigon Vanishes (original mix)",
   });
 
   const toggleDarkMode = () => {
@@ -51,7 +52,7 @@ const App = () => {
         return (
           <Audio
             isDarkMode={isDarkMode}
-            setCurrentSong={setCurrentSong} // Pass this down to Audio
+            setCurrentSong={setCurrentSong}
           />
         );
       default:
@@ -60,56 +61,26 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className={isDarkMode ? "app dark-mode" : "app light-mode"}>
       <Helmet>
-        <title>Mitchell D. | Software Engineer</title>
-        <link rel="icon" type="image/x-icon" href="/turqbits.ico" />
+        <title>Mitchell Doran | Portfolio</title>
       </Helmet>
-
       <Header
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
         currentTab={currentTab}
-        setCurrentTab={handleTabChange}
+        onTabChange={handleTabChange}
       />
-
-      {/* Intro overlay */}
-      {showIntro && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            height: "100vh",
-            width: "100vw",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontFamily: "'Courier New', Courier, monospace",
-            fontSize: "1.5rem",
-            color: "#0ff",
-            zIndex: 9999,
-            padding: "2rem",
-            textAlign: "center",
-            textShadow: "0 0 4px #0ff, 0 0 8px #0ff, 0 0 12px #00ffff",
-          }}
-        >
-          <Typewriter
-            words={["Welcome to the page of Earth, code, and audio."]}
-            typeSpeed={100}
-            cursor
-          />
+      <main>
+        {renderTabContent()}
+      </main>
+      {/* Floating draggable AudioPlayer */}
+      <Draggable bounds="parent" defaultPosition={{x: 0, y: -30}}>
+        <div style={{position: 'fixed', right: 24, bottom: 62, zIndex: 1000, minWidth: 320, maxWidth: 480, width: '32vw', boxShadow: '0 4px 24px rgba(0,0,0,0.18)', borderRadius: 12, background: isDarkMode ? '#111' : '#fff', padding: 0}}>
+          <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
         </div>
-      )}
-
-      {/* Main content */}
-      {!showIntro && renderTabContent()}
-
-      <Footer 
-        isDarkMode={isDarkMode} 
-        currentSong={currentSong} 
-      />
+      </Draggable>
+      <Footer isDarkMode={isDarkMode} currentSong={currentSong} />
     </div>
   );
 };

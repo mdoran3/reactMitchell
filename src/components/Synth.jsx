@@ -225,7 +225,6 @@ const Synth = ({ onClose, currentTab }) => {
             transform: "translateX(-50%)",
             width: "80%",
             backgroundColor: "rgba(0, 0, 0, 0.9)",
-            color: "#00FF00",
             fontFamily: "'Courier New', Courier, monospace",
             fontSize: "1.5rem",
             color: "#0ff",

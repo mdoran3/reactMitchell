@@ -14,7 +14,7 @@ const Footer = ({ isDarkMode, currentSong }) => (
       </div>
     </div>
     
-    <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
+  {/* AudioPlayer is now rendered globally as a floating component in App.jsx */}
   </footer>
 );
 

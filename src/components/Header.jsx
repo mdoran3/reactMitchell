@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import SocialLinks from "./SocialLinks";
 import SoundWave from "./SoundWave";
 import "../style/Header.css";
 
-const Header = ({ isDarkMode, toggleDarkMode, currentTab, setCurrentTab }) => (
-  <header className={`header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
+const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    function setHeaderHeightVar() {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', height + 'px');
+      }
+    }
+    setHeaderHeightVar();
+    window.addEventListener('resize', setHeaderHeightVar);
+    return () => window.removeEventListener('resize', setHeaderHeightVar);
+  }, []);
+
+  return (
+    <header ref={headerRef} className={`header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
     {/* Left: Social Links */}
     <div className="header-left">
       <div className="social-links">
@@ -23,9 +38,9 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, setCurrentTab }) => (
     {/* Right: Tabs + Toggle */}
     <div className="header-right">
       <div className="tab-bar">
-        <button onClick={() => setCurrentTab("travel")} className={currentTab === "travel" ? "active" : ""}>Travel</button>
-        <button onClick={() => setCurrentTab("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
-        <button onClick={() => setCurrentTab("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
+        <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Travel</button>
+        <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
+        <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
       </div>
 
       <div className="toggle-switch">
@@ -63,6 +78,7 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, setCurrentTab }) => (
       </div>
     </div>
   </header>
-);
+  );
+};
 
 export default Header;

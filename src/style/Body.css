@@ -49,11 +49,26 @@
 }
 
 .body-container {
-  height: calc(100vh - var(--header-height) - var(--audio-height));
+  min-height: 0;
+  height: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding-top: var(--header-height, 80px);
+  padding-bottom: 80px;
+  overflow-y: auto;
+  transition: padding-top 0.2s;
+}
+@media (max-width: 768px) {
+  .body-container {
+    padding-top: var(--header-height, 100px);
+    padding-bottom: 56px;
+    min-height: 0;
+    height: 100%;
+  }
 }
 
 .photo-slider-container {
