@@ -12,12 +12,13 @@ import { Helmet } from "react-helmet";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [currentTab, setCurrentTab] = useState(null);
-  const [showIntro, setShowIntro] = useState(true);
+  const [currentTab, setCurrentTab] = useState('travel');
   const [currentSong, setCurrentSong] = useState({
-    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/As%20Saigon%20Vanishes.wav",
-    name: "As Saigon Vanishes (original mix)",
+    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
+    name: "The Eulogy (original mix)",
   });
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -32,16 +33,7 @@ const App = () => {
     document.body.classList.toggle("light-mode", !isDarkMode);
   }, [isDarkMode]);
 
-  useEffect(() => {
-    if (showIntro) {
-      const introTimeout = setTimeout(() => {
-        setShowIntro(false);
-        setCurrentTab("travel");
-      }, 6000);
-      return () => clearTimeout(introTimeout);
-    }
-  }, [showIntro]);
-
+  //
   const renderTabContent = () => {
     switch (currentTab) {
       case "travel":
@@ -53,6 +45,9 @@ const App = () => {
           <Audio
             isDarkMode={isDarkMode}
             setCurrentSong={setCurrentSong}
+            currentSong={currentSong}
+            isPlaying={isPlaying}
+            isLoading={isLoading}
           />
         );
       default:
@@ -62,6 +57,7 @@ const App = () => {
 
   return (
     <div className={isDarkMode ? "app dark-mode" : "app light-mode"}>
+      <div className="bg"></div>
       <Helmet>
         <title>Mitchell Doran | Portfolio</title>
       </Helmet>
@@ -77,7 +73,7 @@ const App = () => {
       {/* Floating draggable AudioPlayer */}
       <Draggable bounds="parent" defaultPosition={{x: 0, y: -30}}>
         <div style={{position: 'fixed', right: 24, bottom: 62, zIndex: 1000, minWidth: 320, maxWidth: 480, width: '32vw', boxShadow: '0 4px 24px rgba(0,0,0,0.18)', borderRadius: 12, background: isDarkMode ? '#111' : '#fff', padding: 0}}>
-          <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} />
+          <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying} isLoading={isLoading} setIsLoading={setIsLoading} />
         </div>
       </Draggable>
       <Footer isDarkMode={isDarkMode} currentSong={currentSong} />

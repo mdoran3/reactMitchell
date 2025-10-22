@@ -1,7 +1,9 @@
+
 import React from "react";
 import "../style/Audio.css";
+import { Typewriter } from "react-simple-typewriter";
 
-const Audio = ({ setCurrentSong, isDarkMode }) => {
+const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }) => {
   const songs = [
     {
       name: "The Eulogy (original mix)",
@@ -32,16 +34,53 @@ const Audio = ({ setCurrentSong, isDarkMode }) => {
         <p>My audio production and sound design work</p>
 
         <ul>
-          {songs.map((song, index) => (
-            <li key={index}>
-              <button
-                className="audio-button"
-                onClick={() => setCurrentSong(song)}
-              >
-                {song.name}
-              </button>
-            </li>
-          ))}
+          {songs.map((song, index) => {
+            const isActive = currentSong && currentSong.url === song.url;
+            return (
+              <li key={index} style={{position: 'relative'}}>
+                <button
+                  className={`audio-button${isActive ? ' active' : ''}`}
+                  onClick={() => {
+                    if (isActive && !isPlaying && !isLoading) {
+                      // Resume playback if paused and this is the active song
+                      const audioPlayer = window.document.querySelector('.audio-player');
+                      if (audioPlayer) {
+                        // Find the play button and click it
+                        const playBtn = audioPlayer.querySelector('button');
+                        if (playBtn) playBtn.click();
+                      }
+                    } else {
+                      setCurrentSong(song);
+                    }
+                  }}
+                >
+                  {song.name}
+                  {isActive && (
+                    <span className="now-playing-typewriter">
+                      <Typewriter
+                        key={`${isLoading ? 'loading' : isPlaying ? 'playing' : 'paused'}-${song.url}`}
+                        words={[
+                          isLoading && currentSong && currentSong.url === song.url
+                            ? "loading"
+                            : isPlaying && currentSong && currentSong.url === song.url
+                            ? "now playing"
+                            : !isPlaying && currentSong && currentSong.url === song.url
+                            ? "paused"
+                            : ""
+                        ]}
+                        loop={1}
+                        cursor={isLoading || isPlaying}
+                        cursorStyle="█"
+                        typeSpeed={60}
+                        deleteSpeed={0}
+                        delaySpeed={2000}
+                      />
+                    </span>
+                  )}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

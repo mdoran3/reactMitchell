@@ -5,11 +5,9 @@ import "../style/AudioPlayer.css";
 // Global audio analysis data that SoundWave can access
 window.audioAnalysisData = null;
 
-const AudioPlayer = ({ isDarkMode, currentSong }) => {
+const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoading, setIsLoading }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const animationRef = useRef(null);

@@ -4,6 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 export default function PhotoSlider({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const locations = [
     "Fjaðrárgljúfur",
@@ -36,21 +37,25 @@ export default function PhotoSlider({ images }) {
   };
 
   useEffect(() => {
+    // Trigger fade-in after mount
+    setTimeout(() => setIsVisible(true), 10);
     const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div
+      className={`fade-in-photo-slider${isVisible ? ' fade-in' : ''}`}
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh - 160px)",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         overflow: "hidden",
-        padding: "0 20px", // Add horizontal padding only
+        padding: "0 20px",
+        boxSizing: "border-box",
       }}
     >
       {/* Responsive container that maintains aspect ratio */}

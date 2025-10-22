@@ -52,11 +52,15 @@
     padding-bottom: env(safe-area-inset-bottom, 10px);
   }
   .footer-content {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 10px 2vw;
   }
-  .footer-left, .footer-center {
+  .footer-left {
+    justify-content: flex-start;
+    width: auto;
+  }
+  .footer-center {
     justify-content: center;
     width: 100%;
   }

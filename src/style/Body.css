@@ -1,3 +1,38 @@
+.body-container {
+  position: relative;
+  overflow: hidden;
+}
+/* Animated static noise background from CodePen */
+.bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: .9;
+  visibility: visible;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes bg-animation {
+  0% { transform: translate(0,0) }
+  10% { transform: translate(-5%,-5%) }
+  20% { transform: translate(-10%,5%) }
+  30% { transform: translate(5%,-10%) }
+  40% { transform: translate(-5%,15%) }
+  50% { transform: translate(-10%,5%) }
+  60% { transform: translate(15%,0%) }
+  70% { transform: translate(0%,10%) }
+  80% { transform: translate(-15%,0%) }
+  90% { transform: translate(10%,5%) }
+  100% { transform: translate(0,0) }
+}
 .photo-slider-wrapper {
   display: flex;
   justify-content: center;
@@ -57,15 +92,16 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding-top: var(--header-height, 80px);
-  padding-bottom: 80px;
+  padding-top: max(var(--header-height, 80px), var(--footer-height, 80px));
+  padding-bottom: max(var(--header-height, 80px), var(--footer-height, 80px));
+  gap: 24px;
   overflow-y: auto;
-  transition: padding-top 0.2s;
+  transition: padding-top 0.2s, padding-bottom 0.2s, gap 0.2s;
 }
 @media (max-width: 768px) {
   .body-container {
-    padding-top: var(--header-height, 100px);
-    padding-bottom: 56px;
+    padding-top: max(var(--header-height, 80px), var(--footer-height, 80px));
+    padding-bottom: max(var(--header-height, 80px), var(--footer-height, 80px));
     min-height: 0;
     height: 100%;
   }

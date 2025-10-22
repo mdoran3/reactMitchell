@@ -1,3 +1,12 @@
+/* Fade-in animation for PhotoSlider */
+
+.fade-in-photo-slider {
+  opacity: 0 !important;
+  transition: opacity 5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.fade-in-photo-slider.fade-in {
+  opacity: 1 !important;
+}
 @media (max-width: 900px) {
   .photo-slider-wrapper {
     height: auto;

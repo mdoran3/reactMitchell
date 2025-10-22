@@ -51,13 +51,31 @@ const Projects = () => {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
               </div>
-              <button 
-                className="go-button"
-                onClick={() => handleGoClick(project.id)}
-                disabled={!project.link && project.id !== 1}
-              >
-                Go
-              </button>
+              <div className="project-buttons-group">
+                <button 
+                  className="go-button"
+                  onClick={() => handleGoClick(project.id)}
+                  disabled={!project.link && project.id !== 1}
+                >
+                  Go
+                </button>
+                {/* GitHub README button for Analyze This and NASA Psyche Mission */}
+                {(project.id === 4 || project.id === 1) && (
+                  <a
+                    className="github-readme-link"
+                    href={
+                      project.id === 4
+                        ? 'https://github.com/mdoran3/analyze-this/blob/main/README.md'
+                        : 'https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md'
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View GitHub README"
+                  >
+                    <img src="/assets/images/github.svg" alt="GitHub" style={{ width: 28, height: 28, verticalAlign: 'middle' }} />
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>

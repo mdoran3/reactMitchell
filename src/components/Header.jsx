@@ -30,8 +30,8 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
     {/* Center: Name and Title */}
     <div className="header-center">
       <div className="header-content">
-        <h1>Mitchell D.</h1>
-        <p>Software & Audio Engineer</p>
+  <h1>Mitchell D.</h1>
+  <p className="liquid-glass">Software x Audio Engineer</p>
       </div>
     </div>
 

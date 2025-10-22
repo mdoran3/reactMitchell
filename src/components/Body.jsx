@@ -1,11 +1,13 @@
 import React from "react";
 import "../style/Body.css"; 
 import PhotoSlider from "./PhotoSlider"; 
+import PerlinNoiseBackground from "./PerlinNoiseBackground";
 
 const Body = ({ isDarkMode }) => {
   return (
-    <div className={`body-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      <div className="photo-slider-container">
+    <div className={`body-container ${isDarkMode ? "dark-mode" : "light-mode"}`} style={{position: 'relative', overflow: 'hidden'}}>
+      <PerlinNoiseBackground />
+      <div className="photo-slider-container" style={{position: 'relative', zIndex: 1}}>
         <PhotoSlider 
           images={[
             "/assets/images/iceland.png",

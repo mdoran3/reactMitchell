@@ -1,3 +1,20 @@
+.project-buttons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.github-readme-link {
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+.github-readme-link:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -97,21 +114,84 @@
   line-height: 1.4;
 }
 
-.go-button {
-  background-color: #096f6d;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+/* Make Go button text more contrasting */
+.go-button, .github-readme-link {
+  background: rgba(255, 255, 255, 0.18);
+  color: #0a2c2b;
+  border: 1.5px solid rgba(9, 111, 109, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(9, 111, 109, 0.10), 0 1.5px 8px rgba(255,255,255,0.12) inset;
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: 20px;
+  padding: 12px 28px;
   min-width: 60px;
+  margin: 0 auto;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.go-button:hover {
-  background-color: #0a8b87;
+.go-button:before, .github-readme-link:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.10) 100%);
+  opacity: 0.7;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+
+
+.go-button:hover,
+.go-button:focus,
+.go-button:focus-visible,
+.github-readme-link:hover,
+.github-readme-link:focus,
+.github-readme-link:focus-visible {
+  background: rgba(9, 111, 109, 0.18);
+  color: #fff;
+  text-shadow: 0 1px 8px #0a2c2b99, 0 0px 2px #fff8;
+  box-shadow: 0 6px 32px rgba(9, 111, 109, 0.18), 0 2px 12px rgba(255,255,255,0.18) inset;
+  border-color: rgba(255,255,255,0.7);
+  outline: none;
   transform: scale(1.05);
+}
+
+
+.github-readme-link:hover {
+  background: rgba(9, 111, 109, 0.18);
+  color: #fff;
+  box-shadow: 0 6px 32px rgba(9, 111, 109, 0.18), 0 2px 12px rgba(255,255,255,0.18) inset;
+  transform: scale(1.05);
+}
+
+.go-button:active, .github-readme-link:active {
+  background: rgba(9, 111, 109, 0.28);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(9, 111, 109, 0.18) inset;
+  transform: scale(0.98);
+}
+
+.github-readme-link {
+  padding: 8px 18px;
+  min-width: 0;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+.github-readme-link img {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 1px 2px rgba(9,111,109,0.12));
+  z-index: 1;
 }
