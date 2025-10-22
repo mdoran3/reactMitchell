@@ -59,7 +59,7 @@ const App = () => {
     <div className={isDarkMode ? "app dark-mode" : "app light-mode"}>
       <div className="bg"></div>
       <Helmet>
-        <title>Mitchell Doran | Portfolio</title>
+        <title>Mitchell D. | Software Engineer</title>
       </Helmet>
       <Header
         isDarkMode={isDarkMode}
