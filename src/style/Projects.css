@@ -147,6 +147,7 @@
   justify-content: center;
 }
 
+
 .go-button:before, .github-readme-link:before {
   content: "";
   position: absolute;
@@ -154,10 +155,26 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.10) 100%);
-  opacity: 0.7;
-  pointer-events: none;
   border-radius: 16px;
+  pointer-events: none;
+  opacity: 1;
+  /* Removed white gradients for a clear glass look */
+  background: none;
+  mix-blend-mode: lighten;
+}
+
+.go-button:after, .github-readme-link:after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 8%;
+  width: 80%;
+  height: 18%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.09) 100%);
+  opacity: 0.55;
+  pointer-events: none;
+  filter: blur(1.5px);
 }
 
 
