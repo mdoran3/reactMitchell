@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function PhotoSlider({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const typewriterKeyRef = useRef(0);
 
   const locations = [
     "Fjaðrárgljúfur",
@@ -29,11 +31,21 @@ export default function PhotoSlider({ images }) {
   ];
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((prev) => {
+      const next = (prev + 1) % images.length;
+      setImageLoaded(false);
+      typewriterKeyRef.current++;
+      return next;
+    });
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => {
+      const next = (prev - 1 + images.length) % images.length;
+      setImageLoaded(false);
+      typewriterKeyRef.current++;
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -42,6 +54,13 @@ export default function PhotoSlider({ images }) {
     const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
   }, []);
+
+  // Reset typewriter when image loads
+  useEffect(() => {
+    if (imageLoaded) {
+      typewriterKeyRef.current++;
+    }
+  }, [imageLoaded]);
 
   return (
     <div
@@ -79,6 +98,7 @@ export default function PhotoSlider({ images }) {
             borderRadius: "8px",
             objectFit: "cover", // Use cover to fill container consistently
           }}
+          onLoad={() => setImageLoaded(true)}
         />
 
         <button
@@ -119,34 +139,36 @@ export default function PhotoSlider({ images }) {
           <ChevronRight size={36} />
         </button>
 
-        {/* Typewriter on top of image */}
-        <div
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "white",
-            fontSize: "1.75rem",
-            fontWeight: "bold",
-            textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
-            backgroundColor: "rgba(0,0,0,0.4)",
-            padding: "6px 12px",
-            borderRadius: "8px",
-            zIndex: 1001, 
-            pointerEvents: "none", 
-          }}
-        >
-          <Typewriter
-            key={currentIndex}
-            words={[locations[currentIndex]]}
-            loop={1}
-            cursor
-            cursorStyle="|"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1500}
-          />
-        </div>
+        {/* Typewriter on top of image, only after image loads */}
+        {imageLoaded && (
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              color: "white",
+              fontSize: "1.75rem",
+              fontWeight: "bold",
+              textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
+              backgroundColor: "rgba(0,0,0,0.4)",
+              padding: "6px 12px",
+              borderRadius: "8px",
+              zIndex: 1001, 
+              pointerEvents: "none", 
+            }}
+          >
+            <Typewriter
+              key={typewriterKeyRef.current}
+              words={[locations[currentIndex]]}
+              loop={1}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1500}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
