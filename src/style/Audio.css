@@ -36,10 +36,10 @@
 .audio-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: center;
   min-height: calc(100vh - var(--header-height, 80px) - 80px); /* header + footer height */
-  width: 100%;
+  width: 100vw;
   text-align: center;
   box-sizing: border-box;
   padding-top: var(--header-height, 40px);
@@ -121,10 +121,10 @@
 
 
 .audio-content li {
-  max-width: 400px;
+  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
-}
-
+  padding: 0;
 
 
 
