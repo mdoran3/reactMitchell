@@ -103,38 +103,14 @@ export default function PhotoSlider({ images }) {
 
         <button
           onClick={prevSlide}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "10px",
-            transform: "translateY(-50%)",
-            zIndex: 2,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            padding: "10px",
-            cursor: "pointer",
-          }}
+          className="slider-button left"
         >
           <ChevronLeft size={36} />
         </button>
 
         <button
           onClick={nextSlide}
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "10px",
-            transform: "translateY(-50%)",
-            zIndex: 2,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            padding: "10px",
-            cursor: "pointer",
-          }}
+          className="slider-button right"
         >
           <ChevronRight size={36} />
         </button>
