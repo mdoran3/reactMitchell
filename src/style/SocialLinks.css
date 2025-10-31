@@ -1,13 +1,13 @@
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+ .social-links {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+ }
 
 .social-links a {
   position: relative;
   display: inline-block;
-  padding: 10px;
+  padding: 14px 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
   border-radius: 50%;
   overflow: hidden;
@@ -111,5 +111,9 @@
 @media (max-width: 768px) {
   .social-links {
     justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 }

@@ -1,3 +1,11 @@
+import '../style/SoundWave.css';
+
+const SoundWaveParticles = () => {
+  // ...original or placeholder content...
+  return <div>SoundWaveParticles placeholder</div>;
+};
+
+export default SoundWaveParticles;
 import React, { useEffect, useRef } from 'react';
 import '../style/SoundWave.css';
 

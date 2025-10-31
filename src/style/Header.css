@@ -19,19 +19,20 @@
   letter-spacing: 0.01em;
 }
 .header-content p {
-  font-size: 0.62rem;
-  margin: 0;
+  font-size: 1rem;
   line-height: 1.05;
 }
 @media (max-width: 1230px) {
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-    padding: 10px 4vw;
+  .header-left,
+  .header-center,
+  .header-right {
+    position: static;
+    width: 100%;
+    margin-bottom: 10px;
     min-width: 0;
-    height: auto;
+  }
+  .header-left {
+    justify-content: flex-start;
   }
   .header-center {
     position: static;
@@ -87,6 +88,11 @@
     padding: 10px 4vw;
     min-width: 0;
     height: auto;
+  }
+  .header-left {
+    width: 100%;
+    justify-content: center;
+    display: flex;
   }
   .header-center {
     position: static;
@@ -218,13 +224,13 @@
   }
 }
 @media (max-width: 600px) {
-  .header-center {
-    font-size: 0.62rem;
+  .toggle-switch {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    z-index: 100;
   }
-}
-.header-content p {
-  font-size: 1rem;
-  margin: 0;
+  
 }
 
 /* Tab Bar */
@@ -233,6 +239,13 @@
   flex-direction: row;
   align-items: center;
   gap: 32px;
+  .header-left {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding-left: 0;
+    padding-right: 0;
+  }
   flex-wrap: wrap;
   justify-content: flex-end;
 }
@@ -341,7 +354,7 @@
   box-shadow: 0 2px 12px rgba(9, 111, 109, 0.10), 0 1.5px 8px rgba(255,255,255,0.10) inset;
   backdrop-filter: blur(7px) saturate(1.1);
   -webkit-backdrop-filter: blur(7px) saturate(1.1);
-  padding: 8px 14px;
+  padding: 14px 20px;
   display: inline-flex;
   align-items: center;
   transition: background 0.22s, box-shadow 0.22s, transform 0.16s, color 0.18s;
@@ -506,6 +519,10 @@ input:checked + .slider .moon {
     min-width: 0;
   }
   .social-links {
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
