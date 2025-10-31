@@ -138,13 +138,8 @@
   border-radius: 16px;
   pointer-events: none;
   opacity: 1;
-  background:
-    /* Top highlight */
-    linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.13) 55%, rgba(255,255,255,0.04) 100%),
-    /* Diagonal shine */
-    linear-gradient(120deg, rgba(255,255,255,0.22) 10%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0.01) 100%),
-    /* Bottom reflection */
-    linear-gradient(0deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.01) 100%);
+  /* Removed white gradients for a clear glass look */
+  background: none;
   mix-blend-mode: lighten;
 }
 
