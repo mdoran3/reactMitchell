@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 80px;
   margin: 0;
   padding: 0;
@@ -11,6 +11,18 @@
   align-items: stretch;
   z-index: 2000;
   box-sizing: border-box;
+}
+
+@media (orientation: landscape) and (max-width: 900px) {
+  .footer {
+    height: 44px;
+    min-height: 0;
+  }
+  .footer-content {
+    min-height: 32px;
+    padding: 6px 2vw;
+    font-size: 0.7rem;
+  }
 }
 
 /* Dark mode styles (default) */
