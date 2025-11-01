@@ -159,15 +159,3 @@
   pointer-events: none;
   filter: blur(1.5px);
 }
-
-.audio-button:hover,
-.audio-button:focus,
-.audio-button:focus-visible {
-  background: rgba(9, 111, 109, 0.18);
-  color: #fff;
-  text-shadow: 0 1px 8px #0a2c2b99, 0 0px 2px #fff8;
-  box-shadow: 0 6px 32px rgba(9, 111, 109, 0.18), 0 2px 12px rgba(255,255,255,0.18) inset;
-  border-color: rgba(255,255,255,0.7);
-  outline: none;
-  transform: scale(1.05);
-}

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 import "../style/Projects.css"; 
 
 const Projects = () => {
@@ -72,7 +73,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     title="View GitHub README"
                   >
-                    <img src="/assets/images/github.svg" alt="GitHub" style={{ width: 28, height: 28, verticalAlign: 'middle' }} />
+                    <FaGithub style={{ width: 28, height: 28, verticalAlign: 'middle' }} aria-label="GitHub" />
                   </a>
                 )}
               </div>

@@ -394,10 +394,28 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
           <Minus size={24} color="#096f6d" strokeWidth={2.5} />
         </button>
 
-        {/* Loading Overlay above title */}
+        {/* Loading Overlay above title, centered between play/pause and minimize */}
         {isLoading && (
-    <div className={`audio-player-loading-bar ${isDarkMode ? 'dark' : 'light'}`}
-      style={{ position: 'absolute', top: 8, left: 'calc(120px + 32px)', right: '80px', minWidth: 180, maxWidth: 260, margin: '0 auto', zIndex: 20, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', gap: 10, padding: '4px 12px', transform: 'none' }}>
+          <div
+            className={`audio-player-loading-bar ${isDarkMode ? 'dark' : 'light'}`}
+            style={{
+              position: 'absolute',
+              top: 8,
+              left: 'calc(50% + 18px)', // visually center between play/pause and minimize
+              transform: 'translateX(-50%)',
+              minWidth: 120,
+              maxWidth: 220,
+              margin: 0,
+              zIndex: 20,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pointerEvents: 'none',
+              gap: 10,
+              padding: '4px 12px',
+            }}
+          >
             <div className="loading-spinner" style={{ margin: 0 }}></div>
             <span className="loading-text">Loading song...</span>
           </div>
@@ -407,18 +425,19 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
           className="audio-player-song-title-marquee"
           style={{
             position: "absolute",
-            bottom: 10,
-            left: 100,
+            left: 0,
+            right: 0,
+            width: "100%",
+            bottom: 0,
             zIndex: 9,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            backgroundColor: "transparent",
             color: "white",
             fontWeight: "bold",
             fontSize: "1rem",
             pointerEvents: "none",
             userSelect: "none",
             padding: "2px 6px",
-            borderRadius: "4px",
-            maxWidth: 180,
+            borderRadius: 0,
             overflow: 'hidden',
             minHeight: 24,
           }}
@@ -431,7 +450,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
           <button
             onClick={handlePlayPause}
             onTouchEnd={handlePlayPause}
-            className={`${
+            className={`$${
               isPlaying ? "solid-ring pause-button" : "blinking-ring play-button"
             }`}
           >
