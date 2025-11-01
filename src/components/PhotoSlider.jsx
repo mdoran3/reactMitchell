@@ -77,74 +77,81 @@ export default function PhotoSlider({ images }) {
         boxSizing: "border-box",
       }}
     >
-      {/* Responsive container that maintains aspect ratio */}
+      {/* Responsive image container with overlay */}
       <div
+        className="photo-slider-image-container"
         style={{
-          position: "relative",
-          width: "min(90vw, 1000px)", // Responsive width with max limit
-          height: "min(70vh, 600px)",  // Responsive height with max limit
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          overflow: "hidden",
+          width: "100%",
         }}
       >
-        <img
-          src={images[currentIndex]}
-          alt={locations[currentIndex]}
+        <div
+          className="photo-slider-image-frame"
           style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "8px",
-            objectFit: "cover", // Use cover to fill container consistently
+            position: "relative",
+            width: "min(90vw, 1000px)",
+            height: "min(70vh, 600px)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden",
           }}
-          onLoad={() => setImageLoaded(true)}
-        />
-
+        >
+          <img
+            src={images[currentIndex]}
+            alt={locations[currentIndex]}
+            className="slider-image"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', display: 'block', background: '#111' }}
+            onLoad={() => setImageLoaded(true)}
+          />
+          {/* Typewriter on top of image, only after image loads */}
+          {imageLoaded && (
+            <div
+              style={{
+                position: "absolute",
+                top: "min(20px, 4vw)",
+                right: "min(20px, 4vw)",
+                color: "white",
+                fontSize: "clamp(1.1rem, 4vw, 2.1rem)",
+                fontWeight: "bold",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
+                backgroundColor: "rgba(0,0,0,0.4)",
+                padding: "clamp(4px, 1vw, 12px) clamp(8px, 2vw, 18px)",
+                borderRadius: "8px",
+                zIndex: 1001,
+                pointerEvents: "none",
+                maxWidth: "100%",
+                boxSizing: "border-box",
+                transition: "font-size 0.2s, padding 0.2s"
+              }}
+            >
+              <Typewriter
+                key={typewriterKeyRef.current}
+                words={[locations[currentIndex]]}
+                loop={1}
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </div>
+          )}
+        </div>
         <button
           onClick={prevSlide}
           className="slider-button left"
         >
           <ChevronLeft size={36} />
         </button>
-
         <button
           onClick={nextSlide}
           className="slider-button right"
         >
           <ChevronRight size={36} />
         </button>
-
-        {/* Typewriter on top of image, only after image loads */}
-        {imageLoaded && (
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "20px",
-              color: "white",
-              fontSize: "1.75rem",
-              fontWeight: "bold",
-              textShadow: "2px 2px 6px rgba(0,0,0,0.85)",
-              backgroundColor: "rgba(0,0,0,0.4)",
-              padding: "6px 12px",
-              borderRadius: "8px",
-              zIndex: 1001, 
-              pointerEvents: "none", 
-            }}
-          >
-            <Typewriter
-              key={typewriterKeyRef.current}
-              words={[locations[currentIndex]]}
-              loop={1}
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={1500}
-            />
-          </div>
-        )}
       </div>
     </div>
   );
