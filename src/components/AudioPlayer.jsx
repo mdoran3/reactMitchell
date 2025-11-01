@@ -381,6 +381,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
       <div className="button-container">
         <button
           onClick={handlePlayPause}
+          onTouchEnd={handlePlayPause}
           className={`${
             isPlaying ? "solid-ring pause-button" : "blinking-ring play-button"
           }`}
@@ -390,8 +391,21 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
       </div>
 
       {/* Waveform */}
-      <div className="waveform-container">
-        <div ref={waveformRef} className="waveform" />
+      <div className="waveform-container" style={{ touchAction: 'manipulation' }}>
+        <div
+          ref={waveformRef}
+          className="waveform"
+          style={{ pointerEvents: 'auto' }}
+          onTouchStart={e => {
+            if (wavesurferRef.current && e.touches && e.touches.length === 1) {
+              const rect = e.target.getBoundingClientRect();
+              const x = e.touches[0].clientX - rect.left;
+              const percent = x / rect.width;
+              const duration = wavesurferRef.current.getDuration();
+              wavesurferRef.current.seekTo(percent);
+            }
+          }}
+        />
         {isLoading && (
           <div className={`loading-overlay ${isDarkMode ? 'dark' : 'light'}`}>
             <div className="loading-spinner"></div>
