@@ -19,19 +19,22 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 8px;
-  font-size: 0.68rem;
-  color: #0a2c2b;
+  bottom: 2px;
+  font-size: 0.62rem;
+  color: #b2cfcf;
   font-family: monospace;
   font-weight: 900;
-  text-shadow: 0 1px 2px #fff, 0 2px 6px rgba(9, 111, 109, 0.22), 0 1px 0 #0a2c2b;
-  opacity: 0.85;
+  text-shadow: 0 1.5px 6px #000, 0 1px 2px #0a2c2b;
+  opacity: 0.93;
   pointer-events: none;
-  background: transparent;
-  border-radius: 4px;
-  padding: 0 2px;
-  box-shadow: none;
+  background: rgba(9, 30, 30, 0.54);
+  border-radius: 5px;
+  padding: 2px 8px;
+  box-shadow: 0 2px 8px rgba(9,111,109,0.13);
+  border: 1.5px solid rgba(9,30,30,0.32);
   z-index: 2;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
 }
 .audio-container {
   display: flex;

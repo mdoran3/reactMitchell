@@ -55,18 +55,16 @@ const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }
                   }}
                 >
                   {song.name}
-                  {isActive && (
+                  {currentSong && currentSong.url === song.url && (
                     <span className="now-playing-typewriter">
                       <Typewriter
                         key={`${isLoading ? 'loading' : isPlaying ? 'playing' : 'paused'}-${song.url}`}
                         words={[
-                          isLoading && currentSong && currentSong.url === song.url
+                          isLoading
                             ? "loading"
-                            : isPlaying && currentSong && currentSong.url === song.url
+                            : isPlaying
                             ? "now playing"
-                            : !isPlaying && currentSong && currentSong.url === song.url
-                            ? "paused"
-                            : ""
+                            : "paused"
                         ]}
                         loop={1}
                         cursor={isLoading || isPlaying}

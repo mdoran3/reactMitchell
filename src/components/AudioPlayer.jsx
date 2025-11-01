@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import "../style/AudioPlayer.css";
+import { Minus, ChevronUp } from "lucide-react";
 
 // Global audio analysis data that SoundWave can access
 window.audioAnalysisData = null;
+
 
 const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoading, setIsLoading }) => {
   const waveformRef = useRef(null);
@@ -11,6 +13,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const animationRef = useRef(null);
+  const [minimized, setMinimized] = useState(false);
 
   useEffect(() => {
     if (!currentSong?.url || !waveformRef.current) {
@@ -349,71 +352,113 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
   };
 
   return (
-    <div
-      className={`audio-player ${isDarkMode ? "dark-mode" : ""}`}
-      style={{
-        backgroundColor: isDarkMode ? "#000000" : "#f8f8f8",
-        color: isDarkMode ? "#ffffff" : "#000000",
-        position: "relative",
-      }}
-    >
-      {/* Song Title Display */}
+    <>
+      {minimized ? (
+        // Minimized floating widget (always mounted)
+        <div className="audio-player-minimized" style={{position: 'fixed', bottom: 24, right: 24, zIndex: 2000}}>
+          <button
+            className="audio-player-restore-btn"
+            onClick={() => setMinimized(false)}
+            onTouchEnd={() => setMinimized(false)}
+            title="Restore player"
+          >
+            <ChevronUp size={22} color="#096f6d" strokeWidth={2.5} />
+          </button>
+          <span className="audio-player-minimized-title">{currentSong?.name || "No Song"}</span>
+          <button
+            onClick={handlePlayPause}
+            onTouchEnd={handlePlayPause}
+            className={`minimized-play-btn ${isPlaying ? "pause" : "play"}`}
+          >
+            <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
+          </button>
+        </div>
+      ) : null}
+      {/* Always render the full player, just hide it when minimized */}
       <div
+        className={`audio-player ${isDarkMode ? "dark-mode" : ""}`}
         style={{
-          position: "absolute",
-          bottom: 10,
-          left: 100,
-          zIndex: 10,
-          backgroundColor: "rgba(0, 0, 0, 0.7)", 
-          color: "white", 
-          fontWeight: "bold",
-          fontSize: "1rem",
-          pointerEvents: "none",
-          userSelect: "none",
-          padding: "2px 6px", 
-          borderRadius: "4px", 
+          color: isDarkMode ? "#ffffff" : "#000000",
+          position: "relative",
+          display: minimized ? 'none' : undefined,
         }}
       >
-        {currentSong?.name || "Loading..."}
-      </div>
-
-      {/* Play/Pause Button */}
-      <div className="button-container">
+        {/* Minimize Button */}
         <button
-          onClick={handlePlayPause}
-          onTouchEnd={handlePlayPause}
-          className={`${
-            isPlaying ? "solid-ring pause-button" : "blinking-ring play-button"
-          }`}
+          className="audio-player-minimize-btn"
+          style={{position: 'absolute', top: 8, right: 8, zIndex: 10}}
+          onClick={() => setMinimized(true)}
+          onTouchEnd={() => setMinimized(true)}
+          title="Minimize player"
         >
-          <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
+          <Minus size={24} color="#096f6d" strokeWidth={2.5} />
         </button>
-      </div>
 
-      {/* Waveform */}
-      <div className="waveform-container" style={{ touchAction: 'manipulation' }}>
-        <div
-          ref={waveformRef}
-          className="waveform"
-          style={{ pointerEvents: 'auto' }}
-          onTouchStart={e => {
-            if (wavesurferRef.current && e.touches && e.touches.length === 1) {
-              const rect = e.target.getBoundingClientRect();
-              const x = e.touches[0].clientX - rect.left;
-              const percent = x / rect.width;
-              const duration = wavesurferRef.current.getDuration();
-              wavesurferRef.current.seekTo(percent);
-            }
-          }}
-        />
+        {/* Loading Overlay above title */}
         {isLoading && (
-          <div className={`loading-overlay ${isDarkMode ? 'dark' : 'light'}`}>
-            <div className="loading-spinner"></div>
-            <span className="loading-text">Loading waveform...</span>
+    <div className={`audio-player-loading-bar ${isDarkMode ? 'dark' : 'light'}`}
+      style={{ position: 'absolute', top: 8, left: 'calc(120px + 32px)', right: '80px', minWidth: 180, maxWidth: 260, margin: '0 auto', zIndex: 20, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', gap: 10, padding: '4px 12px', transform: 'none' }}>
+            <div className="loading-spinner" style={{ margin: 0 }}></div>
+            <span className="loading-text">Loading song...</span>
           </div>
         )}
+        {/* Song Title Display */}
+        <div
+          className="audio-player-song-title-marquee"
+          style={{
+            position: "absolute",
+            bottom: 10,
+            left: 100,
+            zIndex: 9,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            pointerEvents: "none",
+            userSelect: "none",
+            padding: "2px 6px",
+            borderRadius: "4px",
+            maxWidth: 180,
+            overflow: 'hidden',
+            minHeight: 24,
+          }}
+        >
+          <span className="marquee-text">{currentSong?.name || "Loading..."}</span>
+        </div>
+
+        {/* Play/Pause Button */}
+        <div className="button-container">
+          <button
+            onClick={handlePlayPause}
+            onTouchEnd={handlePlayPause}
+            className={`${
+              isPlaying ? "solid-ring pause-button" : "blinking-ring play-button"
+            }`}
+          >
+            <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
+          </button>
+        </div>
+
+        {/* Waveform */}
+        <div className="waveform-container" style={{ touchAction: 'manipulation' }}>
+          <div
+            ref={waveformRef}
+            className="waveform"
+            style={{ pointerEvents: 'auto' }}
+            onTouchStart={e => {
+              if (wavesurferRef.current && e.touches && e.touches.length === 1) {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const percent = x / rect.width;
+                const duration = wavesurferRef.current.getDuration();
+                wavesurferRef.current.seekTo(percent);
+              }
+            }}
+          />
+          {/* No loading overlay here anymore */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
