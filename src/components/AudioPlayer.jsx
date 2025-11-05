@@ -357,20 +357,22 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
         // Minimized floating widget (always mounted)
         <div className="audio-player-minimized" style={{position: 'fixed', bottom: 24, right: 24, zIndex: 2000}}>
           <button
+            onClick={handlePlayPause}
+            onTouchEnd={handlePlayPause}
+            className={`minimized-play-btn ${isPlaying ? "pause" : "play"}`}
+          >
+            <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
+          </button>
+          <span className="audio-player-minimized-title">
+            <span className="marquee-text">{currentSong?.name || "No Song"}</span>
+          </span>
+          <button
             className="audio-player-restore-btn"
             onClick={() => setMinimized(false)}
             onTouchEnd={() => setMinimized(false)}
             title="Restore player"
           >
             <ChevronUp size={22} color="#096f6d" strokeWidth={2.5} />
-          </button>
-          <span className="audio-player-minimized-title">{currentSong?.name || "No Song"}</span>
-          <button
-            onClick={handlePlayPause}
-            onTouchEnd={handlePlayPause}
-            className={`minimized-play-btn ${isPlaying ? "pause" : "play"}`}
-          >
-            <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
           </button>
         </div>
       ) : null}

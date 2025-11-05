@@ -185,14 +185,31 @@
   100% { transform: rotate(0deg); }
 }
 /* Liquid Glass effect for header name */
+
 .liquid-glass {
   background: linear-gradient(120deg, rgba(255,255,255,0.85) 0%, rgba(9,111,109,0.45) 40%, rgba(255,255,255,0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  /* text-shadow removed to eliminate glow */
   font-weight: 700;
+}
+
+/* Make subtitle more readable in light mode */
+.light-mode .liquid-glass {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  color: #0a2c2b;
+  font-weight: 700;
+  text-shadow:
+    0 1px 2px #fff,
+    0 1px 0 #fff,
+    0 -1px 0 #fff,
+    1px 0 0 #fff,
+    -1px 0 0 #fff;
+  letter-spacing: 0.01em;
 }
 /* Header Name and Subtitle Styling */
 /* Larger header name and subtitle */
@@ -394,6 +411,7 @@
 /* Define Custom Gradients */
 :root {
   --header-gradient-light: white;
+    --header-gradient-light: linear-gradient(120deg, #f8fafc 0%, #e3f6f5 100%);
   --footer-gradient-light: white;
     --header-gradient-dark: linear-gradient(135deg, #000 0%, 
       #000 60%,
@@ -422,7 +440,7 @@
   align-items: center;
   justify-content: space-between;
   /* Remove any radial gradient or overlay for debugging giant glow */
-  background: #111 !important;
+  background: #111;
   background-size: 200% 200%;
   background-position: 50% 50%;
   animation: gradientMove 15s ease-in-out infinite;
@@ -485,6 +503,7 @@
 /* Light Mode Header & Footer */
 .light-mode .header {
   background: var(--header-gradient-light);
+    background: var(--header-gradient-light);
   color: black;
   animation: none;
 }
