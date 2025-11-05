@@ -46,20 +46,22 @@
 .social-links a {
   position: relative;
   z-index: 1;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px 4px;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 28px;
-  max-height: 28px;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 44px;
+  max-height: 44px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .social-links a svg {
-  width: 14px;
-  height: 14px;
+  width: 26px;
+  height: 26px;
   display: inline-block;
   padding: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
