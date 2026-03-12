@@ -33,7 +33,10 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
             </div>
             <div className="header-content">
               <h1>Mitchell D.</h1>
-              <p className="liquid-glass">Software x Audio Engineer</p>
+              <p className="liquid-glass ai-native">
+                AI Native<br />
+                Software x Audio Engineer
+              </p>
             </div>
             <div className="toggle-switch">
               <label className="switch">
@@ -87,7 +90,10 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
           <div className="header-center">
             <div className="header-content">
               <h1>Mitchell D.</h1>
-              <p className="liquid-glass">Software x Audio Engineer</p>
+              <p className="liquid-glass ai-native">
+                AI Native<br />
+                Software x Audio Engineer
+              </p>
             </div>
           </div>
           <div className="header-right">
