@@ -19,6 +19,7 @@ const App = () => {
   });
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [dragBounds, setDragBounds] = useState({ top: 0, left: 0, right: 0, bottom: 0 });
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -32,6 +33,31 @@ const App = () => {
     document.body.classList.toggle("dark-mode", isDarkMode);
     document.body.classList.toggle("light-mode", !isDarkMode);
   }, [isDarkMode]);
+
+  // Calculate drag bounds to exclude header and footer
+  useEffect(() => {
+    const calculateBounds = () => {
+      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 80;
+      const footerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--footer-height')) || 80;
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+      
+      // AudioPlayer dimensions (approximate)
+      const playerWidth = Math.min(480, window.innerWidth * 0.32);
+      const playerHeight = 120; // Approximate height
+      
+      setDragBounds({
+        top: headerHeight,
+        left: -(windowWidth - playerWidth - 48), // Allow drag to left edge minus padding
+        right: 0, // Already positioned from right
+        bottom: -(windowHeight - footerHeight - headerHeight - playerHeight - 24) // Constrain above footer
+      });
+    };
+
+    calculateBounds();
+    window.addEventListener('resize', calculateBounds);
+    return () => window.removeEventListener('resize', calculateBounds);
+  }, []);
 
   //
   const renderTabContent = () => {
@@ -71,9 +97,32 @@ const App = () => {
         {renderTabContent()}
       </main>
       {/* Floating draggable AudioPlayer */}
-      <Draggable bounds="parent" defaultPosition={{x: 0, y: -30}}>
-        <div style={{position: 'fixed', right: 24, bottom: 62, zIndex: 1000, minWidth: 320, maxWidth: 480, width: '32vw', boxShadow: '0 4px 24px rgba(0,0,0,0.18)', borderRadius: 12, background: isDarkMode ? '#111' : '#fff', padding: 0}}>
-          <AudioPlayer isDarkMode={isDarkMode} currentSong={currentSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying} isLoading={isLoading} setIsLoading={setIsLoading} />
+      <Draggable 
+        bounds={dragBounds} 
+        defaultPosition={{x: 0, y: -30}}
+        handle=".audio-player-drag-handle"
+      >
+        <div style={{
+          position: 'fixed', 
+          right: 24, 
+          bottom: 62, 
+          zIndex: 2100, // Higher than header/footer (2000)
+          minWidth: 320, 
+          maxWidth: 480, 
+          width: '32vw', 
+          boxShadow: '0 4px 24px rgba(0,0,0,0.18)', 
+          borderRadius: 12, 
+          background: isDarkMode ? '#111' : '#fff', 
+          padding: 0
+        }}>
+          <AudioPlayer 
+            isDarkMode={isDarkMode} 
+            currentSong={currentSong} 
+            isPlaying={isPlaying} 
+            setIsPlaying={setIsPlaying} 
+            isLoading={isLoading} 
+            setIsLoading={setIsLoading} 
+          />
         </div>
       </Draggable>
       <Footer isDarkMode={isDarkMode} currentSong={currentSong} />

@@ -234,9 +234,9 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
             <span className="loading-text">Loading song...</span>
           </div>
         )}
-        {/* Song Title Display */}
+        {/* Song Title Display - Also serves as drag handle */}
         <div
-          className="audio-player-song-title-marquee"
+          className="audio-player-song-title-marquee audio-player-drag-handle"
           style={{
             position: "absolute",
             left: 0,
@@ -248,13 +248,15 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
             color: "white",
             fontWeight: "bold",
             fontSize: "1rem",
-            pointerEvents: "none",
+            pointerEvents: "auto", // Changed from "none" to allow drag
             userSelect: "none",
             padding: "2px 6px",
             borderRadius: 0,
             overflow: 'hidden',
             minHeight: 24,
+            cursor: "move", // Visual indicator for dragging
           }}
+          title="Drag to move audio player"
         >
           <span className="marquee-text">{currentSong?.name || "Loading..."}</span>
         </div>
