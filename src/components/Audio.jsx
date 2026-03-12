@@ -6,6 +6,10 @@ import { Typewriter } from "react-simple-typewriter";
 const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }) => {
   const songs = [
     {
+      name: "1 mile 2 mile",
+      url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/1%20mile%202%20mile.wav",
+    },
+    {
       name: "The Eulogy (original mix)",
       url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
     },

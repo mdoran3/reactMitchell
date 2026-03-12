@@ -14,8 +14,8 @@ const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [currentTab, setCurrentTab] = useState('travel');
   const [currentSong, setCurrentSong] = useState({
-    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/The%20Eulogy.wav",
-    name: "The Eulogy (original mix)",
+    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/1%20mile%202%20mile.wav",
+    name: "1 mile 2 mile",
   });
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
