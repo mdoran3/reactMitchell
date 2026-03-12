@@ -15,7 +15,7 @@ const App = () => {
   const [currentTab, setCurrentTab] = useState('travel');
   const [currentSong, setCurrentSong] = useState({
     url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/1%20mile%202%20mile.wav",
-    name: "1 mile 2 mile",
+    name: "1 mile 2 mile (original mix)",
   });
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
