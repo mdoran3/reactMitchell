@@ -17,7 +17,7 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Lava Lakes of the World (coming soon)",
+      title: "Lava Lakes of the World",
       description: "A vanilla JavaScript project that provides information about the current lava lakes around the world."
     },
     {
@@ -60,14 +60,16 @@ const Projects = () => {
                 >
                   Go
                 </button>
-                {/* GitHub README button for Analyze This and NASA Psyche Mission */}
-                {(project.id === 4 || project.id === 1) && (
+                {/* GitHub README button for Analyze This, NASA Psyche Mission, and Lava Lakes */}
+                {(project.id === 4 || project.id === 1 || project.id === 2) && (
                   <a
                     className="github-readme-link"
                     href={
                       project.id === 4
                         ? 'https://github.com/mdoran3/analyze-this/blob/main/README.md'
-                        : 'https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md'
+                        : project.id === 1
+                        ? 'https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md'
+                        : 'https://github.com/mdoran3/lavaLakes'
                     }
                     target="_blank"
                     rel="noopener noreferrer"

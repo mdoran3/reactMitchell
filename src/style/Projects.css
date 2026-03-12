@@ -1,17 +1,31 @@
 .go-button:hover,
 .go-button:focus,
 .go-button:focus-visible {
-  animation: wiggle 0.5s;
+  animation: jello 1.2s;
 }
 
-@keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  15% { transform: rotate(-7deg); }
-  30% { transform: rotate(5deg); }
-  45% { transform: rotate(-5deg); }
-  60% { transform: rotate(3deg); }
-  75% { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
+@keyframes jello {
+  0% {
+    transform: scaleX(1);
+  }
+  20% {
+    transform: scaleX(1.04) scaleY(0.96);
+  }
+  35% {
+    transform: scaleX(0.96) scaleY(1.04);
+  }
+  50% {
+    transform: scaleX(1.025) scaleY(0.975);
+  }
+  65% {
+    transform: scaleX(0.99) scaleY(1.01);
+  }
+  75% {
+    transform: scaleX(1.01) scaleY(0.99);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 .project-buttons-group {
   display: flex;
@@ -27,8 +41,7 @@
   transition: transform 0.2s;
 }
 .github-readme-link:hover {
-  transform: scale(1.15);
-  filter: brightness(1.2);
+  animation: jello 1.2s;
 }
 .projects-container {
   display: flex;
@@ -83,6 +96,7 @@
 
 .project-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   max-width: 600px;
@@ -106,6 +120,10 @@
     min-width: 0;
     text-align: center;
   }
+  .project-info {
+    text-align: center;
+    padding-right: 0;
+  }
   .go-button {
     margin-left: 0;
     margin-top: 10px;
@@ -123,6 +141,7 @@
 .project-info {
   text-align: center;
   flex-grow: 1;
+  padding-right: 20px;
 }
 
 .project-info h3 {
@@ -231,6 +250,7 @@
   color: #fff;
   box-shadow: 0 6px 32px rgba(9, 111, 109, 0.18), 0 2px 12px rgba(255,255,255,0.18) inset;
   transform: scale(1.05);
+  animation: jello 1.2s;
 }
 
 .go-button:active, .github-readme-link:active {

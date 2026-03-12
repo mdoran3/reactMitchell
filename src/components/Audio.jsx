@@ -45,17 +45,8 @@ const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }
                 <button
                   className={`audio-button${isActive ? ' active' : ''}`}
                   onClick={() => {
-                    if (isActive && !isPlaying && !isLoading) {
-                      // Resume playback if paused and this is the active song
-                      const audioPlayer = window.document.querySelector('.audio-player');
-                      if (audioPlayer) {
-                        // Find the play button and click it
-                        const playBtn = audioPlayer.querySelector('button');
-                        if (playBtn) playBtn.click();
-                      }
-                    } else {
-                      setCurrentSong(song);
-                    }
+                    console.log('Song clicked:', song.name);
+                    setCurrentSong(song);
                   }}
                 >
                   {song.name}
