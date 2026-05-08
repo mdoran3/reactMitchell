@@ -74,7 +74,7 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
           </div>
           <div className="header-bottom-row">
             <div className="tab-bar">
-              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Travel</button>
+              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Home</button>
               <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
               <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
             </div>
@@ -98,7 +98,7 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
           </div>
           <div className="header-right">
             <div className="tab-bar">
-              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Travel</button>
+              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Home</button>
               <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
               <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
             </div>

@@ -1,3 +1,199 @@
+/* ======================================================
+   Modern bento/glass redesign overrides
+   ====================================================== */
+.projects-container.modern {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.projects-container.modern .projects-content {
+  max-width: 1200px;
+  align-items: stretch;
+  text-align: left;
+}
+
+.projects-container.modern .projects-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5fbab8;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.projects-container.modern h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 36px 0;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.projects-container.modern .projects-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+  align-items: stretch;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .projects-container.modern .projects-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.projects-container.modern .project-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: clamp(20px, 2vw, 28px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(135deg, rgba(9, 111, 109, 0.08) 0%, rgba(9, 111, 109, 0.02) 100%),
+    rgba(20, 28, 28, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 60px -30px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(9, 111, 109, 0.08);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease;
+}
+
+.projects-container.modern .project-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(120% 60% at 0% 0%, rgba(9, 111, 109, 0.18) 0%, transparent 60%);
+  opacity: 0.7;
+}
+
+.projects-container.modern .project-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(9, 111, 109, 0.35);
+  background:
+    linear-gradient(135deg, rgba(9, 111, 109, 0.12) 0%, rgba(9, 111, 109, 0.04) 100%),
+    rgba(20, 28, 28, 0.65);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 50px 100px -30px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(9, 111, 109, 0.3);
+}
+
+.projects-container.modern .project-header {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  text-align: left;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.projects-container.modern .project-header h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  letter-spacing: -0.02em;
+  color: #e8f0ef;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.projects-container.modern .project-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #5fbab8;
+  margin: 0;
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(9, 111, 109, 0.15);
+  border: 1px solid rgba(9, 111, 109, 0.3);
+}
+
+.projects-container.modern .project-body {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.projects-container.modern .project-info {
+  text-align: left;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.projects-container.modern .project-info p {
+  color: rgba(232, 240, 239, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.projects-container.modern .project-buttons-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+.projects-container.modern .go-button,
+.projects-container.modern .github-readme-link {
+  background: linear-gradient(135deg, #096f6d 0%, #0a8c89 100%);
+  border: none;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  padding: 9px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -8px rgba(9, 111, 109, 0.6);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.2s;
+}
+
+.projects-container.modern .github-readme-link {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e8f0ef;
+  padding: 7px 12px;
+}
+
+.projects-container.modern .go-button:hover,
+.projects-container.modern .github-readme-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(9, 111, 109, 0.8);
+}
+
+.projects-container.modern .github-readme-link:hover {
+  background: rgba(9, 111, 109, 0.18);
+  border-color: rgba(9, 111, 109, 0.5);
+}
+
 .go-button:hover,
 .go-button:focus,
 .go-button:focus-visible {
@@ -52,7 +248,7 @@
   width: 100vw;
   text-align: center;
   box-sizing: border-box;
-  padding-top: var(--header-height, 40px);
+  padding-top: calc(var(--header-height, 80px) + clamp(16px, 3vw, 40px));
   padding-right: 2vw;
   padding-bottom: 80px;
   padding-left: 2vw;
