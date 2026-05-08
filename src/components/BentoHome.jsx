@@ -118,7 +118,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange }) => {
             </div>
             <div className="bento-track-meta">
               <div className="bento-track-name">{currentSong?.name || "—"}</div>
-              <div className="bento-track-artist">Mitchell Doran</div>
+              {/* <div className="bento-track-artist">Mitchell Doran</div> */}
             </div>
           </div>
         </section>
