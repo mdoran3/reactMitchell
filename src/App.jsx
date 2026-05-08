@@ -102,17 +102,17 @@ const App = () => {
         defaultPosition={{x: 0, y: -30}}
         handle=".audio-player-drag-handle"
       >
-        <div style={{
-          position: 'fixed', 
-          right: 24, 
-          bottom: 62, 
+        <div className="floating-audio-player-wrapper" style={{
+          position: 'fixed',
+          right: 24,
+          bottom: 62,
           zIndex: 2100, // Higher than header/footer (2000)
-          minWidth: 320, 
-          maxWidth: 480, 
-          width: '32vw', 
-          boxShadow: '0 4px 24px rgba(0,0,0,0.18)', 
-          borderRadius: 12, 
-          background: isDarkMode ? '#111' : '#fff', 
+          minWidth: 320,
+          maxWidth: 480,
+          width: '32vw',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.18)',
+          borderRadius: 12,
+          background: isDarkMode ? '#111' : '#fff',
           padding: 0
         }}>
           <AudioPlayer 

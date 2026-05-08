@@ -381,6 +381,16 @@
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 768px) {
+  .floating-audio-player-wrapper,
+  .audio-player-minimized {
+    right: 0 !important;
+    left: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 .pause-button.solid-ring:hover {
   animation: jello 1.2s;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);

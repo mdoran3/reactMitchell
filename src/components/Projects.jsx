@@ -5,35 +5,41 @@ import "../style/Projects.css";
 const Projects = () => {
   const projects = [
     {
-      id: 4,
-      title: "Analyze This",
-      description: `Analyze This is a comprehensive React + Vite web application for musicians, producers, and music enthusiasts to analyze songs with professional-grade tools. Get instant musical insights including key detection, BPM analysis, MIDI generation, and more — all processed locally in your browser.\n\nPowered by Essentia.js and enhanced with cloud storage, user authentication, and interactive MIDI previews.`,
-      link: "https://analyzethis.io"
+      id: 5,
+      title: "Recommend That",
+      year: 2026,
+      description: "A Retrieval-Augmented Generation (RAG) system for music recommendation that uses semantic search to match plain-English queries (like \"something melancholic for a rainy Sunday\") to songs from an 820-song catalog. Built with Python, Streamlit, and the all-MiniLM-L6-v2 sentence transformer model, it ranks tracks by cosine similarity and supports optional genre filtering."
     },
     {
       id: 6,
       title: "Mesón Server Education",
-      description: "A mobile-first web app that helps restaurant servers master Mesón Sabika's wine, tapas, fish, and sherry offerings through interactive reviews and randomized quizzes. Covers wines by the glass and bottle with pronunciation audio, a 72-item tapas menu with dietary filters, a fish program with comparative scatter charts, sherry education, holiday menus, and a comprehensive allergen guide. Built with React 19, Vite, and React Router v7, deployed on Cloudflare Workers with static JSON bundled at build time for fast mobile performance.",
+      year: 2026,
+      description: "A mobile-first web app that helps restaurant servers master Mesón's wine, tapas, fish, sherry, and other offerings through interactive reviews and randomized quizzes. Covers wines by the glass and bottle with pronunciation audio, a 72-item tapas menu with dietary filters, a fish program with comparative scatter charts, sherry education, holiday menus, and a comprehensive allergen guide. Built with React 19, Vite, and React Router v7, deployed on Cloudflare Workers with static JSON bundled at build time for fast mobile performance.",
       link: "https://mesoneducation.com"
     },
     {
-      id: 5,
-      title: "Recommend That",
-      description: "A Retrieval-Augmented Generation (RAG) system for music recommendation that uses semantic search to match plain-English queries (like \"something melancholic for a rainy Sunday\") to songs from an 820-song catalog. Built with Python, Streamlit, and the all-MiniLM-L6-v2 sentence transformer model, it ranks tracks by cosine similarity and supports optional genre filtering."
-    },
-    {
-      id: 1,
-      title: "NASA Psyche Mission: Core Informant",
-      description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
+      id: 4,
+      title: "Analyze This",
+      year: 2025,
+      description: `Analyze This is a comprehensive React + Vite web application for musicians, producers, and music enthusiasts to analyze songs with professional-grade tools. Get instant musical insights including key detection, BPM analysis, MIDI generation, and more — all processed locally in your browser.\n\nPowered by Essentia.js and enhanced with cloud storage, user authentication, and interactive MIDI previews.`,
+      link: "https://analyzethis.io"
     },
     {
       id: 2,
       title: "Lava Lakes of the World",
+      year: 2024,
       description: "A vanilla JavaScript project that provides information about the current lava lakes around the world."
+    },
+    {
+      id: 1,
+      title: "NASA Psyche Mission: Core Informant",
+      year: 2024,
+      description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
     },
     {
       id: 3,
       title: "Book Cloud",
+      year: 2024,
       description: "An admin control panel for an online bookstore, built as a Java application backed by a MySQL relational database. Uses JDBC to bridge Java and MySQL Workbench, providing a command-line interface for managing books, users, and orders."
     }
   ];
@@ -61,11 +67,15 @@ const Projects = () => {
         <div className="projects-list">
           {projects.map((project) => (
             <div key={project.id} className="project-item">
-              <div className="project-info">
+              <div className="project-header">
                 <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                {project.year && <span className="project-year">{project.year}</span>}
               </div>
-              <div className="project-buttons-group">
+              <div className="project-body">
+                <div className="project-info">
+                  <p>{project.description}</p>
+                </div>
+                <div className="project-buttons-group">
                 {(project.id === 1 || project.id === 4 || project.id === 6) && (
                   <button
                     className="go-button"
@@ -97,6 +107,7 @@ const Projects = () => {
                     <FaGithub style={{ width: 28, height: 28, verticalAlign: 'middle' }} aria-label="GitHub" />
                   </a>
                 )}
+                </div>
               </div>
             </div>
           ))}

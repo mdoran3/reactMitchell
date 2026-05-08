@@ -62,6 +62,13 @@ export default function PhotoSlider({ images }) {
     }
   }, [imageLoaded]);
 
+  // Preload the next image so auto-advance feels instant
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % images.length;
+    const img = new Image();
+    img.src = images[nextIndex];
+  }, [currentIndex, images]);
+
   return (
     <div
       className={`fade-in-photo-slider${isVisible ? ' fade-in' : ''}`}
@@ -81,18 +88,22 @@ export default function PhotoSlider({ images }) {
       <div
         className="photo-slider-image-container"
         style={{
+          position: "relative",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
+          height: "auto",
         }}
       >
         <div
           className="photo-slider-image-frame"
           style={{
             position: "relative",
-            width: "min(90vw, 1000px)",
-            height: "min(70vh, 600px)",
+            width: "100%",
+            maxWidth: "1000px",
+            aspectRatio: "3 / 2",
+            maxHeight: "70vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -103,6 +114,8 @@ export default function PhotoSlider({ images }) {
             src={images[currentIndex]}
             alt={locations[currentIndex]}
             className="slider-image"
+            decoding="async"
+            fetchpriority="high"
             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', display: 'block', background: '#111' }}
             onLoad={() => setImageLoaded(true)}
           />

@@ -10,25 +10,25 @@ const Body = ({ isDarkMode }) => {
       <div className="photo-slider-container" style={{position: 'relative', zIndex: 1}}>
         <PhotoSlider 
           images={[
-            "/assets/images/iceland.png",
-            "/assets/images/thailand.png",
-            "/assets/images/angelfall.png", 
-            "/assets/images/fjord.png",
-            "/assets/images/grandCentral.png",
-            "/assets/images/haivanpass.JPG",
-            "/assets/images/hanoi.JPG",
-            "/assets/images/hongKong.png",
-            "/assets/images/japan.png",
-            "/assets/images/MV11.jpg",
-            "/assets/images/myanmar.png",
-            "/assets/images/navajo.png",
-            "/assets/images/norway.png",
-            "/assets/images/pagoda.png",
-            "/assets/images/sappo.png",
-            "/assets/images/train.png",
-            "/assets/images/vietnam.JPG",
-            "/assets/images/vietnam.png",
-            "/assets/images/waterfall.jpg"
+            "/assets/images/iceland.webp",
+            "/assets/images/thailand.webp",
+            "/assets/images/angelfall.webp",
+            "/assets/images/fjord.webp",
+            "/assets/images/grandCentral.webp",
+            "/assets/images/haivanpass.webp",
+            "/assets/images/hanoi.webp",
+            "/assets/images/hongKong.webp",
+            "/assets/images/japan.webp",
+            "/assets/images/MV11.webp",
+            "/assets/images/myanmar.webp",
+            "/assets/images/navajo.webp",
+            "/assets/images/norway.webp",
+            "/assets/images/pagoda.webp",
+            "/assets/images/sappo.webp",
+            "/assets/images/train.webp",
+            "/assets/images/vietnam.webp",
+            "/assets/images/vietnam-2.webp",
+            "/assets/images/waterfall.webp"
           ]} 
         />
       </div>
