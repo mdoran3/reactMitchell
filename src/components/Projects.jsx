@@ -11,6 +11,17 @@ const Projects = () => {
       link: "https://analyzethis.io"
     },
     {
+      id: 6,
+      title: "Mesón Server Education",
+      description: "A mobile-first web app that helps restaurant servers master Mesón Sabika's wine, tapas, fish, and sherry offerings through interactive reviews and randomized quizzes. Covers wines by the glass and bottle with pronunciation audio, a 72-item tapas menu with dietary filters, a fish program with comparative scatter charts, sherry education, holiday menus, and a comprehensive allergen guide. Built with React 19, Vite, and React Router v7, deployed on Cloudflare Workers with static JSON bundled at build time for fast mobile performance.",
+      link: "https://mesoneducation.com"
+    },
+    {
+      id: 5,
+      title: "Recommend That",
+      description: "A Retrieval-Augmented Generation (RAG) system for music recommendation that uses semantic search to match plain-English queries (like \"something melancholic for a rainy Sunday\") to songs from an 820-song catalog. Built with Python, Streamlit, and the all-MiniLM-L6-v2 sentence transformer model, it ranks tracks by cosine similarity and supports optional genre filtering."
+    },
+    {
       id: 1,
       title: "NASA Psyche Mission: Core Informant",
       description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
@@ -22,8 +33,8 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "Dynamic Jeopardy (coming soon)",
-      description: "A Dynamic Jeopardy web application built in Vue that allows for a customized amount of players and categories, with a live scoreboard and remote API integration."
+      title: "Book Cloud",
+      description: "An admin control panel for an online bookstore, built as a Java application backed by a MySQL relational database. Uses JDBC to bridge Java and MySQL Workbench, providing a command-line interface for managing books, users, and orders."
     }
   ];
 
@@ -35,6 +46,8 @@ const Projects = () => {
       window.open('https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/m-type-asteroid-sampling-simulator-asu-d/', '_blank');
     } else if (projectId === 4) {
       window.open('https://analyzethis.io', '_blank');
+    } else if (projectId === 6) {
+      window.open('https://mesoneducation.com', '_blank');
     } else {
       // Add navigation logic for other projects here
       console.log(`Project ${projectId} navigation not yet implemented`);
@@ -53,15 +66,15 @@ const Projects = () => {
                 <p>{project.description}</p>
               </div>
               <div className="project-buttons-group">
-                <button 
-                  className="go-button"
-                  onClick={() => handleGoClick(project.id)}
-                  disabled={!project.link && project.id !== 1}
-                >
-                  Go
-                </button>
-                {/* GitHub README button for Analyze This, NASA Psyche Mission, and Lava Lakes */}
-                {(project.id === 4 || project.id === 1 || project.id === 2) && (
+                {(project.id === 1 || project.id === 4 || project.id === 6) && (
+                  <button
+                    className="go-button"
+                    onClick={() => handleGoClick(project.id)}
+                  >
+                    Go
+                  </button>
+                )}
+                {(project.id === 4 || project.id === 1 || project.id === 2 || project.id === 3 || project.id === 5 || project.id === 6) && (
                   <a
                     className="github-readme-link"
                     href={
@@ -69,6 +82,12 @@ const Projects = () => {
                         ? 'https://github.com/mdoran3/analyze-this/blob/main/README.md'
                         : project.id === 1
                         ? 'https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md'
+                        : project.id === 5
+                        ? 'https://github.com/mdoran3/applied_ai_music_recommender_system'
+                        : project.id === 3
+                        ? 'https://github.com/mdoran3/BookCloud'
+                        : project.id === 6
+                        ? 'https://github.com/mdoran3/wine_study'
                         : 'https://github.com/mdoran3/lavaLakes'
                     }
                     target="_blank"
