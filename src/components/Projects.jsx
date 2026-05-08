@@ -25,16 +25,16 @@ const Projects = () => {
       link: "https://analyzethis.io"
     },
     {
-      id: 2,
-      title: "Lava Lakes of the World",
-      year: 2024,
-      description: "A vanilla JavaScript project that provides information about the current lava lakes around the world."
-    },
-    {
       id: 1,
       title: "NASA Psyche Mission: Core Informant",
       year: 2024,
       description: "A public-facing simulation made in Unity for the NASA Psyche mission, featuring a 3D model of the asteroid and interactive elements."
+    },
+    {
+      id: 2,
+      title: "Lava Lakes of the World",
+      year: 2024,
+      description: "A vanilla JavaScript project that provides information about the current lava lakes around the world."
     },
     {
       id: 3,
@@ -61,8 +61,9 @@ const Projects = () => {
   };
 
   return (
-    <div className="projects-container">
+    <div className="projects-container modern">
       <div className="projects-content">
+        <span className="projects-eyebrow">Selected work · 2024–2026</span>
         <h2>Projects</h2>
         <div className="projects-list">
           {projects.map((project) => (

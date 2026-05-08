@@ -66,7 +66,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
         barWidth: 3,
         barRadius: 3,
         responsive: true,
-        height: 70,
+        height: 48,
         normalize: true,
         fillParent: true,
       });
