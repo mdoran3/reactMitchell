@@ -170,7 +170,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
         <div className="audio-player-minimized" style={{position: 'fixed', bottom: 24, right: 24, zIndex: 2000}}>
           <button
             onClick={handlePlayPause}
-            onTouchEnd={handlePlayPause}
+            onTouchEnd={(e) => { e.preventDefault(); handlePlayPause(); }}
             className={`minimized-play-btn ${isPlaying ? "pause" : "play"}`}
           >
             <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
@@ -265,7 +265,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
         <div className="button-container">
           <button
             onClick={handlePlayPause}
-            onTouchEnd={handlePlayPause}
+            onTouchEnd={(e) => { e.preventDefault(); handlePlayPause(); }}
             className={`${
               isPlaying ? "solid-ring pause-button" : "blinking-ring play-button"
             }`}
