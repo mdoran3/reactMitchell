@@ -171,6 +171,7 @@
   }
   .header-bottom-row {
     width: 100%;
+    box-sizing: border-box;
     justify-content: center;
     margin-top: 0;
     padding: 0 2vw;
@@ -222,46 +223,66 @@
     transform: translateX(38px) translateY(1px) scaleX(1);
   }
 }
-/* Liquid Glass effect for header name */
-
-.liquid-glass {
-  background: linear-gradient(120deg, rgba(255,255,255,0.85) 0%, rgba(9,111,109,0.45) 40%, rgba(255,255,255,0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-}
-
-/* Make subtitle more readable in light mode */
-.light-mode .liquid-glass {
-  background: none;
-  -webkit-background-clip: initial;
-  -webkit-text-fill-color: initial;
-  background-clip: initial;
-  color: #0a2c2b;
-  font-weight: 700;
-  text-shadow:
-    0 1px 2px #fff,
-    0 1px 0 #fff,
-    0 -1px 0 #fff,
-    1px 0 0 #fff,
-    -1px 0 0 #fff;
-  letter-spacing: 0.01em;
-}
-/* Header Name and Subtitle Styling */
-/* Larger header name and subtitle */
-/* Larger name and title globally */
+/* Header name + tagline */
 .header-content h1 {
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 1.45rem;
   margin: 0 0 4px 0;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  /* no text-shadow or filter for h1 */
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
-.header-content p {
-  font-size: 0.92rem;
-  line-height: 1.18;
+
+.header-name-accent {
+  color: #5fbab8;
+}
+
+.light-mode .header-name-accent {
+  color: #096f6d;
+}
+
+.header-tagline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.header-tagline-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5fbab8;
+}
+
+.light-mode .header-tagline-eyebrow {
+  color: #096f6d;
+}
+
+.header-tagline-role {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: rgba(232, 240, 239, 0.75);
+}
+
+.light-mode .header-tagline-role {
+  color: rgba(10, 44, 43, 0.7);
+}
+
+/* On mobile the header is much shorter, so the same 4px/3px gaps used on
+   desktop read as cramped — "Applied AI" sits almost flush against both
+   "Mitchell D." above and "Software × Audio Engineer" below it. The h1's
+   margin-bottom is set directly on the (reachable) legacy rule further
+   down instead of here, since that rule's `margin-bottom: 0` comes later
+   in the file and would otherwise win by source order. */
+@media (max-width: 900px) {
+  .header-tagline {
+    gap: 6px;
+  }
 }
 @media (max-width: 900px) {
   /* Balanced font size for Mitchell D. header */
@@ -304,7 +325,7 @@
   }
   .header-content h1 {
     font-size: 5.6rem;
-    margin-bottom: 0;
+    margin-bottom: 8px !important;
     text-align: center;
     width: 100%;
   }
@@ -439,7 +460,7 @@
   }
   .header-content h1 {
     font-size: 1.12rem;
-    margin-bottom: 0;
+    margin-bottom: 8px !important;
   }
   .header-content p {
     font-size: 0.98rem;
@@ -616,6 +637,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
+}
+
+/* The icon is a flex item inside the button; without this it silently
+   collapses to 0 width (but not height) whenever the button gets squeezed
+   by its container, leaving the label with no icon in front of it. This
+   must hold at every breakpoint, not just the ones currently known to be
+   tight. */
+.tab-bar button svg {
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -650,14 +681,12 @@
   color: #fff;
   text-shadow: 0 1px 8px #0a2c2b99, 0 0px 2px #fff8;
   box-shadow: none;
-  transform: scale(1.07) translateY(-2px);
 }
 
 .tab-bar button:hover,
 .tab-bar button.active {
   background: rgba(9, 111, 109, 0.15);
   /* text color stays white, no color change */
-  transform: scale(1.1);
   box-shadow: none;
   animation: wave-animation 4s ease-in-out infinite, jello 1.2s;
 }
@@ -665,29 +694,29 @@
 /* Use your existing wave-animation keyframes */
 @keyframes wave-animation {
   0% {
-    box-shadow: 0 0 8px rgba(9, 111, 109, 0.8), 0 0 20px rgba(9, 111, 109, 0.6), 0 0 30px rgba(9, 111, 109, 0.4);
+    box-shadow: 0 0 4px rgba(9, 111, 109, 0.5), 0 0 10px rgba(9, 111, 109, 0.3);
   }
   50% {
-    box-shadow: 0 0 12px rgba(9, 111, 109, 1), 0 0 25px rgba(9, 111, 109, 0.9), 0 0 35px rgba(9, 111, 109, 0.7);
+    box-shadow: 0 0 6px rgba(9, 111, 109, 0.6), 0 0 13px rgba(9, 111, 109, 0.45);
   }
   100% {
-    box-shadow: 0 0 8px rgba(9, 111, 109, 0.8), 0 0 20px rgba(9, 111, 109, 0.6), 0 0 30px rgba(9, 111, 109, 0.4);
+    box-shadow: 0 0 4px rgba(9, 111, 109, 0.5), 0 0 10px rgba(9, 111, 109, 0.3);
   }
 }
 
 .light-mode .tab-bar button {
-  color: #096f6d; 
+  color: #000;
 }
 
 .light-mode .tab-bar button:hover,
 .light-mode .tab-bar button.active {
-  background: rgba(9, 111, 109, 0.15);
-  color: #096f6d; 
+  background: rgba(9, 111, 109, 0.85);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
   box-shadow:
     0 0 6px rgba(9, 111, 109, 0.8),
     0 0 15px rgba(9, 111, 109, 0.6);
   animation: wave-animation 4s ease-in-out infinite, jello 1.2s;
-  transform: scale(1.1);
 }
 
 /* Header Right Section */
@@ -737,8 +766,18 @@
   color: #fff;
   text-shadow: 0 1px 8px #0a2c2b99, 0 0px 2px #fff8;
   box-shadow: 0 4px 18px rgba(9, 111, 109, 0.16), 0 2px 10px rgba(255,255,255,0.16) inset;
-  transform: scale(1.07) translateY(-2px);
   text-decoration: underline;
+}
+
+/* GitHub/LinkedIn icons stay black in light mode regardless of state —
+   the hover rule above (and any focus/active state) would otherwise turn
+   them white to match the dark-mode hover treatment. */
+.light-mode .social-links a,
+.light-mode .social-links a:hover,
+.light-mode .social-links a:focus,
+.light-mode .social-links a:active {
+  color: #000;
+  text-shadow: none;
 }
 
 /* Toggle Switch */
@@ -913,5 +952,230 @@ input:checked + .slider .moon {
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+/* --- Compact GitHub/LinkedIn icons on mobile ---
+   Several older rules above fight over .social-links sizing at small
+   widths; targeting the actual rendered structure (.header-top-row
+   .social-links) with higher specificity keeps this override reliable
+   regardless of that legacy cascade.
+
+   .header-content is absolutely positioned at top:32% of .header on this
+   breakpoint (see the mobile title/subtitle rules above), so .header's
+   height was only ever tall enough because the old bulky stacked icons
+   propped it up as the tallest flex child. Shrinking those icons removes
+   that accidental spacer, so .header needs its own explicit min-height
+   to keep the floated title clear of the tab bar below it. */
+@media (max-width: 900px) {
+  .header {
+    min-height: 112px;
+  }
+
+  .header-top-row .social-links {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .header-top-row .social-links a {
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+    margin: 0 !important;
+    border-radius: 50%;
+  }
+
+  .header-top-row .social-links a svg {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+@media (max-width: 380px) {
+  .header-top-row .social-links a {
+    width: 39px;
+    height: 39px;
+    min-width: 39px;
+    min-height: 39px;
+    max-width: 39px;
+    max-height: 39px;
+  }
+
+  .header-top-row .social-links a svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* --- Smaller Home/Projects/Audio tab buttons on mobile ---
+   Same story as the social icons: .header-bottom-row .tab-bar button
+   pins specificity above the older .tab-bar button rules so this wins
+   regardless of source order. */
+@media (max-width: 900px) {
+  .header-bottom-row .tab-bar {
+    gap: 8px;
+  }
+
+  .header-bottom-row .tab-bar button {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    border-radius: 9px;
+    min-width: 0;
+    min-height: 26px;
+    max-width: 92px;
+    max-height: 30px;
+    margin: 0;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .header-bottom-row .tab-bar {
+    gap: 6px;
+  }
+
+  .header-bottom-row .tab-bar button {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    min-height: 24px;
+    max-width: 84px;
+    max-height: 28px;
+    gap: 3px;
+  }
+}
+
+/* --- Desktop tab bar alignment ---
+   Home/Projects/Audio are centered in the band between the photo slider's
+   left edge (measured in JS, since it depends on the bento grid's layout)
+   and the toggle switch's left edge. The toggle sits flush against .header's
+   right padding (20px) at a fixed 72px width, so "right: 108px" clears it
+   with a small gap without needing to measure the toggle itself. .header is
+   position:fixed, so it's the containing block for this absolute box. */
+@media (min-width: 901px) {
+  .header-right .tab-bar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 108px;
+    width: auto;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 0;
+  }
+
+  /* The box this centers within (photoLeft to right:108) is narrower than
+     the buttons' natural full width across a wide range of viewports, so
+     without this the buttons (and their icons) silently shrink via the
+     default flex-shrink:1 — same failure mode the icon fix above patches
+     at the SVG level, but it was also collapsing button/text width. Buttons
+     must stay full-size; if the box is too narrow they simply overflow it
+     symmetrically (centered) rather than compressing. */
+  .header-right .tab-bar button {
+    flex-shrink: 0;
+  }
+}
+
+/* --- Desktop tab bar: stack instead of shrink ---
+   Between the mobile breakpoint (900px) and 1600px, the tab bar used to just
+   squeeze its gap down (or, with the full-size fix above, overflow into the
+   toggle switch) as things got tight. Instead, wrap Home + Projects onto one
+   row and drop Audio onto its own centered row below, so nothing gets
+   visually smaller or overlaps.
+
+   The upper bound (1600px) is where the photo-aligned box above (photoLeft
+   to right:108) finally becomes comfortably wide enough to fit all 3
+   full-size buttons in one row without the last one crowding the toggle
+   switch — the actual crossover measured at ~1565px, with a buffer added.
+
+   This drops the photo-slider-aligned absolute positioning from the rule
+   above: that box's width tracks the measured photo edge, which shrinks
+   unevenly against the viewport and made the wrap land as 3 stacked rows
+   instead of 2-over-1. A fixed max-width sized to fit exactly two buttons
+   is reliable regardless of window width. */
+@media (max-width: 1600px) and (min-width: 901px) {
+  .header-right .tab-bar {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 12px;
+    width: auto;
+    max-width: 270px;
+    flex-shrink: 0;
+  }
+
+  .header-right .tab-bar button {
+    margin: 0;
+  }
+
+  /* Home wraps onto its own centered row below; Projects + Audio share the
+     top row. Home is first in the DOM, so `order` moves it after the other
+     two in visual/wrap order without changing markup or click handlers.
+     Sitting alone on its own row, it's kept a touch larger than Projects
+     and Audio above it — a permanent size bump, not a hover effect.
+     No flex-basis here: the 270px container is already sized for exactly
+     2 buttons, so 3-in-a-row never fits and Home wraps regardless — a
+     100% basis just stretched it edge-to-edge, wider than it needs to be. */
+  .header-right .tab-bar button:first-child {
+    order: 1;
+    transform: scale(1.08);
+    min-width: 170px;
+  }
+
+  /* Buttons keep their normal desktop size here; the room comes from
+     .header-left and .header-right instead. Both were previously flex:1,
+     which grew .header-left to ~340px of empty space around two small
+     icon buttons (starving .header-center), and let .header-center grab
+     more than .header-right's now-hard 270px+toggle floor could spare.
+     Pinning left/right to their own content size keeps their sizing
+     predictable now that .header-center no longer competes for space
+     via flex-grow (see below). */
+  .header-left,
+  .header-right {
+    flex: 0 0 auto;
+  }
+
+  /* .header-left (~177px) and .header-right (~358px when stacked) aren't
+     the same width, so the leftover flex gap between them isn't centered
+     on the viewport — centering .header-content *within that gap* still
+     left the title ~90px off from true center. Taking it out of the flex
+     flow entirely and centering it on .header itself (position:fixed, so
+     it's the containing block) fixes that regardless of how lopsided the
+     two sides are. .header-center's base rule also pins it to
+     `width: max-content`, which otherwise refuses to shrink/wrap at all
+     and overlaps the tab bar. */
+  .header-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    min-width: 0;
+    flex: none;
+  }
+
+  .header-content {
+    max-width: 100%;
+  }
+
+  .header-content p {
+    white-space: normal;
+  }
+}
+
+/* True-centering the title (above) means it no longer shrinks to fit
+   whatever gap is left between the two sides — at the narrowest end of the
+   stacked range (901–935px) that gap is tight enough for the title's
+   longest line, "Software × Audio Engineer", to overlap the tab bar.
+   Shrinking just that line closes the gap without affecting the rest of
+   the 901–1600px range, where there's already room to spare. */
+@media (max-width: 935px) and (min-width: 901px) {
+  .header-tagline-role {
+    font-size: 0.68rem;
   }
 }

@@ -425,11 +425,63 @@
   margin-top: 3px;
 }
 
+.bento-track-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.bento-track-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #5fbab8;
+  background: rgba(95, 186, 184, 0.1);
+  border: 1px solid rgba(95, 186, 184, 0.25);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.bento-track-nav-btn svg {
+  flex-shrink: 0;
+}
+
+.bento-home.light .bento-track-nav-btn {
+  color: #096f6d;
+  background: rgba(9, 111, 109, 0.08);
+  border-color: rgba(9, 111, 109, 0.2);
+}
+
+.bento-track-nav-btn:hover {
+  background: rgba(95, 186, 184, 0.22);
+  border-color: rgba(95, 186, 184, 0.5);
+  transform: scale(1.08);
+}
+
+.bento-home.light .bento-track-nav-btn:hover {
+  background: rgba(9, 111, 109, 0.18);
+  border-color: rgba(9, 111, 109, 0.4);
+}
+
 /* Featured project card */
 .bento-featured-project {
   gap: 12px;
   position: relative;
   overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.bento-featured-project:active {
+  cursor: grabbing;
 }
 
 .bento-featured-content {

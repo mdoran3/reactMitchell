@@ -9,14 +9,12 @@ import Audio from "./components/Audio";
 import Synth from "./components/Synth";
 import { Typewriter } from "react-simple-typewriter";
 import { Helmet } from "react-helmet";
+import songs from "./data/songs";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [currentTab, setCurrentTab] = useState('travel');
-  const [currentSong, setCurrentSong] = useState({
-    url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/Run%20-%20Wet%20Stem%20Mix%20(3%3A27).wav",
-    name: "Run (original mix)",
-  });
+  const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +24,18 @@ const App = () => {
 
   const handleTabChange = (tab) => {
     setCurrentTab(tab);
+  };
+
+  const handleNextSong = () => {
+    const currentIndex = songs.findIndex((song) => song.url === currentSong?.url);
+    const nextIndex = (currentIndex + 1) % songs.length;
+    setCurrentSong(songs[nextIndex]);
+  };
+
+  const handlePrevSong = () => {
+    const currentIndex = songs.findIndex((song) => song.url === currentSong?.url);
+    const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
+    setCurrentSong(songs[prevIndex]);
   };
 
   useEffect(() => {
@@ -43,6 +53,8 @@ const App = () => {
             currentSong={currentSong}
             isPlaying={isPlaying}
             onTabChange={handleTabChange}
+            onNextSong={handleNextSong}
+            onPrevSong={handlePrevSong}
           />
         );
       case "projects":

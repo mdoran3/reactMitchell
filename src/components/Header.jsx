@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FaHome, FaFolder, FaMusic } from "react-icons/fa";
 import SocialLinks from "./SocialLinks";
 import SoundWave from "./SoundWave";
 import "../style/Header.css";
@@ -23,6 +24,33 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Desktop tab bar (Home/Projects/Audio) is kept centered in the band between
+  // the photo slider's left edge and the light/dark toggle's left edge, so it
+  // lines up with the bento grid's photo column instead of hugging the toggle.
+  // The photo slider only exists in the DOM on the "travel" tab, so its last
+  // measured position is cached and reused on other tabs.
+  const [photoLeft, setPhotoLeft] = useState(null);
+  const photoLeftRef = useRef(null);
+  useEffect(() => {
+    if (isMobile) return;
+    function measurePhotoAlign() {
+      const photo = document.querySelector('.bento-photo');
+      if (photo) {
+        const left = photo.getBoundingClientRect().left;
+        photoLeftRef.current = left;
+        setPhotoLeft(left);
+      } else if (photoLeftRef.current != null) {
+        setPhotoLeft(photoLeftRef.current);
+      }
+    }
+    const raf = requestAnimationFrame(measurePhotoAlign);
+    window.addEventListener('resize', measurePhotoAlign);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', measurePhotoAlign);
+    };
+  }, [isMobile, currentTab]);
+
   return (
     <header ref={headerRef} className={`header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       {isMobile ? (
@@ -32,10 +60,12 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
               <SocialLinks />
             </div>
             <div className="header-content">
-              <h1>Mitchell D.</h1>
-              <p className="liquid-glass ai-native">
-                Applied AI<br />
-                Software x Audio Engineer
+              <h1>
+                Mitchell <span className="header-name-accent">D.</span>
+              </h1>
+              <p className="header-tagline">
+                <span className="header-tagline-eyebrow">Applied AI</span>
+                <span className="header-tagline-role">Software × Audio Engineer</span>
               </p>
             </div>
             <div className="toggle-switch">
@@ -74,9 +104,15 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
           </div>
           <div className="header-bottom-row">
             <div className="tab-bar">
-              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Home</button>
-              <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
-              <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
+              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>
+                <FaHome size={14} /> Home
+              </button>
+              <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>
+                <FaFolder size={14} /> Projects
+              </button>
+              <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>
+                <FaMusic size={14} /> Audio
+              </button>
             </div>
           </div>
         </>
@@ -89,18 +125,29 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
           </div>
           <div className="header-center">
             <div className="header-content">
-              <h1>Mitchell D.</h1>
-              <p className="liquid-glass ai-native">
-                AI Native<br />
-                Software x Audio Engineer
+              <h1>
+                Mitchell <span className="header-name-accent">D.</span>
+              </h1>
+              <p className="header-tagline">
+                <span className="header-tagline-eyebrow">Applied AI</span>
+                <span className="header-tagline-role">Software × Audio Engineer</span>
               </p>
             </div>
           </div>
           <div className="header-right">
-            <div className="tab-bar">
-              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>Home</button>
-              <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>Projects</button>
-              <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>Audio</button>
+            <div
+              className="tab-bar"
+              style={photoLeft != null ? { left: `${photoLeft}px` } : undefined}
+            >
+              <button onClick={() => onTabChange("travel")} className={currentTab === "travel" ? "active" : ""}>
+                <FaHome size={14} /> Home
+              </button>
+              <button onClick={() => onTabChange("projects")} className={currentTab === "projects" ? "active" : ""}>
+                <FaFolder size={14} /> Projects
+              </button>
+              <button onClick={() => onTabChange("music")} className={currentTab === "music" ? "active" : ""}>
+                <FaMusic size={14} /> Audio
+              </button>
             </div>
             <div className="toggle-switch">
               <label className="switch">
