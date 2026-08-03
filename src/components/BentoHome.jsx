@@ -4,7 +4,6 @@ import {
   SiPython,
   SiClaude,
   SiUnity,
-  SiRive,
   SiOpenjdk,
 } from "react-icons/si";
 import PhotoSlider from "./PhotoSlider";
@@ -35,11 +34,9 @@ const TECH_STACK = [
   { label: "Ableton Live", logo: AbletonLogo, type: "icon" },
   { label: "Python", icon: SiPython, type: "icon" },
   { label: "Claude", icon: SiClaude, type: "icon" },
-  { label: "Rive", icon: SiRive, type: "icon" },
   { label: "Java", icon: SiOpenjdk, type: "icon" },
   { label: "Unity", icon: SiUnity, type: "icon" },
   { label: "Arizona State University", short: "ASU", type: "text" },
-  { label: "Georgia Tech", short: "GT", type: "text" },
 ];
 
 const TRAVEL_IMAGES = [
