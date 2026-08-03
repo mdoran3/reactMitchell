@@ -6,7 +6,7 @@ import { Typewriter } from "react-simple-typewriter";
 const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }) => {
   const songs = [
     {
-      name: "Outrun (original mix)",
+      name: "Run (original mix)",
       url: "https://pub-5c6372312189426f903f701c7e1544e5.r2.dev/Run%20-%20Wet%20Stem%20Mix%20(3%3A27).wav",
     },
     {
