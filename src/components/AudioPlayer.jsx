@@ -223,6 +223,9 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
 
   const handlePlayPause = () => {
     if (wavesurferRef.current) {
+      if (audioContextRef.current?.state === "suspended") {
+        audioContextRef.current.resume().catch(() => {});
+      }
       if (isPlaying) {
         wavesurferRef.current.pause();
       } else {

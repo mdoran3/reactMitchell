@@ -34,7 +34,7 @@ const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
             <div className="header-content">
               <h1>Mitchell D.</h1>
               <p className="liquid-glass ai-native">
-                AI Native<br />
+                Applied AI<br />
                 Software x Audio Engineer
               </p>
             </div>
