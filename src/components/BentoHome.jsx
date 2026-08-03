@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import {
   SiPython,
@@ -61,7 +61,95 @@ const TRAVEL_IMAGES = [
   "/assets/images/waterfall.webp",
 ];
 
+const FEATURED_PROJECTS = [
+  {
+    eyebrow: "Featured · 2024",
+    title: "NASA Psyche Mission",
+    description:
+      "A public-facing Unity simulation for the NASA Psyche mission, featuring a 3D asteroid model and interactive elements.",
+    link: "https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/m-type-asteroid-sampling-simulator-asu-d/",
+    github: "https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md",
+  },
+  {
+    eyebrow: "Featured · 2025",
+    title: "Analyze This",
+    description:
+      "A React + Vite web app for musicians and producers to analyze songs — key detection, BPM analysis, and MIDI generation, all processed locally in the browser.",
+    link: "https://analyzethis.io",
+    github: "https://github.com/mdoran3/analyze-this/blob/main/README.md",
+  },
+  {
+    eyebrow: "Featured · 2026",
+    title: "Mesón Server Education",
+    description:
+      "A mobile-first app that helps restaurant servers master Mesón's wine, tapas, fish, and sherry offerings through interactive reviews and randomized quizzes.",
+    link: "https://mesoneducation.com",
+    github: "https://github.com/mdoran3/wine_study",
+  },
+];
+
+const NowPlayingVisualizer = ({ isPlaying }) => {
+  const glowRef = useRef(null);
+  const barRefs = useRef([]);
+  const frameRef = useRef(null);
+
+  useEffect(() => {
+    let t = 0;
+    const animate = () => {
+      t += 0.045;
+      const idleWave = 0.35 + Math.sin(t) * 0.2;
+      const bass = isPlaying
+        ? window.audioBassLevel ?? idleWave
+        : 0;
+
+      if (glowRef.current) {
+        glowRef.current.style.setProperty("--bass", bass.toFixed(3));
+      }
+
+      barRefs.current.forEach((bar, i) => {
+        if (!bar) return;
+        const wobble = Math.sin(t * 1.5 + i * 1.4) * 0.18;
+        const scale = isPlaying
+          ? Math.max(0.15, Math.min(1, bass * 0.85 + wobble * bass + 0.12))
+          : 0.15;
+        bar.style.transform = `scaleY(${scale})`;
+      });
+
+      frameRef.current = requestAnimationFrame(animate);
+    };
+    frameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameRef.current);
+  }, [isPlaying]);
+
+  return (
+    <div className={`bento-visualizer ${isPlaying ? "playing" : ""}`}>
+      <div className="bento-visualizer-glow" ref={glowRef} aria-hidden="true" />
+      <div className="bento-visualizer-bars">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <span key={i} ref={(el) => (barRefs.current[i] = el)} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange }) => {
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [isFeaturedVisible, setIsFeaturedVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFeaturedVisible(false);
+      setTimeout(() => {
+        setFeaturedIndex((prev) => (prev + 1) % FEATURED_PROJECTS.length);
+        setIsFeaturedVisible(true);
+      }, 600);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const featured = FEATURED_PROJECTS[featuredIndex];
+
   return (
     <div className={`bento-home ${isDarkMode ? "dark" : "light"}`}>
       <div className="bento-grid">
@@ -108,44 +196,55 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange }) => {
           role="button"
           tabIndex={0}
         >
-          <span className="bento-eyebrow">Now Playing</span>
+          <div className="bento-now-playing-header">
+            <span className="bento-eyebrow">Now Playing</span>
+            <span className={`bento-status-pill ${isPlaying ? "playing" : ""}`}>
+              <span className="bento-status-dot" />
+              {isPlaying ? "Playing" : "Paused"}
+            </span>
+          </div>
           <div className="bento-track">
-            <div className={`bento-track-icon ${isPlaying ? "playing" : ""}`}>
-              <span /><span /><span /><span />
-            </div>
+            <NowPlayingVisualizer isPlaying={isPlaying} />
             <div className="bento-track-meta">
               <div className="bento-track-name">{currentSong?.name || "—"}</div>
-              {/* <div className="bento-track-artist">Mitchell Doran</div> */}
+              <div className="bento-track-hint">Tap to browse tracks</div>
             </div>
           </div>
         </section>
 
         <section className="bento-card bento-featured-project">
-          <span className="bento-eyebrow">Featured · 2024</span>
-          <h3 className="bento-card-title">NASA Psyche Mission</h3>
-          <p className="bento-card-body">
-            A public-facing Unity simulation for the NASA Psyche mission, featuring
-            a 3D asteroid model and interactive elements.
-          </p>
-          <div className="bento-featured-actions">
-            <a
-              className="bento-btn primary"
-              href="https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/m-type-asteroid-sampling-simulator-asu-d/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Go
-            </a>
-            <a
-              className="bento-btn ghost bento-btn-icon"
-              href="https://github.com/MissionToPsyche-Iridium/iridium_22d_m-type_sim-se/blob/main/README.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="View GitHub README"
-              aria-label="GitHub README"
-            >
-              <FaGithub size={18} />
-            </a>
+          <div className={`bento-featured-content ${isFeaturedVisible ? "visible" : ""}`}>
+            <span className="bento-eyebrow">{featured.eyebrow}</span>
+            <h3 className="bento-card-title">{featured.title}</h3>
+            <p className="bento-card-body">{featured.description}</p>
+            <div className="bento-featured-actions">
+              <a
+                className="bento-btn primary"
+                href={featured.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Go
+              </a>
+              <a
+                className="bento-btn ghost bento-btn-icon"
+                href={featured.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View GitHub README"
+                aria-label="GitHub README"
+              >
+                <FaGithub size={18} />
+              </a>
+            </div>
+          </div>
+          <div className="bento-featured-dots">
+            {FEATURED_PROJECTS.map((p, i) => (
+              <span
+                key={p.title}
+                className={`bento-featured-dot ${i === featuredIndex ? "active" : ""}`}
+              />
+            ))}
           </div>
         </section>
 
