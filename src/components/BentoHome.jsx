@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaStepBackward, FaStepForward } from "react-icons/fa";
 import {
   SiPython,
   SiClaude,
@@ -133,20 +133,54 @@ const NowPlayingVisualizer = ({ isPlaying }) => {
   );
 };
 
-const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange }) => {
+const FEATURED_ROTATE_MS = 5000;
+const FEATURED_TRANSITION_MS = 600;
+const FEATURED_SWIPE_THRESHOLD = 40;
+
+const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong, onPrevSong }) => {
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isFeaturedVisible, setIsFeaturedVisible] = useState(true);
+  const featuredIntervalRef = useRef(null);
+  const featuredDragRef = useRef({ x: 0, y: 0, pointerId: null });
+
+  const stepFeatured = (direction) => {
+    setIsFeaturedVisible(false);
+    setTimeout(() => {
+      setFeaturedIndex(
+        (prev) => (prev + direction + FEATURED_PROJECTS.length) % FEATURED_PROJECTS.length
+      );
+      setIsFeaturedVisible(true);
+    }, FEATURED_TRANSITION_MS);
+  };
+
+  const restartFeaturedAutoRotate = () => {
+    if (featuredIntervalRef.current) clearInterval(featuredIntervalRef.current);
+    featuredIntervalRef.current = setInterval(() => stepFeatured(1), FEATURED_ROTATE_MS);
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFeaturedVisible(false);
-      setTimeout(() => {
-        setFeaturedIndex((prev) => (prev + 1) % FEATURED_PROJECTS.length);
-        setIsFeaturedVisible(true);
-      }, 600);
-    }, 5000);
-    return () => clearInterval(interval);
+    restartFeaturedAutoRotate();
+    return () => clearInterval(featuredIntervalRef.current);
   }, []);
+
+  const handleFeaturedManualStep = (direction) => {
+    stepFeatured(direction);
+    restartFeaturedAutoRotate();
+  };
+
+  const handleFeaturedPointerDown = (e) => {
+    featuredDragRef.current = { x: e.clientX, y: e.clientY, pointerId: e.pointerId };
+  };
+
+  const handleFeaturedPointerUp = (e) => {
+    const drag = featuredDragRef.current;
+    if (drag.pointerId !== e.pointerId) return;
+    const dx = e.clientX - drag.x;
+    const dy = e.clientY - drag.y;
+    featuredDragRef.current = { x: 0, y: 0, pointerId: null };
+    if (Math.abs(dx) < FEATURED_SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+    handleFeaturedManualStep(dx < 0 ? 1 : -1);
+  };
 
   const featured = FEATURED_PROJECTS[featuredIndex];
 
@@ -210,9 +244,37 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange }) => {
               <div className="bento-track-hint">Tap to browse tracks</div>
             </div>
           </div>
+          <div className="bento-track-controls">
+            <button
+              className="bento-track-nav-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrevSong?.();
+              }}
+              aria-label="Previous track"
+              title="Previous track"
+            >
+              <FaStepBackward size={13} />
+            </button>
+            <button
+              className="bento-track-nav-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onNextSong?.();
+              }}
+              aria-label="Next track"
+              title="Next track"
+            >
+              <FaStepForward size={13} />
+            </button>
+          </div>
         </section>
 
-        <section className="bento-card bento-featured-project">
+        <section
+          className="bento-card bento-featured-project"
+          onPointerDown={handleFeaturedPointerDown}
+          onPointerUp={handleFeaturedPointerUp}
+        >
           <div className={`bento-featured-content ${isFeaturedVisible ? "visible" : ""}`}>
             <span className="bento-eyebrow">{featured.eyebrow}</span>
             <h3 className="bento-card-title">{featured.title}</h3>
