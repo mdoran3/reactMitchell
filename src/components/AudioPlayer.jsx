@@ -33,6 +33,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
   const lastAngleRef = useRef(0);
   const dragTimeRef = useRef(0);
   const isDraggingRef = useRef(false);
+  const seekRafRef = useRef(null);
 
   useEffect(() => {
     if (!currentSong?.url || !waveformRef.current) {
@@ -190,6 +191,10 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
         cancelAnimationFrame(animationRef.current);
         animationRef.current = null;
       }
+      if (seekRafRef.current) {
+        cancelAnimationFrame(seekRafRef.current);
+        seekRafRef.current = null;
+      }
       if (wavesurferRef.current) {
         wavesurferRef.current.destroy();
         wavesurferRef.current = null;
@@ -244,9 +249,30 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
     return Math.atan2(e.clientY - cy, e.clientX - cx) * (180 / Math.PI);
   };
 
+  // Mobile touch fires far more pointermove events per second than a mouse does.
+  // Writing audio.currentTime that often while the element is routed through the
+  // Web Audio analyser can stall playback on mobile browsers, so the actual seek
+  // is throttled to once per animation frame instead of once per event.
+  const flushSeek = () => {
+    seekRafRef.current = null;
+    if (audioContextRef.current?.state === "suspended") {
+      audioContextRef.current.resume().catch(() => {});
+    }
+    seekToTime(dragTimeRef.current);
+    setCurrentTime(dragTimeRef.current);
+  };
+
+  const scheduleSeek = () => {
+    if (seekRafRef.current) return;
+    seekRafRef.current = requestAnimationFrame(flushSeek);
+  };
+
   const handleWheelPointerDown = (e) => {
     if (!wavesurferRef.current || !wheelRef.current) return;
     wheelRef.current.setPointerCapture(e.pointerId);
+    if (audioContextRef.current?.state === "suspended") {
+      audioContextRef.current.resume().catch(() => {});
+    }
     const rect = wheelRef.current.getBoundingClientRect();
     lastAngleRef.current = getPointerAngle(e, rect);
     dragTimeRef.current = wavesurferRef.current.getCurrentTime();
@@ -270,8 +296,7 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
     const dur = wavesurferRef.current.getDuration() || 0;
     const timeDelta = (delta / 360) * SECONDS_PER_ROTATION;
     dragTimeRef.current = Math.min(Math.max(dragTimeRef.current + timeDelta, 0), dur);
-    seekToTime(dragTimeRef.current);
-    setCurrentTime(dragTimeRef.current);
+    scheduleSeek();
   };
 
   const endWheelDrag = (e) => {
@@ -279,6 +304,10 @@ const AudioPlayer = ({ isDarkMode, currentSong, isPlaying, setIsPlaying, isLoadi
     isDraggingRef.current = false;
     setIsDragging(false);
     rotationRef.current = rotationRef.current % 360;
+    if (seekRafRef.current) {
+      cancelAnimationFrame(seekRafRef.current);
+      flushSeek();
+    }
     if (wheelRef.current) {
       wheelRef.current.style.transform = isPlaying ? "" : `rotate(${rotationRef.current}deg)`;
       try {
