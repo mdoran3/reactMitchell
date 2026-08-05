@@ -315,15 +315,15 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
           <div className="bento-stat-row">
             <div className="bento-stat">
               <div className="bento-stat-value">6</div>
-              <div className="bento-stat-label">Projects</div>
+              <div className="bento-stat-label">Featured Projects</div>
             </div>
             <div className="bento-stat">
-              <div className="bento-stat-value">19</div>
-              <div className="bento-stat-label">Cities</div>
+              <div className="bento-stat-value">32</div>
+              <div className="bento-stat-label">Countries</div>
             </div>
             <div className="bento-stat">
               <div className="bento-stat-value">6</div>
-              <div className="bento-stat-label">Tracks</div>
+              <div className="bento-stat-label">Featured Tracks</div>
             </div>
           </div>
         </section>

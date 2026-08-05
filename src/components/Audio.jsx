@@ -10,7 +10,6 @@ const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }
       <div className="audio-content">
         <span className="audio-eyebrow">Originals · Remixes</span>
         <h2>Audio</h2>
-        <p className="audio-sub">My audio production and sound design work.</p>
 
         <ul className="audio-track-list">
           {songs.map((song, index) => {
