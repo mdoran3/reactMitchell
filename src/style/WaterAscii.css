@@ -1,0 +1,36 @@
+.water-ascii {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.water-ascii-pre {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 10px;
+  line-height: 1;
+  font-size: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.water-ascii-row {
+  margin: 0;
+  line-height: 1;
+}
+
+.water-ascii.dark .water-ascii-pre {
+  color: rgba(210, 250, 245, 0.44);
+}
+
+.water-ascii.light .water-ascii-pre {
+  color: rgba(8, 63, 62, 0.32);
+}

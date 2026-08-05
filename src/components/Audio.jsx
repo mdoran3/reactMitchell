@@ -1,10 +1,14 @@
 import React from "react";
 import "../style/Audio.css";
+import "../style/WaterAscii.css";
 import { FaPlay } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import songs from "../data/songs";
+import WaterAscii from "./WaterAscii";
 
 const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }) => {
+  const [hoveredSongUrl, setHoveredSongUrl] = React.useState(null);
+
   return (
     <div className={`audio-container modern ${isDarkMode ? "dark" : "light"}`}>
       <div className="audio-content">
@@ -21,7 +25,17 @@ const Audio = ({ setCurrentSong, isDarkMode, currentSong, isPlaying, isLoading }
                 <button
                   className={`audio-track-row${isActive ? " active" : ""}`}
                   onClick={() => setCurrentSong(song)}
+                  onMouseEnter={() => setHoveredSongUrl(song.url)}
+                  onMouseLeave={() => setHoveredSongUrl((prev) => (prev === song.url ? null : prev))}
+                  onFocus={() => setHoveredSongUrl(song.url)}
+                  onBlur={() => setHoveredSongUrl((prev) => (prev === song.url ? null : prev))}
                 >
+                  <span className="audio-track-wave" aria-hidden="true">
+                    <WaterAscii
+                      isDarkMode={isDarkMode}
+                      speedMultiplier={isActive || hoveredSongUrl === song.url ? 2 : 1}
+                    />
+                  </span>
                   <span className="audio-track-index">{String(index + 1).padStart(2, "0")}</span>
                   <span className="audio-track-name">{song.name}</span>
 
