@@ -58,7 +58,7 @@ const App = () => {
           />
         );
       case "projects":
-        return <Projects />;
+        return <Projects isDarkMode={isDarkMode} />;
       case "music":
         return (
           <Audio

@@ -1,8 +1,9 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
+import ScrollingVerticalBars from "./ScrollingVerticalBars";
 import "../style/Projects.css"; 
 
-const Projects = () => {
+const Projects = ({ isDarkMode }) => {
   const projects = [
     {
       id: 5,
@@ -61,13 +62,16 @@ const Projects = () => {
   };
 
   return (
-    <div className="projects-container modern">
+    <div className={`projects-container modern ${isDarkMode ? "dark" : "light"}`}>
       <div className="projects-content">
         <span className="projects-eyebrow">Selected work · 2024–2026</span>
         <h2>Projects</h2>
         <div className="projects-list">
           {projects.map((project) => (
             <div key={project.id} className="project-item">
+              <div className="projects-ambient-overlay" aria-hidden="true">
+                <ScrollingVerticalBars isDarkMode={isDarkMode} />
+              </div>
               <div className="project-header">
                 <h3>{project.title}</h3>
                 {project.year && <span className="project-year">{project.year}</span>}
