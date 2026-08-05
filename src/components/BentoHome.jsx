@@ -7,6 +7,7 @@ import {
   SiOpenjdk,
 } from "react-icons/si";
 import PhotoSlider from "./PhotoSlider";
+import ScrollingVerticalBars from "./ScrollingVerticalBars";
 import "../style/BentoHome.css";
 
 const AbletonLogo = () => (
@@ -188,6 +189,9 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
     <div className={`bento-home ${isDarkMode ? "dark" : "light"}`}>
       <div className="bento-grid">
         <section className="bento-card bento-hero">
+          <div className="bento-ambient-overlay" aria-hidden="true">
+            <ScrollingVerticalBars />
+          </div>
           <span className="bento-eyebrow">Portfolio · 2026</span>
           <h1 className="bento-hero-title">
             Building software<br />
@@ -230,6 +234,9 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
           role="button"
           tabIndex={0}
         >
+          <div className="bento-ambient-overlay" aria-hidden="true">
+            <ScrollingVerticalBars />
+          </div>
           <div className="bento-now-playing-header">
             <span className="bento-eyebrow">Now Playing</span>
             <span className={`bento-status-pill ${isPlaying ? "playing" : ""}`}>
@@ -275,6 +282,9 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
           onPointerDown={handleFeaturedPointerDown}
           onPointerUp={handleFeaturedPointerUp}
         >
+          <div className="bento-ambient-overlay" aria-hidden="true">
+            <ScrollingVerticalBars />
+          </div>
           <div className={`bento-featured-content ${isFeaturedVisible ? "visible" : ""}`}>
             <span className="bento-eyebrow">{featured.eyebrow}</span>
             <h3 className="bento-card-title">{featured.title}</h3>
@@ -311,6 +321,9 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
         </section>
 
         <section className="bento-card bento-stats">
+          <div className="bento-ambient-overlay" aria-hidden="true">
+            <ScrollingVerticalBars />
+          </div>
           <span className="bento-eyebrow">By the numbers</span>
           <div className="bento-stat-row">
             <div className="bento-stat">
@@ -319,7 +332,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
             </div>
             <div className="bento-stat">
               <div className="bento-stat-value">32</div>
-              <div className="bento-stat-label">Countries</div>
+              <div className="bento-stat-label">Countries Visited</div>
             </div>
             <div className="bento-stat">
               <div className="bento-stat-value">6</div>
