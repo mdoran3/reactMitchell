@@ -7,21 +7,44 @@ import "../style/Header.css";
 const Header = ({ isDarkMode, toggleDarkMode, currentTab, onTabChange }) => {
   const headerRef = useRef(null);
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => (
+    typeof window !== "undefined" ? window.innerWidth <= 900 : false
+  ));
   useEffect(() => {
     function setHeaderHeightVar() {
-      if (headerRef.current) {
-        const height = headerRef.current.offsetHeight;
-        document.documentElement.style.setProperty('--header-height', height + 'px');
-      }
+      if (!headerRef.current) return;
+      const height = headerRef.current.offsetHeight;
+      document.documentElement.style.setProperty("--header-height", `${height}px`);
     }
+
     function handleResize() {
       setIsMobile(window.innerWidth <= 900);
-      setHeaderHeightVar();
+      // Re-measure on next frame after potential mobile/desktop layout swap.
+      requestAnimationFrame(setHeaderHeightVar);
     }
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    setHeaderHeightVar();
+
+    const resizeObserver = new ResizeObserver(() => {
+      setHeaderHeightVar();
+    });
+
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", setHeaderHeightVar);
+    viewport?.addEventListener("scroll", setHeaderHeightVar);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      viewport?.removeEventListener("resize", setHeaderHeightVar);
+      viewport?.removeEventListener("scroll", setHeaderHeightVar);
+      resizeObserver.disconnect();
+    };
   }, []);
 
   // Desktop tab bar (Home/Projects/Audio) is kept centered in the band between
