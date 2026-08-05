@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const ScrollingVerticalBars = () => {
+const ScrollingVerticalBars = ({ isDarkMode = true }) => {
   const canvasRef = useRef(null);
   const scrollPositionRef = useRef(0);
   const frameRef = useRef(null);
@@ -52,6 +52,8 @@ const ScrollingVerticalBars = () => {
       const height = rect.height || 550;
       const numLines = 60;
       const lineSpacing = width / numLines;
+      const lineColor = isDarkMode ? "rgba(255, 255, 255, 0.2)" : "rgba(10, 44, 43, 0.2)";
+      const barColor = isDarkMode ? "rgba(255, 255, 255, 0.24)" : "rgba(10, 44, 43, 0.24)";
 
       scrollPositionRef.current += 0.0025;
       const scrollFactor = (Math.sin(scrollPositionRef.current) + 1) / 2;
@@ -62,7 +64,7 @@ const ScrollingVerticalBars = () => {
         const x = i * lineSpacing + lineSpacing / 2;
 
         ctx.beginPath();
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+        ctx.strokeStyle = lineColor;
         ctx.lineWidth = 1;
         ctx.moveTo(x, 0);
         ctx.lineTo(x, height);
@@ -80,7 +82,7 @@ const ScrollingVerticalBars = () => {
           const drawHeight = bar1.height + (bar2.height - bar1.height) * scrollFactor;
           const drawWidth = bar1.width + (bar2.width - bar1.width) * scrollFactor;
 
-          ctx.fillStyle = "rgba(255, 255, 255, 0.24)";
+          ctx.fillStyle = barColor;
           ctx.fillRect(x - drawWidth / 2, y - drawHeight / 2, drawWidth, drawHeight);
         }
       }
@@ -101,7 +103,7 @@ const ScrollingVerticalBars = () => {
       }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
-  }, []);
+  }, [isDarkMode]);
 
   return <canvas ref={canvasRef} className="bento-ambient-canvas" aria-hidden="true" />;
 };

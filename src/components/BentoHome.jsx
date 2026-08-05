@@ -190,7 +190,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
       <div className="bento-grid">
         <section className="bento-card bento-hero">
           <div className="bento-ambient-overlay" aria-hidden="true">
-            <ScrollingVerticalBars />
+            <ScrollingVerticalBars isDarkMode={isDarkMode} />
           </div>
           <span className="bento-eyebrow">Portfolio · 2026</span>
           <h1 className="bento-hero-title">
@@ -235,7 +235,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
           tabIndex={0}
         >
           <div className="bento-ambient-overlay" aria-hidden="true">
-            <ScrollingVerticalBars />
+            <ScrollingVerticalBars isDarkMode={isDarkMode} />
           </div>
           <div className="bento-now-playing-header">
             <span className="bento-eyebrow">Now Playing</span>
@@ -283,7 +283,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
           onPointerUp={handleFeaturedPointerUp}
         >
           <div className="bento-ambient-overlay" aria-hidden="true">
-            <ScrollingVerticalBars />
+            <ScrollingVerticalBars isDarkMode={isDarkMode} />
           </div>
           <div className={`bento-featured-content ${isFeaturedVisible ? "visible" : ""}`}>
             <span className="bento-eyebrow">{featured.eyebrow}</span>
@@ -322,7 +322,7 @@ const BentoHome = ({ isDarkMode, currentSong, isPlaying, onTabChange, onNextSong
 
         <section className="bento-card bento-stats">
           <div className="bento-ambient-overlay" aria-hidden="true">
-            <ScrollingVerticalBars />
+            <ScrollingVerticalBars isDarkMode={isDarkMode} />
           </div>
           <span className="bento-eyebrow">By the numbers</span>
           <div className="bento-stat-row">
