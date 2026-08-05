@@ -78,6 +78,16 @@
               border-color 0.3s ease;
 }
 
+.projects-container.modern.light .project-item {
+  background:
+    linear-gradient(135deg, rgba(9, 111, 109, 0.06) 0%, rgba(255, 255, 255, 0.85) 100%),
+    rgba(255, 255, 255, 0.7);
+  border-color: rgba(9, 111, 109, 0.18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 20px 40px -20px rgba(9, 111, 109, 0.18);
+}
+
 .projects-container.modern .project-item::before {
   content: "";
   position: absolute;
@@ -122,6 +132,17 @@
     0 0 0 1px rgba(9, 111, 109, 0.3);
 }
 
+.projects-container.modern.light .project-item:hover {
+  background:
+    linear-gradient(135deg, rgba(9, 111, 109, 0.1) 0%, rgba(255, 255, 255, 0.92) 100%),
+    rgba(255, 255, 255, 0.82);
+  border-color: rgba(9, 111, 109, 0.32);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 36px 72px -32px rgba(9, 111, 109, 0.25),
+    0 0 0 1px rgba(9, 111, 109, 0.25);
+}
+
 .projects-container.modern .project-header {
   flex-direction: row;
   align-items: baseline;
@@ -141,6 +162,10 @@
   line-height: 1.2;
 }
 
+.projects-container.modern.light .project-header h3 {
+  color: #0a2c2b;
+}
+
 .projects-container.modern .project-year {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.78rem;
@@ -153,6 +178,12 @@
   border-radius: 999px;
   background: rgba(9, 111, 109, 0.15);
   border: 1px solid rgba(9, 111, 109, 0.3);
+}
+
+.projects-container.modern.light .project-year {
+  color: #075755;
+  background: rgba(9, 111, 109, 0.22);
+  border-color: rgba(9, 111, 109, 0.42);
 }
 
 .projects-container.modern .project-body {
@@ -172,6 +203,10 @@
   font-size: 0.95rem;
   line-height: 1.55;
   margin: 0;
+}
+
+.projects-container.modern.light .project-info p {
+  color: rgba(10, 44, 43, 0.78);
 }
 
 .projects-container.modern .project-buttons-group {
@@ -206,6 +241,12 @@
   padding: 7px 12px;
 }
 
+.projects-container.modern.light .github-readme-link {
+  background: rgba(9, 111, 109, 0.08);
+  border-color: rgba(9, 111, 109, 0.22);
+  color: #096f6d;
+}
+
 .projects-container.modern .go-button:hover,
 .projects-container.modern .github-readme-link:hover {
   transform: translateY(-2px);
@@ -215,6 +256,11 @@
 .projects-container.modern .github-readme-link:hover {
   background: rgba(9, 111, 109, 0.18);
   border-color: rgba(9, 111, 109, 0.5);
+}
+
+.projects-container.modern.light .github-readme-link:hover {
+  background: rgba(9, 111, 109, 0.16);
+  border-color: rgba(9, 111, 109, 0.38);
 }
 
 .go-button:hover,
